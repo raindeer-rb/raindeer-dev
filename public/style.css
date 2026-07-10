@@ -27,6 +27,15 @@ header {
   }
 }
 
+aside#sidebar {
+  width: 12rem;
+  float: left;
+}
+
+#content {
+  overflow: auto;
+}
+
 footer {
   margin-top: 2rem;
   border-top: 1px solid #000;

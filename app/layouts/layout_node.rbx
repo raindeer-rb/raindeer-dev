@@ -13,10 +13,14 @@ class LayoutNode < LowNode
             <span id="name">{"Raindeer"}</span>
           </div>
         </header>
+        
+        <div class="container">
+          <{ SidebarNode }>
 
-        <main class="container">
-          <{ :slot }>
-        </main>
+          <main id="content">
+            <{ :slot }>
+          </main>
+        </div>
 
         <footer>
           <div class="container">
