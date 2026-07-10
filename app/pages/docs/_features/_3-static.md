@@ -134,8 +134,10 @@ app/pages/docs/_basics/_1-getting-started.md
 
 ...the `_basics` and `_1` prefixes produce metadata that is equivalent to the following frontmatter:
 ```markdown
+---
 folder: basics
 order: 1
+---
 ```
 
 ## Layout

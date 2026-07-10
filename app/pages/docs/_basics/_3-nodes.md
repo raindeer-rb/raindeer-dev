@@ -131,7 +131,7 @@ end
 
 ## Unit Testing
 
-Nodes use the **Method Factory** pattern. Instead of calling `new` directly, you first call a class method which instantiates and sets up the class on your behalf, then calls the corresponding instance method.
+Nodes use the **Method Factory** pattern. Instead of calling `new` directly, you first call a class method which instantiates the class on your behalf, then calls the corresponding instance method.
 
 Say your class looks like this:
 ```ruby
@@ -142,7 +142,7 @@ class ListNode < LowNode
 end
 ```
 
-To test the `render` instance method call the `render` class method:
+To call the `#render` instance method you first call the `.render` *class* method:
 ```ruby
 RSpec.describe ListNode do
   describe '#render' do
@@ -153,4 +153,4 @@ RSpec.describe ListNode do
 end
 ```
 
-The `render` class method will instantiate the class then call the `render` instance method.
+The `.render` class method will instantiate the class and then call the `#render` instance method.

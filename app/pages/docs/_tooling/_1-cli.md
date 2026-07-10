@@ -1,5 +1,5 @@
 ---
-title: Rain CLI
+title: CLI
 published: false
 ---
 

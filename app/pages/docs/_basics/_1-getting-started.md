@@ -14,6 +14,6 @@ bin/server
 
 On your local the terminal will output a matrix visualisation of the asynchronous events, giving you a feel for what is happening under the hood.
 
-ℹ️ **iTerm:** Press `Option + A` to accept screen refreshing, or output will bounce around.
+**iTerm:** Press `Option + A` to accept screen refreshing, or output will bounce around.
 
 **See also:** [Rain CLI](/docs/cli)

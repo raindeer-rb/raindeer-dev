@@ -8,13 +8,23 @@ class SidebarNode < LowNode
     @navs = [
       Nav.new('Basics', [
         Link.new("Getting Started", "/docs/getting-started"),
+        Link.new("Routing", "/docs/routing"),
         Link.new("Events", "/docs/events"),
         Link.new("Nodes", "/docs/nodes"),
-        Link.new("Routing", "/docs/routing"),
+        Link.new("Data", "/docs/data"),
       ]),
       Nav.new('Features', [
+        Link.new("Types", "/docs/types"),
         Link.new("Forms", "/docs/forms"),
-        Link.new("Static", "/docs/static"),
+        Link.new("Static Site Generation", "/docs/static"),
+      ]),
+      Nav.new('Advanced', [
+        Link.new("Architecture", "/docs/architecture"),
+      ]),
+      Nav.new('Tooling', [
+        Link.new("CLI", "/docs/cli"),
+        Link.new("Testing", "/docs/testing"),
+        Link.new("Debugging", "/docs/debugging"),
       ]),
     ]
   end
