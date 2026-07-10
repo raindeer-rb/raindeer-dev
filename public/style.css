@@ -32,6 +32,18 @@ aside#sidebar {
   width: 12rem;
   float: left;
   padding: 1rem;
+
+  nav {
+    li {
+      padding: calc(var(--pico-nav-element-spacing-vertical) * .25) var(--pico-nav-element-spacing-horizontal);
+      padding-left: calc(var(--pico-nav-element-spacing-vertical) * 2);
+    }
+  }
+  summary {
+    list-style-type: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
 }
 
 #content {
