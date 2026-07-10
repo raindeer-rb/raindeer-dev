@@ -26,7 +26,7 @@ class LayoutNode < LowNode
           </div>
         </header>
         
-        <div class="container">
+        <div class="container overflow-auto">
           <{ SidebarNode }>
 
           <main id="content">
