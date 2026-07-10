@@ -36,11 +36,11 @@ The actions are split up this way so that you can have both actions/methods in t
 For more flexibility use the `observe Route['path']` syntax.
 
 A `Route['path']` event is triggered for HTTP request, with the HTTP verb becoming the corresponding event action:
-- GET 'path' => `observe Route['path'], :get`
-- POST 'path' => `observe Route['path'], :post`
-- QUERY 'path' => `observe Route['path'], :query`
-- DELETE 'path' => `observe Route['path'], :delete`
-- PUT 'path' => `observe Route['path'], :put`
+- **GET:** `observe Route['path'], :get`
+- **POST:** `observe Route['path'], :post`
+- **QUERY:** `observe Route['path'], :query`
+- **DELETE:** `observe Route['path'], :delete`
+- **PUT:** `observe Route['path'], :put`
 
 For example, a GET request to the `'/'` path will call the `get` method and look like this:
 ```ruby
@@ -76,7 +76,9 @@ class ParentNode < LowNode
     <html><{ ChildNode }></html>
   end
 end
+```
 
+```ruby
 class ChildNode < LowNode
   def render
     <strong>Hello</strong>
@@ -117,9 +119,14 @@ If the node has been rendered by another node then any props passed to that node
 ```ruby
 class MyNode < LowNode
   def render(my_var:)
-    <strong>{my_var}</strong> # => '<strong>Yes</strong>'
+    <strong>{my_var}</strong>
   end
 end
+```
+
+**Outputs:**
+```html
+<strong>Yes</strong>
 ```
 
 ## Unit Testing
