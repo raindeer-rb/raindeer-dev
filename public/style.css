@@ -51,6 +51,12 @@ footer {
   }
 }
 
+/***** COMPONENTS *****/
+
+.highlight {
+  border-radius: 10px;
+}
+
 /***** DASHBOARD *****/
 
 .stat {
