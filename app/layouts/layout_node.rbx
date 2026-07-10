@@ -11,7 +11,13 @@ class LayoutNode < LowNode
       <body>
         <header>
           <div class="container">
-            <span id="name">{"Raindeer"}</span>
+            <a href="/"><span id="logo">{"Raindeer"}</span></a>
+            <nav id="main-menu">
+              <ul>
+                <li><a href="/docs">{"Docs"}</a></li>
+                <li><a href="https://github.com/raindeer-rb/raindeer">{"Source"}</a></li>
+              </ul>
+            </nav>
           </div>
         </header>
         
@@ -28,7 +34,7 @@ class LayoutNode < LowNode
             <ul>
               <li><a href="https://raindeer.dev">{"Website"}</a></li>
               <li><a href="https://raindeer.dev/docs">{"Docs"}</a></li>
-              <li><a href="https://github.com/raindeer-rb/raindeer">{"Source"}</a></li>
+              <li><a href="https://github.com/raindeer-rb/raindeer">{"GitHub"}</a></li>
             </ul>
           </div>
         </footer>

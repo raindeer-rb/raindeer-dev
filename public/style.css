@@ -8,6 +8,7 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 30px;
+    padding: 1rem;
   }
 
   #favicon,
@@ -30,10 +31,12 @@ header {
 aside#sidebar {
   width: 12rem;
   float: left;
+  padding: 1rem;
 }
 
 #content {
   overflow: auto;
+  padding: 1rem;
 }
 
 footer {
