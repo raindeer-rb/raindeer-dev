@@ -1,0 +1,103 @@
+/***** TYPOGRAPHY *****/
+
+:root {
+  --pico-font-size: 1rem;
+}
+
+/***** LAYOUT *****/
+
+header {
+  background-color: #000;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    padding: 1rem;
+  }
+
+  #favicon,
+  #favicon img {
+    height: 100%;
+  }
+
+  #navbar {
+    li {
+      a {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+      }
+    }
+  }
+}
+
+aside#sidebar {
+  width: 12rem;
+  float: left;
+  padding: 1rem;
+
+  nav {
+    li {
+      padding: calc(var(--pico-nav-element-spacing-vertical) * .25) var(--pico-nav-element-spacing-horizontal);
+      padding-left: calc(var(--pico-nav-element-spacing-vertical) * 2);
+    }
+  }
+  summary {
+    list-style-type: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
+
+#content {
+  overflow: auto;
+  padding: 1rem;
+}
+
+footer {
+  margin-top: 2rem;
+  border-top: 1px solid #000;
+  ul {
+    display: flex;
+    justify-content: center;
+    li {
+      margin-left: 2rem;
+    }
+  }
+}
+
+/***** COMPONENTS *****/
+
+.slogan {
+  margin-bottom: var(--pico-block-spacing-vertical);
+  padding: var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
+  border-radius: var(--pico-border-radius);
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  border: 5px solid #565c9c;
+}
+
+.highlight {
+  border-radius: 10px;
+}
+
+/***** DASHBOARD *****/
+
+.stat {
+  .number {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+  }
+  footer {
+    text-align: center;
+  }
+}
