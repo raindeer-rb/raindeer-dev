@@ -71,6 +71,20 @@ footer {
 
 /***** COMPONENTS *****/
 
+.slogan {
+  margin-bottom: var(--pico-block-spacing-vertical);
+  padding: var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
+  border-radius: var(--pico-border-radius);
+  background: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+  border: 5px solid #565c9c;
+}
+
 .highlight {
   border-radius: 10px;
 }
