@@ -2,6 +2,8 @@
 title: Routing
 ---
 
+<{ :toc }>
+
 Routes can be defined anywhere inside your `/app` folder. A new Raindeer application generated via `rain new app_name` will create `app/routes.rb`:
 
 ```ruby
