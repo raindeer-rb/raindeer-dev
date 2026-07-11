@@ -9,13 +9,17 @@ class PageRenderer < LowNode
     url_path = File.expand_path("app/pages#{event.route.path}", Dir.pwd)
     file_path = @pages.url_paths[url_path] || return
 
-    @result = @pages.render(file_path:)
+    result = @pages.process(file_path:)
+    @html = result.html
+    @title = result.metadata[:title]
   end
 
   def render(event:)
-    <{ if: @result }>
+    <{ if: @html }>
       <{ LayoutNode: }>
-        <{ @result }>
+        <h1>{@title}</h1>
+
+        <{ @html }>
       <{ :LayoutNode }>
     <{ :if }>
   end
