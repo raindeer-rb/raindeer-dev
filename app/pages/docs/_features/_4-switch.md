@@ -25,7 +25,10 @@ You define a period of time that you can be inactive for. If you build your stat
 
 Secrecy is achieved by leading the person with the secret link on a wild goose chase through thousands of random files, with the final file revealing the data. These files take an entire month (configurable) to traverse, and if the site is rebuilt before the month is out then the final file will no longer be accessible.
 
-Files have to be loaded sequentially, you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
+The secret link takes you to a web page with a loading bar that will process the random files over the defined period of time.
+
+> ![note]
+> Files have to be loaded sequentially, you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
 
 ## Basic Mode
 
