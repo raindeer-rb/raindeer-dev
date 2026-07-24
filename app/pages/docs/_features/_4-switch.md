@@ -3,6 +3,8 @@ title: Dumb Dead Man's Switch [CONCEPT STAGE]
 menu: Dead Man's Switch
 ---
 
+<{ :toc }>
+
 <p class="slogan">The world's first statically generated dead man's switch</p>
 
 **How can a website know if you're dead?** It could email you and do something if you don't reply... but how can a static site tell if you're dead? It can't? The server-side has no mind and the client-side can't be trusted. Raindeer achieves the impossible; a static site that acts as a dead man's switch without any user input or inactivity logic, just by using the passage of time to create a trustless system.

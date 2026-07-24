@@ -3,6 +3,8 @@ title: Architecture
 section: advanced
 ---
 
+<{ :toc }>
+
 ## Event-driven
 
 Raindeer is event-driven, but as much as possible these events are created and triggered by the framework itself, hiding the complexity of traditional event-driven applications in order to make the framework easier to use. See ["Aspect-orientated programming"](aspect-orientated-programming).

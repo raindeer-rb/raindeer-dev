@@ -2,6 +2,8 @@
 title: Types
 ---
 
+<{ :toc }>
+
 Raindeer supports types out of the box via <a href="https://github.com/low-rb/low_type" title="GitHub">LowType</a>. LowType introduces the concept of "type expressions" in method arguments. When an argument's default value is a type instead of a value then it's treated as a type expression, which will check the type:
 
 ```ruby

@@ -3,6 +3,8 @@ title: Dependencies and providers
 section: advanced
 ---
 
+<{ :toc }>
+
 ## Providers
 
 Providers let you create "global" dependencies to inject.

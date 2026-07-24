@@ -2,6 +2,8 @@
 title: Static Site Generation
 ---
 
+<{ :toc }>
+
 <p class="slogan">Start static, go dynamic</p>
 
 Raindeer is a dynamic web framework but it can also export markdown files to a static site. This allows for a site that can start off static and become dynamic, or the reverse. In fact, this very documentation site is generated from a Raindeer application.

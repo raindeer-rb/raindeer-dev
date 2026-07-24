@@ -2,6 +2,8 @@
 title: Data
 ---
 
+<{ :toc }>
+
 There are two main ways to query the database; traditional SQL queries and Data Expressions.
 
 ## SQL
