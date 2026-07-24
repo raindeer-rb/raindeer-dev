@@ -2,6 +2,14 @@
 title: Data
 ---
 
+There are two main ways to query the database; traditional SQL queries and Data Expressions.
+
+## SQL
+
+Raindeer uses the repository pattern and the Sequel gem.
+
+## Data Expressions [UNRELEASED]
+
 Instead of the model defining relationships and associated queries to the database, LowData follows the repository pattern with a twist; Data Expressions.
 
 This expression joins the `posts` table with the `users` table while representing a join conceptually as simple arithmetic:

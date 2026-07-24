@@ -17,8 +17,10 @@ class SidebarNode < LowNode
         Link.new("Types", "/docs/types"),
         Link.new("Forms", "/docs/forms"),
         Link.new("Static Site Generation", "/docs/static"),
+        Link.new("Dead Man's Switch", "/docs/switch"),
       ]),
       Nav.new('Advanced', [
+        Link.new("Dependencies", "/docs/dependencies"),
         Link.new("Architecture", "/docs/architecture"),
       ]),
       Nav.new('Tooling', [

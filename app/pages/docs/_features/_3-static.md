@@ -4,7 +4,7 @@ title: Static Site Generation
 
 <p class="slogan">Start static, go dynamic</p>
 
-Raindeer is a dynamic web framework, however you can also use it to export markdown files to a static site. This allows for a site that can start off static and become dynamic, or the reverse. In fact, this very documentation site is generated from a Raindeer application.
+Raindeer is a dynamic web framework but it can also export markdown files to a static site. This allows for a site that can start off static and become dynamic, or the reverse. In fact, this very documentation site is generated from a Raindeer application.
 
 ## File Structure
 
@@ -13,12 +13,14 @@ Place your markdown files in `app/pages`.
 ### URLs
 
 File paths will define the URL, for example; a path of `app/pages/docs/static.md` will result in the URL **"http://example.com/docs/static"**.
-- Folders prefixed with an underscore such as `app/pages/docs/_basics/static.md` can be used to group files internally but will be stripped from the URL
-- File names prefixed with an underscore and number such as `_1-getting-started.md` can be used to order files but will also be stripped from the URL
+- Prefix folders with an underscore to group files without affecting the URL:
+  `app/pages/docs/_basics/static.md` => `/docs/static`
+- Prefix file names with an underscore and number to order files without affecting the URL:
+  `app/pages/docs/_1-getting-started.md` => `/docs/getting-started`
 
 ### Assets
 
-Place public facing assets such as images and files in the `/public` directory. The URL for a file like `/public/logo.png` will be `/logo.png`.
+Put publicly accessible assets such as images and files in the `/public` directory. The URL for a file like `/public/logo.png` will be `/logo.png`.
 
 ## Markdown
 
