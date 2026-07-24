@@ -88,6 +88,7 @@ PATH
       low_state
       low_type (~> 1.0)
       lowload (~> 0.5)
+      nokogiri
       observers
       ostruct
       paint
@@ -143,6 +144,8 @@ GEM
     lint_roller (1.1.0)
     logger (1.7.0)
     low_state (0.2.0)
+    nokogiri (1.19.4-x86_64-darwin)
+      racc (~> 1.4)
     openssl (4.0.2)
     ostruct (0.6.3)
     paint (2.3.0)
@@ -217,7 +220,6 @@ GEM
     unicode-emoji (4.2.0)
 
 PLATFORMS
-  ruby
   x86_64-darwin-25
 
 DEPENDENCIES
@@ -269,6 +271,7 @@ CHECKSUMS
   low_type (1.3.2)
   lowkey (0.4.3)
   lowload (0.6.0)
+  nokogiri (1.19.4-x86_64-darwin) sha256=7fd17057d3e1f00e9954a74b3cd76595d3d4a5ef233b7ed9599047c204f70551
   observers (0.8.0)
   openssl (4.0.2) sha256=1037ad2868ae58df9ad917891c0c0f9815a1172f6846d4bcdd508e4c2ee747c2
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
