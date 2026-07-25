@@ -41,7 +41,7 @@ title: Heading 1
 
 In addition to Markdown, Raindown provides macros to make working with Markdown files easier.
 
-### Table of Contents [UNRELEASED]
+### Table of Contents
 
 Insert a table of contents that links to each heading on your page:
 ```ruby
