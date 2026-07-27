@@ -2,6 +2,8 @@
 title: Getting Started
 ---
 
+<{ :toc }>
+
 Currently the best way to build a Raindeer application is to clone the [Raindeer Template](https://github.com/raindeer-rb/raindeer-template).
 
 Then in your terminal run:

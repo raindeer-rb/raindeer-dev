@@ -2,6 +2,8 @@
 title: Routing
 ---
 
+<{ :toc }>
+
 Routes can be defined anywhere inside your `/app` folder. A new Raindeer application generated via `rain new app_name` will create `app/routes.rb`:
 
 ```ruby
@@ -25,13 +27,11 @@ Raindeer.router do
   route '/'
 end
 ```
-```
 
 ### HTTP Verb
 
-
 ```ruby
-
+Route[:post]
 ```
 
 ## Params
@@ -84,4 +84,4 @@ When no route is found a `StatusEvent` will be sent to any observers of that par
 
 `Rain::Router` is event-driven like other core components. It listens to `RequestEvent`s and converts them into `RouteEvent`s when a URL matches one of the defined routes.
 
-`Raindeer.router` is syntactic sugar for `Providers['rain.router']`, which allows you to access a dependency from anywhere and as many times as you'd like. You may notice that a default Rainder application calls `Raindeer.router` in multiple locations per "feature"; this is in keeping with the compositional nature and ability of Raindeer... but by all means feel free to collate all the routes into one file if that's what you prefer.
+`Raindeer.router` provides the singleton router instance via `Providers['rain.router']`. You can call `Raindeer.router` in multiple files per "feature"; this is in keeping with the compositional nature of Raindeer... but by all means feel free to collate all your routes into one file if that's what you prefer.

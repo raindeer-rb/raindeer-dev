@@ -2,6 +2,8 @@
 title: Forms
 ---
 
+<{ :toc }>
+
 Forms can be created in a compositional way, mixing both Antlers syntax with regular form elements:
 
 ```ruby

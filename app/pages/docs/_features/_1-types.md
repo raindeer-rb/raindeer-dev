@@ -2,6 +2,8 @@
 title: Types
 ---
 
+<{ :toc }>
+
 Raindeer supports types out of the box via <a href="https://github.com/low-rb/low_type" title="GitHub">LowType</a>. LowType introduces the concept of "type expressions" in method arguments. When an argument's default value is a type instead of a value then it's treated as a type expression, which will check the type:
 
 ```ruby
@@ -106,9 +108,9 @@ name # Get the value with type checking and return 'Cher' if the value is `nil`
 name = 'Tim' # Set the value with type checking
 ```
 
-### ℹ️ Multiple Arguments
+### Multiple Arguments
 
-You can define multiple typed accessor methods just like you would with `attr_[reader, writer, accessor]`:
+You can define multiple typed methods at once just like you would with `attr_[reader, writer, accessor]`:
 ```ruby
 type_accessor name: String | nil, occupation: 'Doctor', age: Integer | 33
 name # => nil
@@ -205,19 +207,4 @@ def my_method(my_arg: String | MyType | value(MyType)) # => MyType is the defaul
 
 ### Custom types
 
-Any class/type that's available to Ruby is available to LowType. 
-
-ℹ️ LowType evaluates parameter types in both the binding of LowType and the binding of the class that did the `include`.
-
-## Providers
-
-With [Providers](https://github.com/low-rb/providers) you can inject your dependencies automatically via the constructor:
-```ruby
-class MyClass
-  include LowType
-
-  def initialize(my_dependency: Dependency)
-    @my_dependency = my_dependency # => The dependency is injected.
-  end
-end
-```
+Any class/type that's available to Ruby is available to LowType. LowType evaluates parameter types in both the binding of LowType and the binding of the class that did the `include`.

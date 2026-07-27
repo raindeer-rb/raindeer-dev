@@ -2,6 +2,8 @@
 title: Debugging
 ---
 
+<{ :toc }>
+
 Raindeer is an asynchronous framework where many things/tasks (Fibers) are happening at once. This can make debugging a little harder if you don't know what you're doing, as code can error and the application can move on to the next task before you're finished reading the error and trying to debug it.
 
 ### Debug Mode

@@ -2,6 +2,8 @@
 title: Testing
 ---
 
+<{ :toc }>
+
 Run all tests with `bundle exec rspec`.
 Add the `SHOW_OUTPUT=1` flag to see the terminal output of some of the feature tests.
 

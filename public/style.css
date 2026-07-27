@@ -5,7 +5,23 @@
   --pico-accordion-open-summary-color: #fff;
 }
 
+h1 {
+  margin-bottom: calc(var(--pico-typography-spacing-vertical) * 2);
+}
+
 /***** LAYOUT *****/
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}
 
 header {
   background-color: #000;
@@ -84,16 +100,17 @@ footer {
 
 .slogan {
   margin-bottom: var(--pico-block-spacing-vertical);
-  padding: var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
-  border-radius: var(--pico-border-radius);
-  background: var(--pico-card-background-color);
-  box-shadow: var(--pico-card-box-shadow);
+  padding: var(--pico-block-spacing-vertical) 0;
+  border: 5px solid violet;
+  border-left-width: 0;
+  border-right-width: 0;
 
-  font-family: 'DM Mono', monospace;
-  font-weight: 400;
-  font-size: 2rem;
+  color: violet;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
   text-align: center;
-  border: 5px solid #565c9c;
+  line-height: 2.25rem;
 }
 
 .highlight {

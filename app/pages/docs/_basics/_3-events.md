@@ -2,9 +2,12 @@
 title: Events
 ---
 
+<{ :toc }>
+
 Raindeer is an event-driven framework that represents the Request-Response lifecycle as events. This makes it easy to latch on to any event as they happen and perform additional tasks.
 
-> ℹ️ Raindeer is event-driven internally but your application doesn't have to be. In fact, major events in Raindeer are [abstracted away](https://en.wikipedia.org/wiki/Aspect-oriented_programming) to such a degree that you won't even know events are there unless you interact with them.
+> ![NOTE]
+> Raindeer is event-driven internally but your application doesn't have to be. In fact, the main events in Raindeer are [abstracted away](https://en.wikipedia.org/wiki/Aspect-oriented_programming) to such a degree that you won't notice them.
 
 ## Event Lifecycle
 
@@ -58,7 +61,7 @@ MyEvent.trigger(data: "Custom Data")
 
 ### Event-Command Hybrid
 
-Raindeer events are different to traditional events in [event-driven architectures](https://en.wikipedia.org/wiki/Event-driven_architecture). They represent as it is happening in the present-tense, not an event that has already happened.
+Raindeer events are different to traditional events in [event-driven architectures](https://en.wikipedia.org/wiki/Event-driven_architecture). They represent something that is currently happening, not something that has already happened.
 
 |                  | **Event**     | **LowEvent**          | **Command** |
 |------------------|---------------|-----------------------|-------------|
@@ -74,9 +77,6 @@ Raindeer events are different to traditional events in [event-driven architectur
 
 Because events represent a period of time they will have sub-events, resulting in a tree-like structure of parent and child events:
 
-<p align="center"><img src="assets/docs/Event Tree.svg" alt="Event Tree" height="400"/></p>
+<img src="/docs/event-tree.svg" alt="Event Tree"/>
 
 This structure can be used in debugging for enhanced observability.
-
-## API
-

@@ -7,7 +7,9 @@ class LayoutNode < LowNode
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="/syntax.css">
+
+        <link rel="stylesheet" href="/components/toc/toc.css">
+        <script src="/components/toc/toc.js" defer></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +39,9 @@ class LayoutNode < LowNode
         <footer>
           <div class="container">
             <ul>
-              <li><a href="https://raindeer.dev">{"Website"}</a></li>
-              <li><a href="https://raindeer.dev/docs">{"Docs"}</a></li>
+              <li><a href="https://reddit.com/r/raindeer">{"Reddit"}</a></li>
+              <li><a href="https://discord.gg/UBex4JQgnX">{"Discord"}</a></li>
+              <li><a href="https://www.rubyforum.org/tag/raindeer/97">{"Forum"}</a></li>
               <li><a href="https://github.com/raindeer-rb/raindeer">{"GitHub"}</a></li>
             </ul>
           </div>
