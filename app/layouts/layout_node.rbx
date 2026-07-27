@@ -37,8 +37,9 @@ class LayoutNode < LowNode
         <footer>
           <div class="container">
             <ul>
-              <li><a href="https://raindeer.dev">{"Website"}</a></li>
-              <li><a href="https://raindeer.dev/docs">{"Docs"}</a></li>
+              <li><a href="https://reddit.com/r/raindeer">{"Reddit"}</a></li>
+              <li><a href="https://discord.gg/UBex4JQgnX">{"Discord"}</a></li>
+              <li><a href="https://www.rubyforum.org/tag/raindeer/97">{"Forum"}</a></li>
               <li><a href="https://github.com/raindeer-rb/raindeer">{"GitHub"}</a></li>
             </ul>
           </div>
