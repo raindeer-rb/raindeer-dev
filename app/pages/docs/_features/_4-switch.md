@@ -28,20 +28,37 @@ You define a period of time that you can be inactive for. If you build your stat
 
 Secrecy is achieved by leading the person with the secret link on a wild goose chase through thousands of random files, with the final file revealing the data. These files take an entire month (configurable) to traverse, and if the site is rebuilt before the month is out then the final file will no longer be accessible.
 
-The secret link takes you to a web page with a loading bar that will process the random files over the defined period of time.
+The secret link can be random or a human-readable path for a trusted person that doesn't change. When you visit this link you will see a webpage with a loading bar that will process the random files over the defined period of time.
 
 > ![note]
-> Files have to be loaded sequentially, as you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
+> Secret files must be loaded sequentially, as you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
 
-## Basic Mode
+## Basic Setup
 
-Just click a build button or push a commit. Because there's no CI requirement you can deploy anywhere, even to your own custom server. 
-An email can be sent each time you build/delay your dead man's switch, notifying a trusted person(s) of the secret link.
+✅ **Advantages:**
+- Peace of mind that everything is working while you're around
+
+❌ **Disadvantages:**
+- Email can only be sent at the start of the inactivity period
+- The "find time" is always equal to the inactivity period
+
+In the basic setup you just click a build button or push a commit. Because there's no cron/jobs/workers requirement you can deploy to any server easily.
+
+An email can be sent each time you build/delay your dead man's switch, notifying a trusted person(s) of the secret link. This email is optional.
+
 The benefit of this setup is that there is need for CI or recurring workers/jobs, but the downside is that you can't send emails before the inactivity period is close to expiring or expires.
 
-## Advanced Mode
+## Advanced Setup
 
-You can use CI to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links and allows you to send more meaningful emails; like "inactivity period about to be reached".
+✅ **Advantages:**
+- Send emails whenever you want
+- Reduce the "find time" by rebuilding more frequently
+
+❌ **Disadvantages:**
+- More moving parts, more to go wrong
+- More setup time
+
+Run daily jobs to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links by generating less secret files for the trusted person to traverse through. It also allows you to send more meaningful emails; like "inactivity period about to be reached". These automatic daily rebuilds are different to the manual delay/build central to the concept of a Dead Man's Switch.
 
 ## Emails
 
@@ -49,7 +66,7 @@ Technically an email can be sent from the computer when you build the Dumb Dead 
 
 ## Deployment
 
-You can deploy static files to a custom server or a service like CloudFlare Pages.
+You can deploy static files to a custom server or a service like Cloudflare Pages. The destination environment will determine how many random secret files can be generated. For example, Cloudflare has a limit of 20,000 files per repo on their free plan, so we will export 15,000 files to this environment.
 
 ## Attack Mitigation
 
@@ -75,3 +92,48 @@ export async function onRequest(context) {
 ```
 
 This limits requests to 100K a day (free plan), or roughly 3 hours worth of making very fast requests (10ms * 60s * 60m * 3 = 108K requests).
+
+## Architecture
+
+Each file name looks like this:
+```
+abc1234
+```
+
+Each file has the contents:
+```
+def5679
+```
+
+With this simple structure we can create a chain, where each file links to the next.
+
+### File Limit
+
+When there is a limit to how many files can be exported, each file will contain multiple hashes that all link to other files. The number of hashes per file must be less than the number of files, so that each file never links to itself. Each line will look like:
+```
+abc1234 1
+```
+
+...where `1` is the line number in the corresponding secret file to get the next hash from.
+
+## Configuration
+
+### Global Config
+
+- **file_limit** - Defaults to 15,000
+- **file_delay** - If you set your server up to delay files by 2 seconds, 5 seconds etc... you can decrease the amount of files generated
+
+### Per Secret Config
+
+Multiple secrets can be shared with multiple emails/URLs.
+
+- **start_path** - Replace the default random path with a human-readable path that your trusted person can just go to any time.
+
+## Building
+
+To export `app/switch` to a static site run:
+```bash
+rain switch build
+```
+
+This exports secret files to `/public/secrets`. Each file name is so random that it would be near dang difficult to find the file by URL without knowing its name.
