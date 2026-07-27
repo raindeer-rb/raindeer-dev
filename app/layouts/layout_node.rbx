@@ -7,7 +7,9 @@ class LayoutNode < LowNode
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/style.css">
-        <link rel="stylesheet" href="/syntax.css">
+
+        <link rel="stylesheet" href="/components/toc/toc.css">
+        <script src="/components/toc/toc.js" defer></script>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
