@@ -1,8 +1,8 @@
 <p align="center"><img src="public/logo.png" alt="Raindeer logo" height="400"/></p>
 
-# Raindeer Template
+# Raindeer.dev
 
-Welcome to your new Raindeer application.
+The documentation website at http://raindeer.dev
 
 ## Directory Structure
 
