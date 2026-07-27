@@ -16,6 +16,7 @@ menu: Dead Man's Switch
 - 🌊 *Passive* - No logic deciding if you're inactive
 - 👁️ *Trustless* - Not even the person with the secret link can access the site until the inactivity period is up
 - 🍯 *Stable* - Static sites have less moving parts and less to go wrong
+- 👤 *Personal* - Use the same static site for your personal website and dead man's switch
 
 **Requirements:**
 - Repository must be private
@@ -30,21 +31,21 @@ Secrecy is achieved by leading the person with the secret link on a wild goose c
 The secret link takes you to a web page with a loading bar that will process the random files over the defined period of time.
 
 > ![note]
-> Files have to be loaded sequentially, you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
+> Files have to be loaded sequentially, as you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
 
 ## Basic Mode
 
-In the most basic setup there is need for CI or recurring actions/workers/jobs, just click a build button or push a commit. Because there's no CI requirement you can deploy anywhere, even to your own custom server.
-
-An email can be sent each time you build/delay your dead man's switch, notifying a trusted person of the secret link.
+Just click a build button or push a commit. Because there's no CI requirement you can deploy anywhere, even to your own custom server. 
+An email can be sent each time you build/delay your dead man's switch, notifying a trusted person(s) of the secret link.
+The benefit of this setup is that there is need for CI or recurring workers/jobs, but the downside is that you can't send emails before the inactivity period is close to expiring or expires.
 
 ## Advanced Mode
 
-Use CI to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links and allows you to send more meaningful emails; like "inactivity period about to be reached".
+You can use CI to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links and allows you to send more meaningful emails; like "inactivity period about to be reached".
 
 ## Emails
 
-Technically an email can be sent from the computer you build the Dumb Dead Man's Switch on, but you may want to use an email service for increased deliverability.
+Technically an email can be sent from the computer when you build the Dumb Dead Man's Switch, but you may want to use an email service for increased deliverability.
 
 ## Deployment
 

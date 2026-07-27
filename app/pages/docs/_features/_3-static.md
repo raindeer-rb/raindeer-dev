@@ -14,7 +14,7 @@ Place your markdown files in `app/pages`.
 
 ### URLs
 
-File paths will define the URL, for example; a path of `app/pages/docs/static.md` will result in the URL **"http://example.com/docs/static"**.
+File paths will define the URL, for example; a path of `app/pages/docs/static.md` will result in the URL `http://example.com/docs/static`.
 - Prefix folders with an underscore to group files without affecting the URL:
   `app/pages/docs/_basics/static.md` => `/docs/static`
 - Prefix file names with an underscore and number to order files without affecting the URL:
