@@ -148,11 +148,11 @@ order: 1
 
 By default a new Raindeer application contains a `PageNode` that `render`s a markdown file when it matches a URL request. In this file you can wrap a `LayoutNode` around the `MarkdownRenderer`, just like you would do in a typical Raindeer application.
 
-## Exporting
+## Building [UNRELEASED]
 
 To export `app/pages` to a static site run:
 ```bash
-rain pages build
+rain static build
 ```
 
 This exports a package of typical website files in the `/pkg` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
