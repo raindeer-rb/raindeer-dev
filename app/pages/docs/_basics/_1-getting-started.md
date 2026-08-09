@@ -10,7 +10,7 @@ Currently the best way to build a Raindeer application is to clone the [Raindeer
 Then in your terminal run:
 ```shell
 bundle install
-bin/server
+rain server
 ```
 
 ## Matrix Mode
@@ -18,5 +18,7 @@ bin/server
 On your local the terminal will output a matrix visualisation of the asynchronous events, giving you a feel for what is happening under the hood.
 
 **iTerm:** Press `Option + A` to accept screen refreshing, or output will bounce around.
+
+## CLI
 
 **See also:** [Rain CLI](/docs/cli)
