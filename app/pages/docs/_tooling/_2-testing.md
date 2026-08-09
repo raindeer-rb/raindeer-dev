@@ -1,5 +1,6 @@
 ---
 title: Testing
+published: true
 ---
 
 <{ :toc }>

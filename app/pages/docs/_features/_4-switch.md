@@ -1,6 +1,7 @@
 ---
 title: Dumb Dead Man's Switch [CONCEPT STAGE]
 menu: Dead Man's Switch
+published: true
 ---
 
 <{ :toc }>

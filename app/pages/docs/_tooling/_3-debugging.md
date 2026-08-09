@@ -1,5 +1,6 @@
 ---
 title: Debugging
+published: true
 ---
 
 <{ :toc }>
@@ -19,7 +20,7 @@ Set `RAIN_DEBUG=1` to `RAIN_DEBUG=0` in production so that broken fibers don't b
 Fiber.blocking { binding.irb }
 ```
 
-https://socketry.github.io/async/guides/debugging/index
+**See also:** https://socketry.github.io/async/guides/debugging/index
 
 ### Synchronous Mode
 

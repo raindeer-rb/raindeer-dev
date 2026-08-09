@@ -12,10 +12,12 @@ class PageRenderer < LowNode
     result = @pages.process(file_path:)
     @html = result.html
     @title = result.metadata[:title]
+
+    @published = @html && result.metadata[:published]
   end
 
   def render(event:)
-    <{ if: @html }>
+    <{ if: @published }>
       <{ LayoutNode: }>
         <h1>{@title}</h1>
 

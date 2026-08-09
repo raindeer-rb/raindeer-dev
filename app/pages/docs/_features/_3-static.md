@@ -1,5 +1,6 @@
 ---
 title: Static Site Generation
+published: true
 ---
 
 <{ :toc }>
@@ -28,10 +29,15 @@ Put publicly accessible assets such as images and files in the `/public` directo
 
 [GitHub flavoured markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) is supported out of the box.
 
-The only Frontmatter metadata required is `title`, which will be used by your site's theme layer:
+**Required Frontmatter:**
+
+- `title` - Used by your site's theme layer
+- `published` - Whether to export the page to the build
+
 ```markdown
 ---
 title: Heading 1
+published: true
 ---
 
 ## Heading 2
@@ -155,4 +161,4 @@ To export `app/pages` to a static site run:
 rain static build
 ```
 
-This exports a package of typical website files in the `/pkg` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
+This exports a package of typical website files in the `/build` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.

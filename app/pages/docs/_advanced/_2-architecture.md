@@ -1,6 +1,7 @@
 ---
 title: Architecture
 section: advanced
+published: true
 ---
 
 <{ :toc }>

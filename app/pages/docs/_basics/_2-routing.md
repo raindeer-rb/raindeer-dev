@@ -1,5 +1,6 @@
 ---
 title: Routing
+published: true
 ---
 
 <{ :toc }>

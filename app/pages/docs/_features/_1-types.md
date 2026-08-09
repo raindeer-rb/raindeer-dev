@@ -1,5 +1,6 @@
 ---
 title: Types
+published: true
 ---
 
 <{ :toc }>

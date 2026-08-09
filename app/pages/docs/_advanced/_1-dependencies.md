@@ -1,5 +1,6 @@
 ---
 title: Dependencies and providers
+published: true
 section: advanced
 ---
 
@@ -12,8 +13,6 @@ Providers let you create "global" dependencies to inject.
 Dependencies are injected via the Providers
 
 ## Dependencies
-
-
 
 ## Plugs
 
