@@ -24,7 +24,7 @@ PATH
 PATH
   remote: ../low_loop
   specs:
-    low_loop (0.7.0)
+    low_loop (0.7.1)
       async
       async-http
       io-stream
@@ -259,7 +259,7 @@ CHECKSUMS
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
   low_event (0.7.1)
-  low_loop (0.7.0)
+  low_loop (0.7.1)
   low_node (0.5.0)
   low_state (0.2.0) sha256=549c626e389bd6bb3d2244cbde08ed0ac287cc76559617ae7e869d36e860ad7a
   low_type (1.3.2)
