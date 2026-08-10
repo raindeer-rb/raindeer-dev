@@ -132,6 +132,22 @@ end
 <strong>Yes</strong>
 ```
 
+## Parallelism [UNRELEASED]
+
+```ruby
+def render
+  <{ parallelize: }>
+    # For Loop executed at the same time as UserNode.
+    <{ for: user in: @users }>
+      <{ UserNode user=user }>
+    <{ :for }>
+
+    # PostsNode executed at the same time as For Loop.
+    <{ PostsNode }>
+  <{ :parallelize }>
+end
+```
+
 ## Unit Testing
 
 Nodes use the **Method Factory** pattern. Instead of calling `new` directly, you first call a class method which instantiates the class on your behalf, then calls the corresponding instance method.

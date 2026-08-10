@@ -10,11 +10,21 @@ published: true
 
 Raindeer is event-driven, but as much as possible these events are created and triggered by the framework itself, hiding the complexity of traditional event-driven applications in order to make the framework easier to use. See ["Aspect-orientated programming"](aspect-orientated-programming).
 
+## Pipelines
+
+[Pipelines](https://en.wikipedia.org/wiki/Pipeline_(software)) are one of the simplest and easiest patterns to understand. What's not to love about a linear series of events? In Raindeer **everything's a pipeline**, even [Pipelines](/docs/pipelines) are pipelines.
+
 ## Asynchronous
 
-Raindeer responds to requests asynchronously via Fibers. This means that you need to block the current Fiber when [debugging](/docs/debugging).
+Raindeer responds to requests asynchronously via Fibers. This improves performance and concurrency on IO-bound workloads like getting data from a database. This also means that you need to block the current Fiber when [debugging](/docs/debugging).
 
-## Composition
+## Parallelism
+
+While the handling of thousands of requests is asynchronous, each individual request can have its workload parallelised. Inside each [LowNode](/docs/nodes#parallelism) are various tools to achieve parallelism.
+
+## Compositional
+
+[LowNode](/docs/nodes)'s can be nested inside each other via Antlers `<{ ChildNode }>` syntax.
 
 ## Aspect-orientated programming
 
@@ -40,4 +50,8 @@ For example; `Raindeer.router` calls `Providers['rain.router']` and this depende
 
 ### `.[]` Syntax
 
-Raindeer uses `[]` **a LOT**, but it does so within reason. The `[]` syntax should access collections, not call methods. While it's tempting to use this syntax as a "constuctor" for modules; `MyModule[config:]`, it's actually counter productive, it muddies the waters. Users should see `[]` and instantly know that they're accessing or definining a collection, not calling an action that does something else. Just use `.new()` or call a named method.
+Raindeer uses the `[]` class syntax a lot, but it does so within reason. Our guiding rule is:
+
+> The `[]` syntax should access collections, not call constructors or methods.
+
+While it's tempting to use this syntax as a "constuctor" for modules (`MyModule[config:]`), it's actually counter productive, it muddies the waters. Users should see `[]` and instantly know that they're accessing or definining a collection of objects, not constructing or returning a single object. Just use `.new()` or call a named method.

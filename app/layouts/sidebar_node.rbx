@@ -21,6 +21,7 @@ class SidebarNode < LowNode
       ]),
       Nav.new('Advanced', [
         Link.new("Dependencies", "/docs/dependencies"),
+        Link.new("Pipelines", "/docs/pipelines"),
         Link.new("Architecture", "/docs/architecture"),
       ]),
       Nav.new('Tooling', [
