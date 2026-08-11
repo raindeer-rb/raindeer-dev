@@ -17,11 +17,14 @@ After setting up a route, `observe` it to render a response:
 class HomeNode < LowNode
   observe '/'
 
-  def render
-    "The '/' route event called this render action/method"
+  def render(event: RequestEvent)
+    # event.request.path => '/'
   end
 end
 ```
+
+> ![NOTE]
+> [Events](/docs/events) can call different actions/methods
 
 ## Rendering
 

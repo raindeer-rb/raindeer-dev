@@ -12,7 +12,7 @@ Raindeer is an event-driven framework that represents the Request-Response lifec
 
 ## Event Lifecycle
 
-1. `RequestEvent` - The [server](/docs/server) converts HTTP requests into request events
+1. [RequestEvent](/docs/events#requestevent) - The server converts HTTP requests into request events
 2. `RouteEvent` - The [router](/docs/routing) creates route events from request events
 3. `RenderEvent` - A [node](/docs/nodes) observes a route event and renders a response
 4. `ResponseEvent` - A response event is converted by LowLoop into a response to the client that made the request
@@ -33,9 +33,17 @@ class MyNode < LowNode
 end
 ```
 
-### Creating Events (optional)
+## Events Types
 
-Create custom events with:
+### `RequestEvent`
+
+The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
+
+## Advanced
+
+### Creating Events
+
+The main events for the main flows are created for you. However you may want to create your own:
 
 ```ruby
 class MyEvent < LowEvent
@@ -48,7 +56,7 @@ class MyEvent < LowEvent
 end
 ```
 
-**Breaking it down:**
+*Breaking it down:*
 - `:my_action` - The name of the method that you would like to call on the observer
 - `key: self.class` - The actual value to observe, which can be the class itself like `MyEvent` or any value such as a String
 - `my_data` - Any data you want to store as an attribute or multiple attributes

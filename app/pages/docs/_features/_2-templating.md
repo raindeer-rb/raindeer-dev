@@ -1,9 +1,11 @@
 ---
-title: Forms
+title: Templating
 published: true
 ---
 
 <{ :toc }>
+
+## Forms
 
 Forms can be created in a compositional way, mixing both Antlers syntax with regular form elements:
 
@@ -26,8 +28,6 @@ Change the `POST` method to `GET` with:
   <input type="submit" value="search">
 <{ :form }>
 ```
-
-## Form Elements
 
 ### Label [UNRELEASED]
 

@@ -15,7 +15,7 @@ class SidebarNode < LowNode
       ]),
       Nav.new('Features', [
         Link.new("Types", "/docs/types"),
-        Link.new("Forms", "/docs/forms"),
+        Link.new("Templating", "/docs/templating"),
         Link.new("Static Site Generation", "/docs/static"),
         Link.new("Dead Man's Switch", "/docs/switch"),
       ]),
