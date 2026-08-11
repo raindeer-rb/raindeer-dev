@@ -5,10 +5,10 @@ published: true
 
 <{ :toc }>
 
-Raindeer is an event-driven framework that represents the Request-Response lifecycle as events. This makes it easy to latch on to any event as they happen and perform additional tasks.
+Raindeer is an event-driven framework that represents the Request-Response lifecycle as events. It's easy to latch on to any event as they happen and perform additional tasks.
 
 > ![NOTE]
-> Raindeer is event-driven internally but your application doesn't have to be. In fact, the main events in Raindeer are [abstracted away](https://en.wikipedia.org/wiki/Aspect-oriented_programming) to such a degree that you won't notice them.
+> Raindeer is event-driven internally but your application doesn't have to be. In fact, the main events in Raindeer are [abstracted away](/docs/architecture#aspect-orientated-programming) to such a degree that you won't notice them.
 
 ## Event Lifecycle
 
