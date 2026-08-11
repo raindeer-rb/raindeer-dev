@@ -6,7 +6,8 @@ class PageRenderer < LowNode
   def initialize(event:)
     @pages = Providers['rain.pages']
 
-    url_path = File.expand_path("app/pages#{event.route.path}", Dir.pwd)
+    path = event.route.path == '/' ? '/home' : event.route.path
+    url_path = File.expand_path("app/pages#{path}", Dir.pwd)
     file_path = @pages.url_paths[url_path] || return
 
     result = @pages.process(file_path:)
