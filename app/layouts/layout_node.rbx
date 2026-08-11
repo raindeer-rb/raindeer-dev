@@ -21,7 +21,7 @@ class LayoutNode < LowNode
             <a href="/"><span id="logo">{"Raindeer"}</span></a>
             <nav id="main-menu">
               <ul>
-                <li><a href="/docs">{"Docs"}</a></li>
+                <li><a href="/docs/getting-started">{"Docs"}</a></li>
                 <li><a href="https://github.com/raindeer-rb/raindeer">{"Source"}</a></li>
               </ul>
             </nav>
