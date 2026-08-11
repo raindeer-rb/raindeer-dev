@@ -7,18 +7,18 @@ published: true
 
 A command line utility to work with Raindeer applications.
 
-## `rain`
+## `rain`, `rain --help` [UNRELEASED]
 
-Shows possible commands. [UNRELEASED]
+Shows possible commands.
+
+## `rain new :app_name` [UNRELEASED]
+
+Creates a Raindeer application with the specified name.
 
 ## `rain server`
 
-Starts a Raindeer application. Once run visit http://127.0.0.1:4133/
+Starts a Raindeer application. Once run visit [http://127.0.0.1:4133](http://127.0.0.1:4133)
 
-## `rain static`
+## `rain build`
 
-Stores static-site generator commands.
-
-### `rain static build`
-
-Builds your static site.
+Builds your static site from markdown files in the `app/pages` folder and puts them in `build`.
