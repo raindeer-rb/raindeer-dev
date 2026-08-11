@@ -20,9 +20,13 @@ class PageRenderer < LowNode
   def render(event:)
     <{ if: @published }>
       <{ LayoutNode: }>
-        <h1>{@title}</h1>
+        <{ SidebarNode }>
 
-        <{ @html }>
+        <main id="content">
+          <h1>{@title}</h1>
+
+          <{ @html }>
+        </main>
       <{ :LayoutNode }>
     <{ :if }>
   end

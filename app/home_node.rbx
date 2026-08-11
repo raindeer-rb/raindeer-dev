@@ -5,7 +5,9 @@ class HomeNode < LowNode
 
   def render
     <{ LayoutNode: }>
-      <p>{"This file can be edited in 'app/home_node.rb'."}
+      <main id="content">
+        <p>{"This file can be edited in 'app/home_node.rb'."}
+      </main>
     <{ :LayoutNode }>
   end
 end

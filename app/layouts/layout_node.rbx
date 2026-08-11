@@ -29,11 +29,7 @@ class LayoutNode < LowNode
         </header>
         
         <div class="container overflow-auto">
-          <{ SidebarNode }>
-
-          <main id="content">
-            <{ :slot }>
-          </main>
+          <{ :slot }>
         </div>
 
         <footer>
