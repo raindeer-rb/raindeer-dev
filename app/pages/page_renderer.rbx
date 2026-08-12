@@ -4,20 +4,14 @@ class PageRenderer < LowNode
   observe '/*'
 
   def initialize(event:)
-    @pages = Providers['rain.pages']
+    page = Providers['rain.pages'].page(path: event.route.path) || return
 
-    path = event.route.path == '/' ? '/home' : event.route.path
-    url_path = File.expand_path("app/pages#{path}", Dir.pwd)
-    file_path = @pages.url_paths[url_path] || return
-
-    result = @pages.process(file_path:)
-    @html = result.html
-    @title = result.metadata[:title]
-
-    @published = @html && result.metadata[:published]
+    @html = page.html
+    @title = page.metadata[:title]
+    @published = @html && page.metadata[:published]
   end
 
-  def render(event:)
+  def render
     <{ if: @published }>
       <{ LayoutNode: }>
         <{ SidebarNode }>
