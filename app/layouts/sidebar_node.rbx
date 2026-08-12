@@ -3,7 +3,7 @@
 class SidebarNode < LowNode
   Nav = Struct.new(:title, :links)
   Link = Struct.new(:title, :path)
-  
+
   def initialize
     @navs = [
       Nav.new('Basics', [
