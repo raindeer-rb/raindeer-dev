@@ -28,6 +28,7 @@ class SidebarNode < LowNode
         Link.new("CLI", "/docs/cli"),
         Link.new("Testing", "/docs/testing"),
         Link.new("Debugging", "/docs/debugging"),
+        Link.new("Contributing", "/docs/contributing"),
       ]),
     ]
   end
