@@ -15,15 +15,17 @@ Place your markdown files in `app/pages`.
 
 ### URLs
 
-File paths will define the URL, for example; a path of `app/pages/docs/static.md` will result in the URL `http://example.com/docs/static`.
+**File paths define the URL:** A path of `app/pages/docs/static.md` will result in the URL `http://example.com/docs/static`.
 - Prefix folders with an underscore to group files without affecting the URL:
   `app/pages/docs/_basics/static.md` => `/docs/static`
 - Prefix file names with an underscore and number to order files without affecting the URL:
   `app/pages/docs/_1-getting-started.md` => `/docs/getting-started`
 
+**🍂 The humble underscore:** Essentially an underscore `_` followed by a string or number until a `-` or `/` adds metadata to a folder/file whilst hiding that part of the filepath from the URL.
+
 ### Assets
 
-Put publicly accessible assets such as images and files in the `/public` directory. The URL for a file like `/public/logo.png` will be `/logo.png`.
+Put publicly accessible assets such as images and files in the `/public` folder. The URL for a file like `/public/logo.png` will be `/logo.png`.
 
 ## Markdown
 
@@ -150,15 +152,26 @@ order: 1
 ---
 ```
 
+## Data Collections [UNRELEASED]
+
+Data Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators you don't need to specify where data collections live. Using the two established patterns of *the humble underscore™* and *implicit metadata*, we can simply put `_` prefixed markdown files in `_` prefixed folders.
+
+**For example:**
+```
+/app/pages/_cards/_fast.md
+```
+
+The `_cards` adds `folder: cards` metadata to every child file while hiding the folder from the URL, and the `_fast.md` hides the file from the URL. This markdown file is now unaccessible via the URL and its contents can just be used as data elsewhere.
+
 ## Layout
 
-By default a new Raindeer application contains a `PageNode` that `render`s a markdown file when it matches a URL request. In this file you can wrap a `LayoutNode` around the `MarkdownRenderer`, just like you would do in a typical Raindeer application.
+By default a [new](/docs/static#rain-new-app_name) Raindeer application contains a `PageRenderer` that `render`s a markdown file that matches the URL request. In this file you can wrap a `LayoutNode` around the page's HTML output, just like you would do in a typical Raindeer application.
 
-## Building [UNRELEASED]
+## Building
 
 To export `app/pages` to a static site run:
 ```bash
-rain static build
+rain build
 ```
 
 This exports a package of typical website files in the `/build` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
