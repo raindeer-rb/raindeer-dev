@@ -17,9 +17,9 @@ Raindeer is an event-driven framework that represents the Request-Response lifec
 3. `RenderEvent` - A [node](/docs/nodes) observes a route event and renders a response
 4. `ResponseEvent` - A response event is converted by LowLoop into a response to the client that made the request
 
-## Usage
+## Observing Events
 
-### Observing Events
+### `observe` syntax
 
 Observe the event with:
 
@@ -33,15 +33,22 @@ class MyNode < LowNode
 end
 ```
 
-## Events Types
+### `on` syntax [UNRELEASED]
 
-### `RequestEvent`
+Better distinguish event handlers from regular methods in a class with:
 
-The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
+```ruby
+on MyEvent do |my_event|
+  # Do something.
+end
+```
 
-## Advanced
+**✨ Features:**
+- Class level scope
+- Returns a value
+- Potentially more performant (no instantiation)
 
-### Creating Events
+## Creating Events [OPTIONAL]
 
 The main events for the main flows are created for you. However you may want to create your own:
 
@@ -65,6 +72,12 @@ Trigger the event's action on its observers with:
 ```ruby
 MyEvent.trigger(data: "Custom Data")
 ```
+
+## Events Types
+
+### `RequestEvent`
+
+The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
 
 ## Architecture
 
