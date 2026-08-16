@@ -91,12 +91,12 @@ List items are sorted by `order` by default. Change the ordering with:
 <{ :list }>
 ```
 
-### Include [UNRELEASED]
+### Embed [UNRELEASED]
 
-Embed the contents of another markdown file:
+Include the contents of another markdown file:
 
 ```ruby
-<{ "/components/our-story.md" }>
+<{ embed: "/components/our-story.md" }>
 ```
 
 > [!note]
