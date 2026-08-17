@@ -30,10 +30,8 @@ class LayoutNode < LowNode
           </div>
         </header>
         
-        <main>
-          <div class="container overflow-auto">
-            <{ :slot }>
-          </div>
+        <main class="container overflow-auto">
+          <{ :slot }>
         </main>
 
         <footer>
