@@ -20,7 +20,7 @@ class LayoutNode < LowNode
 
         <header>
           <div class="container">
-            <a href="/"><span id="logo">{"Raindeer"}</span></a>
+            <a id="logo" href="/">{"Raindeer"}</a>
             <nav id="main-menu">
               <ul>
                 <li><a href="/docs/getting-started">{"Docs"}</a></li>

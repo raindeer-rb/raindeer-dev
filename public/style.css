@@ -30,6 +30,14 @@ header, main, footer {
   z-index: 2;
 }
 
+a#logo {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+/***** TYPOGRAPHY *****/
+
 h1 {
   margin-bottom: calc(var(--pico-typography-spacing-vertical) * 2);
 }
