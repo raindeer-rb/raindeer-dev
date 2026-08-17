@@ -1,6 +1,5 @@
 ---
 title: Architecture
-section: advanced
 published: true
 ---
 

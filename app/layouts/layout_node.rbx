@@ -7,7 +7,7 @@ class LayoutNode < LowNode
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/style.css">
-
+        <link rel="stylesheet" href="/components/cards.css">
         <link rel="stylesheet" href="/components/toc/toc.css">
         <script src="/components/toc/toc.js" defer></script>
 
@@ -28,9 +28,11 @@ class LayoutNode < LowNode
           </div>
         </header>
         
-        <div class="container overflow-auto">
-          <{ :slot }>
-        </div>
+        <main>
+          <div class="container overflow-auto">
+            <{ :slot }>
+          </div>
+        </main>
 
         <footer>
           <div class="container">

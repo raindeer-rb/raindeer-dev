@@ -1,7 +1,6 @@
 ---
 title: Dependencies and providers
 published: true
-section: advanced
 ---
 
 <{ :toc }>

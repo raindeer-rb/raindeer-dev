@@ -1,7 +1,6 @@
 ---
 title: Pipelines [UNRELEASED]
 published: true
-section: advanced
 ---
 
 <{ :toc }>

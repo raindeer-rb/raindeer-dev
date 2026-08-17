@@ -1,0 +1,19 @@
+#cards {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .card {
+    h3 {
+      margin-bottom: 0;
+    }
+    .content.mid {
+      justify-content: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
