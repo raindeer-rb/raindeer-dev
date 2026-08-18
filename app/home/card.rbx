@@ -8,6 +8,10 @@ class Card < LowNode
       </header>
 
       <div class="content">
+        <{ if: card.icon }>
+          <i class="bi bi-{card.icon}"></i>
+        <{ :if }>
+
         <p>{card.summary}</p>
         <{ card.content }>
       </div>

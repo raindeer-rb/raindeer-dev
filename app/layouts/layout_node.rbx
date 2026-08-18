@@ -14,6 +14,7 @@ class LayoutNode < LowNode
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
       </head>
       <body>
         <div id="background"></div>
@@ -23,8 +24,8 @@ class LayoutNode < LowNode
             <a id="logo" href="/">{"Raindeer"}</a>
             <nav id="main-menu">
               <ul>
-                <li><a href="/docs/getting-started">{"Docs"}</a></li>
-                <li><a href="https://github.com/raindeer-rb/raindeer">{"Source"}</a></li>
+                <li><a href="/docs/getting-started"><i class="bi bi-book"></i>{"Docs"}</a></li>
+                <li><a href="https://github.com/raindeer-rb/raindeer"><i class="bi bi-github"></i> {"Source"}</a></li>
               </ul>
             </nav>
           </div>
