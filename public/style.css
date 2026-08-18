@@ -145,6 +145,10 @@ main {
   .section-pages & {
     margin-top: 50px;
   }
+
+  #content {
+    overflow: auto;
+  }
 }
 
 footer {
