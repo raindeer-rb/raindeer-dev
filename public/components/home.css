@@ -20,6 +20,7 @@
 }
 
 #cards {
+  margin-bottom: 2rem;
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -42,5 +43,35 @@
       display: flex;
       flex-direction: column;
     }
+  }
+}
+
+.teaser {
+  display: flex;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-top: 1px solid #353841;
+  border-bottom: 1px solid #353841;
+  img {
+    max-width: 300px;
+    padding: 1rem;
+  }
+  .content {
+    padding: 1rem;
+    p {
+      font-size: 1.25rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+#pros-cons {
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 }

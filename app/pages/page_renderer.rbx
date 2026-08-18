@@ -16,7 +16,7 @@ class PageRenderer < LowNode
       <{ LayoutNode: }>
         <{ SidebarNode }>
 
-        <main id="content">
+        <main>
           <h1>{@title}</h1>
 
           <{ @html }>

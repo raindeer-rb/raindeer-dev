@@ -48,6 +48,24 @@ a i {
   vertical-align: middle;
 }
 
+ul.icons {
+  li {
+    padding-left: 0.75rem;
+  }
+}
+ul.pros {
+  li::marker {
+    content: '✅';
+    font-size: 1.25rem;
+  }
+}
+ul.cons {
+  li::marker {
+    content: '❌';
+    font-size: 1.25rem;
+  }
+}
+
 /***** LAYOUT *****/
 
 @media (min-width: 1024px) {
@@ -118,7 +136,7 @@ aside#sidebar {
   }
 }
 
-#content {
+main {
   overflow: auto;
   padding: 1rem;
 }
@@ -154,17 +172,4 @@ footer {
 
 .highlight {
   border-radius: 10px;
-}
-
-/***** DASHBOARD *****/
-
-.stat {
-  .number {
-    text-align: center;
-    font-size: 4rem;
-    font-weight: bold;
-  }
-  footer {
-    text-align: center;
-  }
 }
