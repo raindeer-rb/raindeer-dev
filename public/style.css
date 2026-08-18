@@ -4,7 +4,6 @@
   --pico-font-size: 1rem;
   --pico-accordion-open-summary-color: #fff;
 }
-
 html {
   scroll-behavior: smooth;
 }
@@ -15,7 +14,6 @@ html {
   top: 0;
   right: 0;
   left: 0;
-  background-color: #1a1a1a; 
   
   background-image: 
     linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, rgb(19, 22.5, 30.5) 100%),
