@@ -8,32 +8,6 @@ html {
   scroll-behavior: smooth;
 }
 
-#background {
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  left: 0;
-  
-  background-image: 
-    linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, rgb(19, 22.5, 30.5) 100%),
-    url('/assets/background.png');
-
-  background-repeat: repeat-x;
-  height: 770px;
-}
-
-header, main, footer {
-  position: relative;
-  z-index: 2;
-}
-
-a#logo {
-  text-decoration: none;
-  font-weight: bold;
-  color: white;
-}
-
 /***** TYPOGRAPHY *****/
 
 h1 {
@@ -78,6 +52,30 @@ ul.cons {
   }
 }
 
+#background {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  
+  background-image: 
+    linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, rgb(19, 22.5, 30.5) 100%),
+    url('/assets/background.png');
+
+  background-repeat: repeat-x;
+  height: 770px;
+
+  .section-pages & {
+    height: 175px;
+  }
+}
+
+header, main, footer {
+  position: relative;
+  z-index: 2;
+}
+
 header {
   background-color: #000;
 
@@ -92,6 +90,12 @@ header {
   #favicon,
   #favicon img {
     height: 100%;
+  }
+
+  a#logo {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
   }
 
   #main-menu {
@@ -137,6 +141,10 @@ aside#sidebar {
 main {
   overflow: auto;
   padding: 1rem;
+
+  .section-pages & {
+    margin-top: 50px;
+  }
 }
 
 footer {
