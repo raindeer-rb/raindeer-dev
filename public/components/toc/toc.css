@@ -1,6 +1,5 @@
 #content:has(#toc) {
   @media (min-width: 1024px) {
-    position: relative;
     padding-right: 220px;
   }
   @media (min-width: 1280px) {
