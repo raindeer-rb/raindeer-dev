@@ -5,6 +5,7 @@ matrix_mode: true
 content_types:
   html: text/html
   css: text/css
+  js: text/javascript
   txt: text/plain
   jpg: image/jpeg
   png: image/png
