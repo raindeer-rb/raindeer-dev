@@ -1,10 +1,12 @@
 ---
 title: Event-driven
-summary: Observe any route or event
+summary: Observe and respond to events
 ---
 
 ```ruby
 observe '/'
-observe '/:username'
-observe Status[404]
+
+def render(event:)
+  event.request.path # => '/'
+end
 ```

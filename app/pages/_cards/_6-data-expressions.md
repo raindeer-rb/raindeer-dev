@@ -1,8 +1,8 @@
 ---
 title: Data Expressions
-summary: Build SQL queries like this...
+summary: Build SQL queries compositionally
 ---
 
 ```ruby
-Users[:name] + Posts[:title]
+Users[:name] + Posts[:title, :body]
 ```

@@ -1,6 +1,6 @@
 ---
 title: RBX
-summary: HTML and templates inside Ruby
+summary: HTML and templating inside Ruby files
 ---
 
 ```ruby
