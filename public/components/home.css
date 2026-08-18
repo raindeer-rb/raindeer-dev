@@ -1,5 +1,6 @@
 #raindeer {
   display: block;
+  max-width: 350px;
   margin: 0 auto;
   padding-bottom: 1rem;
 }
@@ -54,8 +55,11 @@
   border-top: 1px solid #353841;
   border-bottom: 1px solid #353841;
   img {
-    max-width: 300px;
     padding: 1rem;
+    max-width: 150px;
+    @media (min-width: 768px) {
+      max-width: 300px;
+    }
   }
   .content {
     padding: 1rem;

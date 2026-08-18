@@ -10,7 +10,7 @@ class HomeNode < LowNode
 
   def render(event:)
     <{ LayoutNode: }>
-      <img id="raindeer" src="/assets/logo.png" width="350"/>
+      <img id="raindeer" src="/assets/logo.png"/>
 
       <div id="overview">
         <p>{"Raindeer is an event-driven framework using the dynamic features and latest async improvements in Ruby + some weird ideas, to build a new breed of web application. "}</p>
