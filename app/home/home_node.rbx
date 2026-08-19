@@ -35,7 +35,7 @@ class HomeNode < LowNode
         </div>
       </div>
 
-      <h2 align="center">{"Philosophy..."}</h2>
+      <h2 align="center">{"Diff"}</h2>
 
       <div id="pros-cons">
         <ul class="icons cons">
@@ -47,12 +47,12 @@ class HomeNode < LowNode
         </ul>
 
         <ul class="icons pros">
-          <li>{"Concurrency (Async, Fibers, Ractors)"}</li>
-          <li>{"Composition (RBX, Nodes, Data Expressions)"}</li>
+          <li>{"Event Loop"}</li>
+          <li>{"Composition"}</li>
           <li>{"Inline types (optional)"}</li>
           <li>{"Auto loaded files"}</li>
-          <li>{"Routes as events"}</li>
-          <li>{"Everything's a pipeline"}</li>
+          <li>{"Events"}</li>
+          <li>{"Pipelines"}</li>
           <li>{"Repository pattern"}</li>
         </ul>
       </div>
