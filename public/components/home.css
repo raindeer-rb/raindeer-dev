@@ -33,8 +33,9 @@
       margin-bottom: 0;
     }
     i {
-      font-size: 4rem;
       display: block;
+      font-size: 4rem;
+      color: var(--pico-primary-background);
       text-align: center;
       padding: 0.5rem 0 1rem 0;
     }
