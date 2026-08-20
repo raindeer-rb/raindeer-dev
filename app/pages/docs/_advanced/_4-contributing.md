@@ -5,11 +5,12 @@ published: true
 
 <{ :toc }>
 
-Bug reports and pull requests are welcome on the associated repository. Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code.
+Bug reports and pull requests are welcome on the associated repository:
 
-First choose your repository:
 - [Low](https://github.com/orgs/low-rb/repositories)
 - [Raindeer](https://github.com/orgs/raindeer-rb/repositories)
+
+Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code.
 
 ## Setup
 
@@ -23,12 +24,17 @@ For LowLoop or Raindeer you will also be running a server:
 bin/server
 ```
 
+> ![info]
+> `bin/server` as opposed to `rain server` ensures you're working with local gems
+
 **iTerm:** You may need to press `Option + A` to accept screen refreshing.
 
 ## Testing
 
 Run all tests with `bundle exec rspec`.
 Add the `SHOW_OUTPUT=1` flag to see the terminal output from some of the feature tests.
+
+## Developing
 
 ### `.[]` Syntax
 

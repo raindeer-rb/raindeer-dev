@@ -23,12 +23,12 @@ class SidebarNode < LowNode
         Link.new("Dependencies", "/docs/dependencies"),
         Link.new("Pipelines", "/docs/pipelines"),
         Link.new("Architecture", "/docs/architecture"),
+        Link.new("Contributing", "/docs/contributing"),
       ]),
       Nav.new('Tooling', [
         Link.new("CLI", "/docs/cli"),
         Link.new("Testing", "/docs/testing"),
         Link.new("Debugging", "/docs/debugging"),
-        Link.new("Contributing", "/docs/contributing"),
       ]),
     ]
   end
