@@ -26,22 +26,22 @@ end
 > ![NOTE]
 > [Events](/docs/events) can call different actions/methods
 
-## Rendering
+## Responding
 
 ### Implicit syntax
 
-The `observe 'path'` syntax is the simplest way to respond to a route. Either `render` or `receive` method [UNRELEASED] will be called by the `RouteEvent`'s action of the same name, depending on which HTTP request was received and which routes have been defined in the router.
+The `observe 'path'` syntax is the simplest way to respond to a route. Either the `render` or `receive` method [UNRELEASED] will be called by the `RouteEvent`'s action, depending on which HTTP request was received and which routes have been defined in the router.
 
 - The `render` method will be called for `GET` and `QUERY` HTTP requests
 - The `receive` method will be called for the  `POST`, `DELETE` and `PUT` HTTP requests.
 
-The actions are split up this way so that you can have both actions/methods in the same file.
+The actions are split up this way so that you can have both actions/methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
 ### Explicit syntax [UNRELEASED]
 
-For more flexibility use the `observe Route['path']` syntax.
+For all you HTTP nerds, you can have more flexibility with the `observe Route['path']` syntax.
 
-A `Route['path']` event is triggered for HTTP request, with the HTTP verb becoming the corresponding event action:
+A `RouteEvent` is triggered for the HTTP request where the HTTP verb becomes the corresponding event action:
 - **GET:** `observe Route['path'], :get`
 - **POST:** `observe Route['path'], :post`
 - **QUERY:** `observe Route['path'], :query`
@@ -59,11 +59,25 @@ class HomeNode < LowNode
 end
 ```
 
+The second arg to `observe` is just saying that we are **only** observing this action. We could leave it off and the `RequestEvent`/observer would then call the specific HTTP request/method that was triggered. If no method matches the action then nothing happens, it returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
+
 ## Output types
+
+### Ruby
+
+Use `.rb` and you can `render` strings and hashes (which get converted to JSON):
+
+```ruby
+class MyNode < LowNode
+  def render
+    "Hello"
+  end
+end
+```
 
 ### RBX
 
-Use `.rbx` as your file extension and now you can place HTML inside of `render()`:
+Use `.rbx` as your file extension and now you can place HTML inside of `render`:
 
 ```ruby
 class MyNode < LowNode
@@ -75,7 +89,7 @@ end
 
 ### Antlers
 
-Antlers syntax can be embedded within RBX:
+Antlers + RBX can be used to render nodes within nodes:
 ```ruby
 class ParentNode < LowNode
   def render
@@ -102,7 +116,7 @@ Which outputs:
 ## Arguments
 
 > [!note]
-> All arguments are omittable
+> All methods called via events have omittable arguments 
 
 An `event` keyword argument is always available to all `initialize` and `render` arguments.
 
@@ -154,7 +168,7 @@ end
 ## Unit Testing
 
 > ![NOTE]
-> Nodes use the **Method Factory** pattern. Call the *class* method to call the *instance* method
+> Nodes use the **Method Factory** pattern. You call the *class* method to call the *instance* method.
 
 Instead of calling `new` on a node class directly, first you call a class method which instantiates the class on your behalf, then calls the corresponding instance method.
 
