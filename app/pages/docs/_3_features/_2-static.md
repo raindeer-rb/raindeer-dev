@@ -21,7 +21,7 @@ Place your markdown files in `app/pages`.
 - Prefix file names with an underscore and number to order files without affecting the URL:
   `app/pages/docs/_1-getting-started.md` => `/docs/getting-started`
 
-**🍂 The humble underscore:** Essentially an underscore `_` followed by a string or number until a `-` or `/` adds metadata to a folder/file whilst hiding that part of the filepath from the URL.
+**The humble underscore:** In summary, an underscore `_` followed by a string or number until a `-` or `/` adds metadata to a folder/file whilst hiding that part of the filepath from the URL.
 
 ### Assets
 
@@ -66,13 +66,13 @@ Insert a `<blockquote>` with correct `<figure>` semantics and author attribution
 <{ :quote }>
 ```
 
-### List [UNRELEASED]
+### List
 
 List markdown files, filtered by specified metadata:
 
 ```ruby
 <{ list: item folder: 'basics' }>
-  <{ item.title }>
+  {item.title}
 <{ :list }>
 ```
 
@@ -87,7 +87,7 @@ List items are sorted by `order` by default. Change the ordering with:
 
 ```ruby
 <{ list: item folder: 'basics' order: :created_at }>
-  <{ item.title }>
+  {item.title}
 <{ :list }>
 ```
 
@@ -120,7 +120,7 @@ Then call it in a Markdown/Raindown file:
 <{ CustomComponent }>
 ```
 
-> [!warning]
+> [!warn]
 > If you namespace your component then you need to configure that namespace in Raindown
 
 ## Metadata
@@ -152,16 +152,40 @@ order: 1
 ---
 ```
 
-## Data Collections [UNRELEASED]
+## Collections
 
-Data Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators you don't need to specify where data collections live. Using the two established patterns of *the humble underscore™* and *implicit metadata*, we can simply put `_` prefixed markdown files in `_` prefixed folders.
+Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators, you don't need to specify where collections live. Using the two established patterns of *The humble underscore™* and *Implicit metadata*, simply put underscore prefixed markdown files in underscore prefixed folders.
 
 **For example:**
 ```
 /app/pages/_cards/_fast.md
 ```
 
-The `_cards` adds `folder: cards` metadata to every child file while hiding the folder from the URL, and the `_fast.md` hides the file from the URL. This markdown file is now unaccessible via the URL and its contents can just be used as data elsewhere.
+The `_cards` adds `folder: cards` metadata to every child file while hiding the folder from the URL, and the `_fast.md` hides the file from the URL. This file is now accessible only through metadata. Render these files elsewhere with lists:
+
+### Rendering in a page
+
+```ruby
+<{ list: card folder: 'cards' }>
+  {card.title}
+<{ :list }>
+```
+
+### Rendering in a node
+
+```ruby
+class CardsNode < LowNode
+  def initialize
+    @cards = Raindeer.pages.list(folder: 'cards')
+  end
+
+  def render
+    <{ for: card in: @cards }>
+      {card.title}
+    <{ :for }>
+  end
+end
+```
 
 ## Layout
 

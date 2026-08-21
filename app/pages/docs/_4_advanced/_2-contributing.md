@@ -10,7 +10,9 @@ Bug reports and pull requests are welcome on the associated repository:
 - [Low](https://github.com/orgs/low-rb/repositories)
 - [Raindeer](https://github.com/orgs/raindeer-rb/repositories)
 
-Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code.
+Repositores are split into 2 main categories; building blocks or the wiring that connects them together. Raindeer is one large repository containing many feature-level components, however it contains 2 cross cutting concerns; Router and Pipelines.
+
+<img src="/docs/repository-map.svg" alt="Repository Map"/>
 
 ## Setup
 
@@ -34,7 +36,11 @@ bin/server
 Run all tests with `bundle exec rspec`.
 Add the `SHOW_OUTPUT=1` flag to see the terminal output from some of the feature tests.
 
-## Developing
+## Guidelines
+
+### AI
+
+Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code.
 
 ### `.[]` Syntax
 

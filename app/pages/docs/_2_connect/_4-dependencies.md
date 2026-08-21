@@ -1,5 +1,5 @@
 ---
-title: Dependencies and providers
+title: Dependencies and Providers
 published: true
 ---
 
