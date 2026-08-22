@@ -1,6 +1,7 @@
 ---
 title: Pipelines [UNRELEASED]
 published: true
+menu: Pipelines
 ---
 
 <{ :toc }>

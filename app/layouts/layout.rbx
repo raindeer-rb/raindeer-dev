@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LayoutNode < LowNode
+class Layout < LowNode
   def render(event:, section:)
     <html>
       <head>

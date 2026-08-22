@@ -13,15 +13,15 @@ class PageRenderer < LowNode
 
   def render
     <{ if: @published }>
-      <{ LayoutNode: section='section-pages' }>
-        <{ SidebarNode }>
+      <{ Layout: section='section-pages' }>
+        <{ Sidebar }>
 
         <div id="content">
           <h1>{@title}</h1>
 
           <{ @html }>
         </div>
-      <{ :LayoutNode }>
+      <{ :Layout }>
     <{ :if }>
   end
 end

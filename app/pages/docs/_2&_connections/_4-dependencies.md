@@ -1,6 +1,7 @@
 ---
 title: Dependencies and Providers
 published: true
+menu: Dependencies
 ---
 
 <{ :toc }>

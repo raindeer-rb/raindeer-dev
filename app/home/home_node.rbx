@@ -8,7 +8,7 @@ class HomeNode < LowNode
   end
 
   def render(event:)
-    <{ LayoutNode: section='section-home' }>
+    <{ Layout: section='section-home' }>
       <img id="raindeer" src="/assets/logo.png"/>
 
       <div id="overview">
@@ -55,6 +55,6 @@ class HomeNode < LowNode
           <li>{"Repository pattern"}</li>
         </ul>
       </div>
-    <{ :LayoutNode }>
+    <{ :Layout }>
   end
 end
