@@ -8,7 +8,7 @@ published: true
 Raindeer is an event-driven framework that represents the Request-Response lifecycle as events. It's easy to latch on to any event as they happen and perform additional tasks.
 
 > ![NOTE]
-> Raindeer is event-driven internally but your application doesn't have to be. In fact, the main events in Raindeer are [abstracted away](/docs/architecture#aspect-orientated-programming) to such a degree that you won't notice them.
+> Raindeer is event-driven internally but your application doesn't have to be. In fact, Raindeer's main events are [abstracted away](/docs/architecture#aspect-orientated-programming) to such a degree that you can ignore them.
 
 ## Event Lifecycle
 
@@ -48,9 +48,12 @@ end
 - Returns a value
 - Potentially more performant (no instantiation)
 
-## Creating Events [OPTIONAL]
+## Creating Events
 
-The main events for the main flows are created for you. However you may want to create your own:
+> [!info]
+> Creating events is completely optional.
+
+Milestone events for the main flows are created for you and you can just listen to them. However you may want to create your own:
 
 ```ruby
 class MyEvent < LowEvent
@@ -58,15 +61,16 @@ class MyEvent < LowEvent
 
   def initialize(my_data:, action: :my_action)
     super(key: self.class, action:)
+
     @my_data = my_data
   end
 end
 ```
 
 *Breaking it down:*
-- `:my_action` - The name of the method that you would like to call on the observer
-- `key: self.class` - The actual value to observe, which can be the class itself like `MyEvent` or any value such as a String
-- `my_data` - Any data you want to store as an attribute or multiple attributes
+- `action:` - The name of the method that you would like to call on the observer
+- `key:` - The actual value to observe, which can be the class itself like `MyEvent` or any value such as a String
+- `@my_data` - Any data you want to store as an attribute or multiple attributes
 
 Trigger the event's action on its observers with:
 ```ruby
