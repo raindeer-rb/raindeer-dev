@@ -26,7 +26,7 @@ For LowLoop or Raindeer you will also be running a server:
 bin/server
 ```
 
-> ![info]
+> ![note]
 > `bin/server` as opposed to `rain server` ensures you're working with local gems
 
 **iTerm:** You may need to press `Option + A` to accept screen refreshing.

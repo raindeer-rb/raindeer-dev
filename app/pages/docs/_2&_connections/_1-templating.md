@@ -33,10 +33,10 @@ end
 4. A string: `{"String"}` or `<{ "String" }>`
 
 > ![warn]
-> Surround variables in HTML attributes with quotes to avoid the brackets being interpreted as deerheads.
+> HTML attributes must be quoted to avoid *brackets* being misinterpreted as *deerheads*.
 > 
-> ❌ Wrong: `<html class={var}>` - "Oh no I see a `}>`!"
-> ✅ Correct: `<html class="{var}">` - "Phew it's just a `}`"
+> ❌ **Bad:** `<html class={var}>` - *"Oh no I see `}>`!"*
+> ✅ **Good:** `<html class="{var}">` - *"Phew it's just `}`"*
 
 ## Components
 
@@ -49,14 +49,26 @@ end
 
 ℹ️ The class referenced via `<{ MyClass }>` syntax must implement a `render` method.
 
-**Props:**
+### Props
+
 ```ruby
 def render
   <html><{ UserNode user=@user }></html>
 end
 ```
 
-**Slots:**
+The `UserNode` class definition would accept these props like:
+
+```ruby
+class UserNode < LowNode
+  def render(event:, user:)
+    <h1>{user.name}</h1>
+  end
+end
+```
+
+### Slots
+
 ```ruby
 def render
   <html>
@@ -69,7 +81,7 @@ end
 
 The `LayoutNode` would look like:
 ```ruby
-class LayoutNode
+class LayoutNode < LowNode
   def render(event:)
     <header>...</header>
     <{ :slot }>
@@ -92,17 +104,23 @@ end
 
 ## Loops
 
+### Array
+
 ```ruby
-# Block.
 <{ for: user in: @users }>
   <{ UserNode user=user }>
 <{ :for }>
-
-# Directive. [UNRELEASED]
-<{ UserNode user=user for: user in: @users }>
 ```
 
-ℹ️ You can iterate a hash with `for: key, value` syntax.
+### Hash
+
+For a hash use `for: key, value` syntax.
+
+```ruby
+<{ for: id, user in: @users }>
+  <{ UserNode id=id user=user }>
+<{ :for }>
+```
 
 ## Forms
 
@@ -194,7 +212,7 @@ end
 
 ## Translations
 
-Variables (`{}`) are also useful for embedding text in RBX without any syntax highlighting issues:
+[Variables](#variables) (`{}`) are also useful for embedding text in RBX without any syntax highlighting issues:
 ```ruby
 def render
   <html>{"I'm just a string"}</html>

@@ -7,7 +7,7 @@ published: true
 
 Nodes are the flexible building blocks of your application. They can respond to a route request, or they can be called by another node. They can render a return value, or they can create an event. They are designed to be specific enough to observe events and return values, but generic enough to be split up to represent a complex application with its own patterns and structure.
 
-Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX) and render other nodes into the output using [Antlers](https://github.com/raindeer-rb/antlers) syntax; `<html><{ ChildNode }></html>`.
+Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX) and render other nodes into the output using the [syntax](/docs/templating#components); `<html><{ ChildNode }></html>`.
 
 ## Observing
 
@@ -23,7 +23,7 @@ class HomeNode < LowNode
 end
 ```
 
-> ![NOTE]
+> ![note]
 > [Events](/docs/events) can call different actions/methods
 
 ## Responding
@@ -167,7 +167,7 @@ end
 
 ## Unit Testing
 
-> ![NOTE]
+> ![note]
 > Nodes use the **Method Factory** pattern. You call the *class* method to call the *instance* method.
 
 Instead of calling `new` on a node class directly, first you call a class method which instantiates the class on your behalf, then calls the corresponding instance method.

@@ -155,6 +155,10 @@ path: /docs/getting-started
 
 `path` is automatically available too without manual entry, representing the absolute URL path.
 
+> ![note]
+> Need to order the `_basics` folder? Separate the two tags with `&`:
+> `app/pages/docs/_1&_basics/_1-getting-started.md`
+
 ## Collections
 
 Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators, you don't need to specify where collections live. Using the two established patterns of *The humble underscore™* and *Implicit metadata*, simply put underscore prefixed markdown files in underscore prefixed folders.
