@@ -149,8 +149,11 @@ app/pages/docs/_basics/_1-getting-started.md
 ---
 folder: basics
 order: 1
+path: /docs/getting-started
 ---
 ```
+
+`path` is automatically available too without manual entry, representing the absolute URL path.
 
 ## Collections
 
