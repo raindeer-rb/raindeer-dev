@@ -44,9 +44,9 @@ While the handling of thousands of requests is asynchronous, each individual req
 - `Low` - Internal namespace for Low components (which can be used standalone)
 - `Rain` - Internal namespace for Raindeer components
 - `Raindeer` - External class for accessing the Raindeer API
-- `Providers` - External class for accessing dependencies, often used by the `Raindeer` namespace internally but can also be accessed directly
+- `Providers` - External class for accessing dependencies
 
-For example, you will call `Raindeer.router` in your code, which internally calls `Providers['rain.router']` and this dependency is an instance of `Rain::Router`.
+For example, when you call `Raindeer.router` it calls `Providers['rain.router']` and this dependency is an instance of `Rain::Router`.
 
 **In summary:**
 - `Raindeer` is the public facing namespace.  
