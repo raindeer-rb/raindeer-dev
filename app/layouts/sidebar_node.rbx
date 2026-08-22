@@ -5,32 +5,10 @@ class SidebarNode < LowNode
   Link = Struct.new(:title, :path)
 
   def initialize
-    @navs = [
-      Nav.new('Basics', [
-        Link.new("Getting Started", "/docs/getting-started"),
-        Link.new("Routing", "/docs/routing"),
-        Link.new("Events", "/docs/events"),
-        Link.new("Nodes", "/docs/nodes"),
-        Link.new("Data", "/docs/data"),
-      ]),
-      Nav.new('Features', [
-        Link.new("Types", "/docs/types"),
-        Link.new("Templating", "/docs/templating"),
-        Link.new("Static Site Generation", "/docs/static"),
-        Link.new("Dead Man's Switch", "/docs/switch"),
-      ]),
-      Nav.new('Advanced', [
-        Link.new("Dependencies", "/docs/dependencies"),
-        Link.new("Pipelines", "/docs/pipelines"),
-        Link.new("Architecture", "/docs/architecture"),
-        Link.new("Contributing", "/docs/contributing"),
-      ]),
-      Nav.new('Tooling', [
-        Link.new("CLI", "/docs/cli"),
-        Link.new("Testing", "/docs/testing"),
-        Link.new("Debugging", "/docs/debugging"),
-      ]),
-    ]
+    @navs = ['Basics', 'Connections', 'Features', 'Advanced', 'Tooling'].map do |folder|
+      list = Raindeer.pages.list(folder: folder.downcase.gsub(' ', '_'))
+      Nav.new(folder, list)
+    end
   end
 
   def render
