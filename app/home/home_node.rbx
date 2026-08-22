@@ -4,8 +4,7 @@ class HomeNode < LowNode
   observe '/'
 
   def initialize(event:)
-    file_paths = Raindeer.pages.tagged(folder: 'cards')
-    @cards = Raindeer.pages.list(file_paths:)
+    @cards = Raindeer.pages.list(folder: 'cards')
   end
 
   def render(event:)
