@@ -3,11 +3,11 @@ title: Observers
 published: true
 ---
 
-Observe objects/keys of any kind and trigger actions and events on them.
+<{ :toc }>
 
-<p align="center"><img src="assets/Decoupled.svg" alt="Decoupled diagram" height="200"/></p>
+Observers are decoupled from the [events](/docs/events) they observe. This is because we're not always observing events! We may be observing a route like `'/:id'` or `Route[':id']` or a status like `Status[404]`, and these objects can trigger events too. Think of events as the building blocks, the structure, and observers as the glue that connects them together.
 
-Observers are decoupled from the objects they observe. Instead of directly observing a particular object, they observe a *key* that represents that object. Anything can be observed out of the box; a class, instance, struct, symbol or string... you just need to `observe` it:
+[Nodes](/docs/nodes) include observers by default, but you can include them into any class:
 
 ```ruby
 class MySubscriber
@@ -15,7 +15,7 @@ class MySubscriber
   observe MyPublisher
 
   def self.handle
-    # This method will be called upon trigger.
+    # This class method will be called upon trigger.
   end
 end
 ```
