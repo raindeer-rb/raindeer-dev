@@ -25,8 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach((entry) => {
       const id = entry.target.getAttribute("id");
       const tocLink = document.querySelector(`#toc a[href="#${id}"]`);
-      console.log(tocLink)
-      
+
       if (!tocLink) return;
 
       if (entry.isIntersecting) {
