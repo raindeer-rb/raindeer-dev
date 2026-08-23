@@ -1,6 +1,5 @@
 ---
 title: RBX
-title_icon: code
 summary: HTML and templating inside Ruby files
 ---
 

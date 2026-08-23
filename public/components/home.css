@@ -32,12 +32,12 @@
     header i {
       padding-right: 1rem;
     }
-    &:nth-child(1) header h3 { color: rgb(1, 170, 255); }
-    &:nth-child(2) header h3 { color: #f96746; }
-    &:nth-child(3) header h3 { color: #18a902; }
-    &:nth-child(4) header h3 { color: #D700AB; }
-    &:nth-child(5) header h3 { color: #d63535; }
-    &:nth-child(6) header h3 { color: #eeae37; }
+    &:nth-child(1) header i { color: rgb(1, 170, 255); }
+    &:nth-child(2) header i { color: #f96746; }
+    &:nth-child(3) header i { color: #18a902; }
+    &:nth-child(4) header i { color: #D700AB; }
+    &:nth-child(5) header i { color: #d63535; }
+    &:nth-child(6) header i { color: #eeae37; }
 
     .content i {
       display: block;

@@ -1,6 +1,5 @@
 ---
 title: Types
-title_icon: braces-asterisk
 summary: Inline type checking and annotations
 ---
 

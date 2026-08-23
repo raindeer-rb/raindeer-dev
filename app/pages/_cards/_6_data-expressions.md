@@ -1,6 +1,5 @@
 ---
 title: Data Expressions
-title_icon: emoji-smile-fill
 summary: Build SQL queries compositionally
 ---
 
