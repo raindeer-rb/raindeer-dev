@@ -11,6 +11,7 @@ class Layout < LowNode
 
         <!-- TODO: Precompile. -->
         <link rel="stylesheet" href="/components/sidebar/sidebar.css">
+        <script src="/components/sidebar/sidebar.js" defer></script>
         <link rel="stylesheet" href="/components/toc/toc.css">
         <script src="/components/toc/toc.js" defer></script>
 
