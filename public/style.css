@@ -127,6 +127,8 @@ main {
 
   #content {
     overflow: auto;
+    display: flex;
+    flex-direction: column;
   }
 }
 
