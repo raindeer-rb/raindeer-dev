@@ -66,7 +66,7 @@ Insert a `<blockquote>` with correct `<figure>` semantics and author attribution
 <{ :quote }>
 ```
 
-### List
+### List [UNRELEASED]
 
 List markdown files, filtered by specified metadata:
 
@@ -81,7 +81,7 @@ List markdown files, filtered by specified metadata:
 - `path` - *example:* "docs/getting-started"
 - `folder` - *example:* "basics"
 - `order` - *example:* 1
-- ["Metadata"](#metadata) defined in the frontmatter of the markdown files
+- [Metadata](#metadata) defined in the frontmatter of the markdown files
 
 List items are sorted by `order` by default. Change the ordering with:
 
@@ -156,7 +156,7 @@ path: /docs/getting-started
 `path` is automatically available too without manual entry, representing the absolute URL path.
 
 > ![note]
-> Need to order the `_basics` folder? Separate the two tags with `&`:
+> Need to order the `_basics` folder? Separate multiple folder tags with `&`:
 > `app/pages/docs/_1&_basics/_1-getting-started.md`
 
 ## Collections
