@@ -8,6 +8,9 @@ class Layout < LowNode
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="/components/home.css">
+
+        <!-- TODO: Precompile. -->
+        <link rel="stylesheet" href="/components/sidebar/sidebar.css">
         <link rel="stylesheet" href="/components/toc/toc.css">
         <script src="/components/toc/toc.js" defer></script>
 

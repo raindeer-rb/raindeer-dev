@@ -110,34 +110,6 @@ header {
   }
 }
 
-aside#sidebar {
-  width: 14rem;
-  float: left;
-  padding: 1rem;
-
-  nav {
-    ul:first-of-type {
-      margin-left: 0; /* Override Pico. */
-    }
-    li {
-      padding: calc(var(--pico-nav-element-spacing-vertical) * .25) var(--pico-nav-element-spacing-horizontal);
-      padding-left: calc(var(--pico-nav-element-spacing-vertical) * 1);
-      border-left: 1px solid #353841;
-      a {
-        color: #d4d4d4;
-        &:hover {
-          color: var(--pico-primary);
-        }
-      }
-    }
-  }
-  summary {
-    list-style-type: none;
-    cursor: pointer;
-    font-weight: bold;
-  }
-}
-
 main {
   overflow: auto;
   padding: 1rem;
