@@ -26,10 +26,8 @@ class HomeNode < LowNode
       <div class="teaser">
         <img src="/assets/sudoku.png"/>
         <div class="content">
-          <p>
-            <em>{"Raindeer was born out of a Sudoku solver... "}</em><br />
-            {"It wasn't extracted from a traditional web application, but created from first principles of what an easy to use yet performant framework would be."}
-          </p>
+          <h2>{"Raindeer was born out of a Sudoku solver... "}</h2>
+          <p>{"It wasn't extracted from a traditional web application, but created from first principles of what an easy to use yet performant framework would be."}</p>
           <p><a href="/docs/architecture" role="button"><i class="bi bi-stack"></i>{"See Architecture"}</a></p>
         </div>
       </div>
