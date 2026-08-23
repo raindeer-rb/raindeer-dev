@@ -1,10 +1,11 @@
 ---
 title: Types
+title_icon: braces-asterisk
 summary: Inline type checking and annotations
 ---
 
 ```ruby
-def method(param: String)
+def method(var: String)
 ```
 
 - Optional

@@ -1,5 +1,6 @@
 ---
 title: Parallelism
+title_icon: speedometer
 summary: Immutable nodes designed for parallel execution
 ---
 

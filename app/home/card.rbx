@@ -4,7 +4,13 @@ class Card < LowNode
   def render(event:, card:)
     <article class="card">
       <header>
-        <h3>{card.title}</h3>
+        <h3>
+          <{ if: card.title_icon }>
+            <i class="bi bi-{card.title_icon}"></i>
+          <{ :if }>
+
+          {card.title}
+        </h3>
       </header>
 
       <div class="content">

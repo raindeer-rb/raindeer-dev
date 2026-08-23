@@ -29,7 +29,17 @@
     grid-template-columns: repeat(3, 1fr);
   }
   .card {
-    i {
+    header i {
+      padding-right: 1rem;
+    }
+    &:nth-child(1) header i { color: rgb(1, 170, 255); }
+    &:nth-child(2) header i { color: #FF4E42; }
+    &:nth-child(3) header i { color: #18a902; }
+    &:nth-child(4) header i { color: #D700AB; }
+    &:nth-child(5) header i { color: #861985; }
+    &:nth-child(6) header i { color: #C69640; }
+
+    .content i {
       display: block;
       font-size: 4rem;
       color: var(--pico-primary-background);
