@@ -31,6 +31,18 @@ end
 > ![note]
 > Observers **CANNOT** change the action. Events retain control over which actions are called. This allows for a predictable [one-directional](https://en.wikipedia.org/wiki/One_Direction) flow between events. Complex workflows can be reasoned about more easily without worrying that an observer somewhere is overriding every action on an object/event and executing unrelated behaviour and output.
 
+## Ordering
+
+Observers are ordered, called in the order that they are defined but can be reordered via an array-like interface.
+
+```ruby
+MyEvent.define do |observers|
+  observers # Access existing observers array.
+  observers << MyObserver # Add an observer at the end.
+  observers = [MyObserver, *observers] # Add an observer at the start.
+end
+```
+
 ## Triggers
 
 ### Actions
