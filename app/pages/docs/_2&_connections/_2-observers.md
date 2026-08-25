@@ -5,7 +5,7 @@ published: true
 
 <{ :toc }>
 
-Observers are decoupled from the [events](/docs/events) they observe. This is because we're not always observing events! We may be observing a route like `'/:id'` or `Route[':id']` or a status like `Status[404]`, and we can trigger events for these objects too. Think of events as the building blocks/structure, and observers as the wiring/glue that connects them together.
+Observers are decoupled from the [events](/docs/events) they observe. This is because we're not always observing events! We may be observing a route like `'/:id'` or `Route[':id']` or a status code like `Status[404]`, and we can trigger events for these objects too. Think of events as the building blocks/structure, and observers as the wiring/glue that connects them together.
 
 [Nodes](/docs/nodes) include observers by default, but you can include them into any class:
 
