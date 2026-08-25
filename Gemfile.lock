@@ -99,6 +99,7 @@ PATH
       plugs
       providers
       rouge
+      ruby-progressbar
 
 PATH
   remote: ../trees
