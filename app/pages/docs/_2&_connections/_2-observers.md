@@ -7,7 +7,7 @@ published: true
 
 Observers are decoupled from the [events](/docs/events) they observe. This is because we're not always observing events! We may be observing a route like `'/:id'` or `Route[':id']` or a status code like `Status[404]`, and we can trigger events for these objects too. Think of events as the building blocks/structure, and observers as the wiring/glue that connects them together.
 
-[Nodes](/docs/nodes) include observers by default, but you can include them into any class:
+[Nodes](/docs/nodes) include observers by default, but you can include them into any class.
 
 ```ruby
 class MySubscriber
@@ -28,7 +28,8 @@ class MyPublisher
 end
 ```
 
-ℹ️ Observers are ordered, called in the order that they are defined and can be reordered via an array-like interface.
+> ![note]
+> Observers **CANNOT** change the action. Events retain control over which actions are called. This allows for a predictable [one-directional](https://en.wikipedia.org/wiki/One_Direction) flow between events. Complex workflows can be reasoned about more easily without worrying that an observer somewhere is overriding every action on an object/event and executing unrelated behaviour and output.
 
 ## Triggers
 
