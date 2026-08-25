@@ -26,8 +26,6 @@ end
 > ![note]
 > [Events](/docs/events) can call different actions/methods
 
-## Responding
-
 ### Implicit syntax
 
 The `observe 'path'` syntax is the simplest way to respond to a route. Either the `render` or `receive` method [UNRELEASED] will be called by the `RouteEvent`'s action, depending on which HTTP request was received and which routes have been defined in the router.
@@ -39,29 +37,77 @@ The actions are split up this way so that you can have both actions/methods in t
 
 ### Explicit syntax [UNRELEASED]
 
-For all you HTTP nerds, you can have more flexibility with the `observe Route['path']` syntax.
+For all you HTTP nerds, you can have more flexibility with the `observe Route[HTTP_VERB => 'path']` syntax.
 
 A `RouteEvent` is triggered for the HTTP request where the HTTP verb becomes the corresponding event action:
-- **GET:** `observe Route['path'], :get`
-- **POST:** `observe Route['path'], :post`
-- **QUERY:** `observe Route['path'], :query`
-- **DELETE:** `observe Route['path'], :delete`
-- **PUT:** `observe Route['path'], :put`
+- **GET:** `observe Route[GET => 'path']`
+- **POST:** `observe Route[POST => 'path']`
+- **QUERY:** `observe Route[QUERY => 'path']`
+- **DELETE:** `observe Route[DELETE => 'path']`
+- **PUT:** `observe Route[PUT => 'path']`
 
 For example, a GET request to the `'/'` path will call the `get` method and look like this:
 ```ruby
 class HomeNode < LowNode
-  observe Route['/'], :get
+  observe Route[GET => '/']
 
-  def get
+  def get(event: RequestEvent)
     "Response"
   end
 end
 ```
 
-The second arg to `observe` is just saying that we are **only** observing this action. We could leave it off and the `RequestEvent`/observer would then call the specific HTTP request/method that was triggered. If no method matches the action then nothing happens, it returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
+And this looks really good too with the ["on" syntax](/docs/events#on-syntax):
+```ruby
+on Route[GET => '/'] do |request_event|
+  "Response"
+end
+```
 
-## Output types
+> ![note]
+> If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
+
+## Responding
+
+### `nil`
+
+If the method
+
+### String
+
+```ruby
+class MyNode < LowNode
+  def render
+    "Hello"
+  end
+end
+```
+
+### HTML
+
+```ruby
+class MyNode < LowNode
+  def render
+    <html>{"Yes this is fine."}</html>
+  end
+end
+```
+
+### JSON
+
+`Hash` return values are converted to a JSON string.
+
+```ruby
+class MyNode < LowNode
+  def render
+    {
+      error: "This framework is too awesome, burns my eyes."
+    }
+  end
+end
+```
+
+## File types
 
 ### Ruby
 
