@@ -28,13 +28,21 @@ published: true
   </footer>
 </article>
 
-Currently the best way to build a Raindeer application is to clone the [Raindeer Template](https://github.com/raindeer-rb/raindeer-template).
+**Create your application:**
+```shell
+gem install raindeer
+rain new :app_name
+```
 
-Then in your terminal run:
+Or clone the [template](https://github.com/raindeer-rb/raindeer-template).
+
+**Run the server:**
 ```shell
 bundle install
 rain server
 ```
+
+**Visit:** http://127.0.0.1:4133/
 
 ## Matrix Mode
 
