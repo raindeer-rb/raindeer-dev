@@ -43,10 +43,11 @@ on MyEvent do |my_event|
 end
 ```
 
-**✨ Features:**
+**✨ Summary:**
 - Class level scope
 - Returns a value
-- Potentially more performant (no instantiation)
+- Not for RBX
+- More performant (needs benchmarking)
 
 ## Creating Events
 
