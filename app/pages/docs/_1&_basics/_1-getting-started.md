@@ -46,7 +46,7 @@ rain server
 
 ## Matrix Mode
 
-On your local the terminal will output a matrix visualisation of the asynchronous events, giving you a feel for what is happening under the hood.
+After running the sever your terminal will output a matrix visualisation of the asynchronous events, giving you a feel for what is happening under the hood. For better performance you should disable this mode in production with the `RAIN_MATRIX=0` ENV variable.
 
 **iTerm:** Press `Option + A` to accept screen refreshing, or output will bounce around.
 
