@@ -7,11 +7,11 @@ published: true
 
 A command line utility to work with Raindeer applications.
 
-## `rain`, `rain --help` [UNRELEASED]
+## `rain --help` [UNRELEASED]
 
 Shows possible commands.
 
-## `rain new :app_name` [UNRELEASED]
+## `rain new :app_name`
 
 Creates a Raindeer application with the specified name.
 
