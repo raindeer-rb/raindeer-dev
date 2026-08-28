@@ -11,7 +11,7 @@ Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX
 
 ## Observing
 
-After setting up a route, `observe` it to render a response:
+After setting up a [route](/docs/routing), `observe` it to render a response:
 
 ```ruby
 class HomeNode < LowNode
@@ -69,11 +69,19 @@ end
 
 ## Responding
 
-### `nil`
+### Empty response
 
-If the method
+As hinted to by the elaborate note above, if our node method returns `nil` or `''` and there are no other observers then the [router](/docs/routing) will default to a 404 response.
 
-### String
+```ruby
+class MyNode < LowNode
+  def render
+    nil
+  end
+end
+```
+
+### String response
 
 ```ruby
 class MyNode < LowNode
@@ -83,17 +91,7 @@ class MyNode < LowNode
 end
 ```
 
-### HTML
-
-```ruby
-class MyNode < LowNode
-  def render
-    <html>{"Yes this is fine."}</html>
-  end
-end
-```
-
-### JSON
+### JSON response
 
 `Hash` return values are converted to a JSON string.
 
@@ -107,33 +105,17 @@ class MyNode < LowNode
 end
 ```
 
-## File types
-
-### Ruby
-
-Use `.rb` and you can `render` strings and hashes (which get converted to JSON):
-
-```ruby
-class MyNode < LowNode
-  def render
-    "Hello"
-  end
-end
-```
-
-### RBX
+### HTML response
 
 Use `.rbx` as your file extension and now you can place HTML inside of `render`:
 
 ```ruby
 class MyNode < LowNode
   def render
-    <p>Hello</p>
+    <strong>Hello</strong>
   end
 end
 ```
-
-### Antlers
 
 Antlers + RBX can be used to render nodes within nodes:
 ```ruby
@@ -157,24 +139,64 @@ Which outputs:
 <html><strong>Hello</strong></html>
 ```
 
-**See also:** [Antlers](https://github.com/raindeer-rb/antlers) source and syntax guide
+**See also:** [Templating](/docs/templating#components)
+
+## Calling other code
+
+Nodes are designed for intercepting the request-response layer and then handing off control to your domain-specific models, presenters and business logic.
+
+### Calling a class
+
+All classes in `/app` are autoloaded so you can call any class from any node:
+```ruby
+# /app/business_directory/business_logic.rb
+class BusinessLogic
+  def self.metrics(company_id:)
+    # Compute a bunch of business metrics.
+  end
+end
+
+# /app/business_directory/business_directory.rbx
+class BusinessDirectory < LowNode
+  observe '/:company_id'
+
+  def initialize(event:)
+    company_id = event.request.params[:company_id]
+    @metrics = BusinessLogic.metrics(company_id:)
+  end
+
+  def render
+    <{ Metrics metrics=@metrics }>
+  end
+end
+```
+
+### Injecting a dependency
+
+See: [Dependencies](/docs/dependencies)
 
 ## Arguments
 
 > [!note]
 > All methods called via events have omittable arguments 
 
-An `event` keyword argument is always available to all `initialize` and `render` arguments.
+### Request level
+
+An `event` keyword argument is optionally available to all `initialize` and `render` arguments.
 
 ```ruby
 class MyNode < LowNode
+  observe '/'
+
   def render(event:)
     "Event contains the HTTP request, URL parameters and more..."
   end
 end
 ```
 
-If the node has been rendered by another node then any props passed to that node are available as keyword arguments in the node's `initialize` or `render` methods.
+### Render level
+
+If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods.
 
 **Passing props:**
 ```ruby
