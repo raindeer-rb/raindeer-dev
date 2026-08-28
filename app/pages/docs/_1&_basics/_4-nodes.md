@@ -219,6 +219,11 @@ end
 
 ## Parallelism [UNRELEASED]
 
+Speed up CPU-bound work with parallelism. Thanks to the immutable nature of nodes we can process nodes in parallel using the `<{ parallelize: }>` syntax. Your data must be immutable or be able to be so (copied) by Raindeer. This means reducing your reliance on global state, such as global dependency injection via [Providers](/docs/dependencies#providers) in favour of local dependency injection via [Plugs](/docs/dependencies#plugs).
+
+> ![note]
+> IO-bound work like database queries are almost parallel as they are asynchronously waited on by the Fiber scheduler. But the CPU-bound processing of the results are not, so you'll still see a speed up, depending on what you're doing.
+
 ```ruby
 def render
   <{ parallelize: }>
