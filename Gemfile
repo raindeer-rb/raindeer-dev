@@ -2,10 +2,10 @@
 
 source 'https://rubygems.org'
 
+gem 'raindeer'
+
 group :development do
   local_gems = {
-    'raindeer' => '../raindeer',
-
     'low_event' => '../low_event',
     'low_loop' => '../low_loop',
     'low_node' => '../low_node',
