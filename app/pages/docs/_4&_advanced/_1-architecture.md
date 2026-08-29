@@ -5,7 +5,7 @@ published: true
 
 <{ :toc }>
 
-<img src="/docs/architecture.svg" alt="Raindeer Architecture"/>
+<img src="/assets/architecture.svg" alt="Raindeer Architecture"/>
 
 <hr />
 

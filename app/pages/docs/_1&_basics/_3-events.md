@@ -104,6 +104,6 @@ Raindeer events are different to traditional events in [event-driven architectur
 
 Because events represent a period of time they will have sub-events, resulting in a tree-like structure of parent and child events:
 
-<img src="/docs/event-tree.svg" alt="Event Tree"/>
+<img src="/assets/event-tree.svg" alt="Event Tree"/>
 
 This structure can be used in debugging for enhanced observability.

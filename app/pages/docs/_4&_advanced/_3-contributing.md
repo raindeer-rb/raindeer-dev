@@ -12,7 +12,7 @@ Bug reports and pull requests are welcome on the associated repository:
 
 Repositores are split into 2 main categories; building blocks or the wiring that connects them together. Raindeer is one large repository containing many feature-level components, however it contains 2 cross cutting concerns; Router and Pipelines.
 
-<img src="/docs/repository-map.svg" alt="Repository Map"/>
+<img src="/assets/repository-map.svg" alt="Repository Map"/>
 
 ## Setup
 
