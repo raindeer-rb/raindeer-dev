@@ -21,6 +21,8 @@ class Layout < LowNode
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
         <meta property="og:image" content="https://raindeer.dev/assets/cover.png" />
         <meta property="og:title" content="Raindeer" />
         <meta property="og:description" content="An event-driven and compositional web framework that's easy to use 🦌" />
