@@ -139,6 +139,8 @@ date: 2099
 
 ### Implicit metadata
 
+#### Folder tags
+
 Underscored values in file paths are automatically converted to metadata. For example, in the following file path...
 ```
 app/pages/docs/_basics/_1-getting-started.md
@@ -156,12 +158,21 @@ path: /docs/getting-started
 `path` is automatically available too without manual entry, representing the absolute URL path.
 
 > ![note]
-> Need to order the `_basics` folder? Separate multiple folder tags with `&`:
+> Separate multiple folder tags with `&`:
 > `app/pages/docs/_1&_basics/_1-getting-started.md`
+
+#### Label tags [UNRELEASED]
+
+Any uppercase text between two square brackets `[]` is considered a label tag. This is useful for defining the current status of an article, project or feature. For example:
+- [DRAFT]
+- [BETA]
+- [UNRELEASED]
+
+A label tag can be put in `title:` frontmatter or `## heading` and **NOT** have its characters visible in the URL or anchor link. Additionally it outputs CSS classes for more label-like styling.
 
 ## Collections
 
-Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators, you don't need to specify where collections live. Using the two established patterns of *The humble underscore™* and *Implicit metadata*, simply put underscore prefixed markdown files in underscore prefixed folders.
+Collections are arrays of records that can be rendered anywhere; a page, a node, and *optionally* accessed directly via URL. Unlike other static site generators, you don't need to configure where collections live. Using the two established patterns of *The humble underscore™* and *Implicit metadata*, simply put underscore prefixed markdown files in underscore prefixed folders.
 
 **For example:**
 ```
