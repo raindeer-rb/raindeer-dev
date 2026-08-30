@@ -45,10 +45,10 @@ observe Route[HTTP_VERB => 'route']
 
 The HTTP request and its verb to that route become the corresponding event/action:
 - **GET:** `Route[GET => 'route']` handled by `RenderEvent => :get`
-- **QUERY:** `Route[QUERY => 'route']` handled by `RequestEvent => :query`
-- **PUT:** `Route[PUT => 'route']` handled by `RequestEvent => :put`
-- **POST:** `Route[POST => 'route']` handled by `RequestEvent => :post`
-- **DELETE:** `Route[DELETE => 'route']` handled by `RequestEvent => :delete`
+- **QUERY:** `Route[QUERY => 'route']` handled by `ReceiveEvent => :query`
+- **PUT:** `Route[PUT => 'route']` handled by `ReceiveEvent => :put`
+- **POST:** `Route[POST => 'route']` handled by `ReceiveEvent => :post`
+- **DELETE:** `Route[DELETE => 'route']` handled by `ReceiveEvent => :delete`
 
 **A `render` method can still be defined for `receive` requests.**
 
