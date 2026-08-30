@@ -63,13 +63,6 @@ class AnswerNode < LowNode
 end
 ```
 
-[UNRELEASED] If you want a `QUERY` HTTP request to call a different method then you can do:
-```ruby
-observe Route[QUERY => '/:question'] => { query: :answer }
-```
-
-This forwards the `query:` action to the `:answer` action/method.
-
 > ![note]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
 

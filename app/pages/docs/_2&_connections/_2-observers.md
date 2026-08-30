@@ -93,18 +93,21 @@ trigger key: OtherPublisher, action: :my_action
 trigger key: OtherPublisher, action: :my_action, event: MyEvent.new(event_data)
 ```
 
-## Advanced
+#### Action Accepting [UNRELEASED]
 
-### Overriding Actions
+In this example we're observing the route for all types of HTTP requests, but only accepting the `QUERY` HTTP verb as our action/method:
+```ruby
+observe Route['/:question'] => :query
+```
 
-An action can be overridden at each layer:
-1. On the `trigger` method by including an `action:` keyword argument
-2. On the event by populating its `action` attribute
+#### Action Forwarding [UNRELEASED]
 
-### Action Precedence
+You can redirect an action to call a method of a different name:
+```ruby
+observe Route[QUERY => '/:question'] => { query: :answer }
+```
 
-1. `observe action:` and `observers << my_object, action:` - Overrides `trigger` and event actions
-2. `trigger action:` - Overrides event actions
+This forwards the `query:` action to the `:answer` action/method.
 
 ### Actions
 
