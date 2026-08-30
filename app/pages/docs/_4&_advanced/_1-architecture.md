@@ -28,12 +28,14 @@ While the handling of thousands of requests is asynchronous, each individual req
 [Pipelines](https://en.wikipedia.org/wiki/Pipeline_(software)) are one of the simplest and easiest patterns to understand. What's not to love about a linear series of events? In Raindeer **everything's a pipeline**:
 
 - [Events](/docs/events) - Ordered observers and ordered event tree
-- [Pipelines](/docs/pipelines)
+- [Pipelines](/docs/pipelines) - Even the pipelines are pipelines!
 
 ### Composition
 
-- [LowNode](/docs/nodes)'s can be nested inside each other via Antlers `<{ ChildNode }>` syntax
-- [LowData](/docs/data) joins tables together using Data Expression's `A[:one] + B[:two]` syntax
+- [Nodes](/docs/nodes) have:
+  - Different behaviours depending on the `render`, `receive` methods defined
+  - Nest inside each other via `<{ ChildNode }>` [component syntax](/docs/templating#components)
+- [Data Expressions](/docs/data#data-expressions) join tables together using `A[:one] + B[:two]` syntax
 
 ### Aspect-orientated programming
 
