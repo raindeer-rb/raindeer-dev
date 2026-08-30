@@ -17,8 +17,8 @@ After setting up a [route](/docs/routing), `observe` it to render a response:
 class HomeNode < LowNode
   observe '/'
 
-  def render(event: RequestEvent)
-    # event.request.path => '/'
+  def render(event: RenderEvent)
+    event.request.path # => '/'
   end
 end
 ```
@@ -28,48 +28,94 @@ end
 
 ### Implicit syntax
 
-The `observe 'path'` syntax is the simplest way to respond to a route. Either the `render` or `receive` method [UNRELEASED] will be called by the `RouteEvent`'s action, depending on which HTTP request was received and which routes have been defined in the router.
+The `observe 'route'` syntax is the simplest way to respond to a request. Either the `render` or `receive` method [UNRELEASED] will be called by the `RenderEvent`'s action, depending on which HTTP request was received and which routes have been defined in the router.
 
 - The `render` method will be called for `GET` and `QUERY` HTTP requests
-- The `receive` method will be called for the  `POST`, `DELETE` and `PUT` HTTP requests.
+- The `receive` method will be called for the  `POST`, `DELETE` and `PUT` HTTP requests
 
-The actions are split up this way so that you can have both actions/methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
+The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
 ### Explicit syntax [UNRELEASED]
 
-For all you HTTP nerds, you can have more flexibility with the `observe Route[HTTP_VERB => 'path']` syntax.
+For all you HTTP nerds, you can have more flexibility with the `Route[VERB => 'route']` syntax.
 
-A `RouteEvent` is triggered for the HTTP request where the HTTP verb becomes the corresponding event action:
-- **GET:** `observe Route[GET => 'path']`
-- **POST:** `observe Route[POST => 'path']`
-- **QUERY:** `observe Route[QUERY => 'path']`
-- **DELETE:** `observe Route[DELETE => 'path']`
-- **PUT:** `observe Route[PUT => 'path']`
+A `RenderEvent` is triggered for the HTTP request to that route and the HTTP verb becomes the corresponding event action:
+- **GET:** `observe Route[GET => 'route']`
+- **QUERY:** `observe Route[QUERY => 'route']`
+- **PUT:** `observe Route[PUT => 'route']`
+- **POST:** `observe Route[POST => 'route']`
+- **DELETE:** `observe Route[DELETE => 'route']`
 
-For example, a GET request to the `'/'` path will call the `get` method and look like this:
+For example, a QUERY request to the `'/:question'` route will call the `query` method:
 ```ruby
-class HomeNode < LowNode
-  observe Route[GET => '/']
+class AnswerNode < LowNode
+  observe Route[QUERY => '/:question']
 
-  def get(event: RequestEvent)
-    "Response"
+  def query(event: RenderEvent)
+    42
   end
 end
 ```
 
-And this looks really good too with the ["on" syntax](/docs/events#on-syntax):
+[UNRELEASED] If you want a `QUERY` HTTP request to call a different method then you can do:
 ```ruby
-on Route[GET => '/'] do |request_event|
-  "Response"
-end
+observe Route[QUERY => '/:question'] => { query: :answer }
 ```
+
+This forwards the `query:` action to the `:answer` action/method.
 
 > ![note]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
 
 ## Responding
 
-### Empty response
+> ![note]
+> **TODO:** I built a whole framework and missed something important. The `RenderEvent` needs to have the `params` from `RouteEvent` brought over to it... Whoops.
+
+Every node supports an `initialize` and a `render` method. The class is initialized first before then being rendered. You can access any instance variables or methods from the `render` method:
+
+```ruby
+class UserNode < LowNode
+  observe '/:id'
+
+  def initialize(event: RenderEvent)
+    @id = event.params[:id]
+  end
+
+  def render
+    <strong>ID:</strong> {@id}
+  end
+end
+```
+
+### Inline Syntax [UNRELEASED]
+
+Don't need to separate business logic from rendering logic? Do it all in `render`:
+
+```ruby
+class UserNode < LowNode
+  observe '/:id'
+
+  def render(event: RenderEvent)
+    id = event.params[:id]
+
+    <strong>ID:</strong> {id}
+  end
+end
+```
+
+## Observing + Responding
+
+With the ["on" syntax](/docs/events#on-syntax) we can observe and respond in one fell swoop:
+```ruby
+on Route[GET => '/'] do |request_event|
+  "Response"
+end
+```
+
+## Return Types
+
+### Empty
 
 As hinted to by the elaborate note above, if our node method returns `nil` or `''` and there are no other observers then the [router](/docs/routing) will default to a 404 response.
 
@@ -81,7 +127,7 @@ class MyNode < LowNode
 end
 ```
 
-### String response
+### String
 
 ```ruby
 class MyNode < LowNode
@@ -91,7 +137,7 @@ class MyNode < LowNode
 end
 ```
 
-### JSON response
+### JSON
 
 `Hash` return values are converted to a JSON string.
 
@@ -105,9 +151,9 @@ class MyNode < LowNode
 end
 ```
 
-### HTML response
+### RBX
 
-Use `.rbx` as your file extension and now you can place HTML inside of `render`:
+RBX is just HTML inside Ruby. Use `.rbx` as your file extension and now you can place HTML inside of `render`:
 
 ```ruby
 class MyNode < LowNode
@@ -117,7 +163,9 @@ class MyNode < LowNode
 end
 ```
 
-Antlers + RBX can be used to render nodes within nodes:
+### RBX + Antlers
+
+Antlers allows you to render nodes within nodes:
 ```ruby
 class ParentNode < LowNode
   def render
@@ -219,10 +267,12 @@ end
 
 ## Parallelism [UNRELEASED]
 
-Speed up CPU-bound work with parallelism. Thanks to the immutable nature of nodes we can process nodes in parallel using the `<{ parallelize: }>` syntax. Your data must be immutable or be able to be so (copied) by Raindeer. This means reducing your reliance on global state, such as global dependency injection via [Providers](/docs/dependencies#providers) in favour of local dependency injection via [Plugs](/docs/dependencies#plugs).
+Speed up CPU-bound work with parallelism. Thanks to the immutable nature of nodes we can process them in parallel using the `<{ parallelize: }>` syntax. Your data must be immutable or be able to be copied by Raindeer. This means reducing your reliance on global state, such as global dependency injection via [Providers](/docs/dependencies#providers), in favour of local dependency injection via [Plugs](/docs/dependencies#plugs).
 
 > ![note]
-> IO-bound work like database queries are almost parallel as they are asynchronously waited on by the Fiber scheduler. But the CPU-bound processing of the results are not, so you'll still see a speed up, depending on what you're doing.
+> IO-bound work like database queries are essentially parallel already, as multiple asynchronous requests will simultaneously wait for database results. However the CPU-bound processing of these results is not parallelized, so you'll still see a speed up... depending on what you're doing.
+
+### Siblings
 
 ```ruby
 def render
@@ -235,6 +285,17 @@ def render
     # PostsNode executed at the same time as For Loop.
     <{ PostsNode }>
   <{ :parallelize }>
+end
+```
+
+### Children
+
+```ruby
+def render
+  # Each item in the loop is executed at the same time.
+  <{ for: user in: @users :parallelize }>
+    <{ UserNode user=user }>
+  <{ :for }>
 end
 ```
 
