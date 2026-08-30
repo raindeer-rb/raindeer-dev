@@ -109,7 +109,7 @@ observe Route[QUERY => '/:question'] => { query: :answer }
 
 This forwards the `query:` action to the `:answer` action/method.
 
-### Actions
+## Action Types
 
 - `trigger` - Calls all observers. Returns the last non-nil value.
 - `take` - Calls all observers up until the first non-nil value. Returns the first non-nil value.
