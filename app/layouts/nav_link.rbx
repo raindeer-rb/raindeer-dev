@@ -2,11 +2,13 @@
 
 class NavLink < LowNode
   def initialize(event:, link:)
+    @link = link
     @title = link.menu ? link.menu : link.title
-    @path = link.path
   end
 
   def render
-    <li><a href="{@path}">{@title}</a></li>
+    <{ if: @link.published }>
+      <li><a href="{@link.path}">{@title}</a></li>
+    <{ :if }>
   end
 end
