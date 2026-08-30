@@ -117,4 +117,8 @@ Because events represent a period of time they will have sub-events, resulting i
 
 <img src="/assets/event-tree.svg" alt="Event Tree"/>
 
-This structure can be used in debugging for enhanced observability.
+This structure can be used in debugging for enhanced observability. In the future this information will be shown in the `/system` UI, detailing who triggered and who responded to an event.
+
+## Unit Testing
+
+Events must be manually observed in the test if you want to trigger observers.
