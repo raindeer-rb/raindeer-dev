@@ -119,6 +119,20 @@ Because events represent a period of time they will have sub-events, resulting i
 
 This structure can be used in debugging for enhanced observability. In the future this information will be shown in the `/system` UI, detailing who triggered and who responded to an event.
 
+### Solving Pain Points
+
+Event-driven and distributed systems can suffer from a "who did what" problem. Raindeer mitigates each of these pain points:
+
+| **Problem**                 | **Solution**                                                      |
+|-----------------------------|------------------------------------------------------------------ |
+| Implicit/hidden wiring      | Explicit `observe`/`observers <<`                                 |
+| Unpredictible ordering      | Ordered and one-directional flow                                  |
+| Unpredictible effects       | `trigger` and `take` [action types](/docs/observers#action-types) |
+| Testing side effects        | Observers must be added per test                                  |
+| Discoverability             | System UI lists events/routes/observers                           |
+| Debugging and Logging       | Events are pipelines and tracked via UI                           |
+
+
 ## Unit Testing
 
 Events must be manually observed in the test if you want to trigger observers.
