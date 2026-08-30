@@ -7,7 +7,7 @@ published: true
 
 <p class="slogan">Start static, go dynamic</p>
 
-Raindeer is a dynamic web framework but it can also export markdown files to a static site. This allows for a site that can start off static and become dynamic, or the reverse. In fact, this very documentation site is generated from a Raindeer application.
+Raindeer is a dynamic web framework but it can also export markdown files to a static site. This allows for a site that can start off static and become dynamic, or the reverse. In fact, this very [documentation site](https://github.com/raindeer-rb/raindeer-dev) is generated from a Raindeer application.
 
 ## File Structure
 
@@ -210,6 +210,8 @@ end
 By default a [new](/docs/cli#rain-new-app_name) Raindeer application contains a `PageRenderer` that `render`s a markdown file that matches the URL request. In this file you can wrap a `LayoutNode` around the page's HTML output, just like you would do in a typical Raindeer application.
 
 ## Building
+
+Raindeer bypasses the normal async server when building a static site, requesting routes and their corresponding markdown files directly in-process.
 
 To export `app/pages` to a static site run:
 ```bash
