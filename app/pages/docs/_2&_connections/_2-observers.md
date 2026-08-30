@@ -47,7 +47,7 @@ Reference an object other than `self` to observe:
 observers(my_object) << my_observer
 ```
 
-## Ordering
+### Ordering
 
 Observers are ordered, called in the order that they are defined but can be reordered via an array-like interface.
 
@@ -58,6 +58,18 @@ MyEvent.define do |observers|
   observers = [MyObserver, *observers] # Add an observer at the start.
 end
 ```
+
+By defining observers on events this way we are effectively able to replicate the traditional tracing of execution from the call site, but from an event.
+
+For observing objects that aren't events such as routes you can do:
+```ruby
+Observers['/:user_id' => :get].define |observers|
+  observerse << my_observer
+end
+```
+
+> ![note]
+> In summary, you can add observers on either side; from the observee or the observer. When ordering is important, add observers from the observee side.
 
 ## Triggering Actions
 
