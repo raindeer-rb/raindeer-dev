@@ -15,6 +15,7 @@ class HomeNode < LowNode
         <p>{"Raindeer is an event-driven framework using the dynamic features and latest async improvements in Ruby + some weird ideas, to build a new breed of web application. "}</p>
         <p><strong>{"Deer to be different."}</strong></p>
         <p class="actions"><a href="/docs/getting-started" role="button"><i class="bi bi-book"></i>{"Getting Started"}</a></p>
+        <{ Version }>
       </div>
 
       <div id="cards" class="grid">

@@ -7,6 +7,7 @@
 
 #overview {
   padding-bottom: 2rem;
+
   .actions {
     display: block;
     margin-top: 1.5rem;
@@ -17,6 +18,11 @@
     max-width: 800px;
     display: block;
     margin: 0 auto;
+  }
+  #version {
+    margin-top: 0.5rem;
+    color: #aaa;
+    font-size: 0.75rem;
   }
 }
 
