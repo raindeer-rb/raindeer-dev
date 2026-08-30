@@ -46,6 +46,6 @@ Please submit human-written code that is tested. AI will hallucinate and doesn't
 
 Raindeer uses the `[]` class syntax a lot, but it does so within reason. Our guiding rule is:
 
-> The `[]` syntax should access and define collections, not act as a constructor
+> The `[]` syntax should access and define collections, not act solely as a constructor
 
 While it's tempting to use this syntax as a "constuctor" for modules (`MyModule[config:]`), it's actually counter productive, it muddies the waters. Users should see `[]` and instantly know that they're accessing or definining a collection of objects, not constructing or returning a single object. Just use `.new()` or call a named method.
