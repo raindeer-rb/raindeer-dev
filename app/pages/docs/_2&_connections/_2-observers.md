@@ -17,7 +17,7 @@ end
 
 ## Observing
 
-### Subscriber to publisher
+### Subscriber to Publisher
 
 ```ruby
 class MySubscriber
@@ -30,7 +30,7 @@ class MySubscriber
 end
 ```
 
-### Publisher to subscriber
+### Publisher to Subscriber
 
 Add observers *from* the object being observed with:
 ```ruby
@@ -40,7 +40,7 @@ class MyPublisher
 end
 ```
 
-### Anywhere to subscriber
+### Anywhere to Subscriber
 
 Reference an object other than `self` to observe:
 ```ruby
