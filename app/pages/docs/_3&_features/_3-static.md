@@ -207,7 +207,7 @@ end
 
 ## Layout
 
-By default a [new](/docs/static#rain-new-app_name) Raindeer application contains a `PageRenderer` that `render`s a markdown file that matches the URL request. In this file you can wrap a `LayoutNode` around the page's HTML output, just like you would do in a typical Raindeer application.
+By default a [new](/docs/cli#rain-new-app_name) Raindeer application contains a `PageRenderer` that `render`s a markdown file that matches the URL request. In this file you can wrap a `LayoutNode` around the page's HTML output, just like you would do in a typical Raindeer application.
 
 ## Building
 
