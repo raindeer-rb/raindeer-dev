@@ -40,7 +40,7 @@ Add the `SHOW_OUTPUT=1` flag to see the terminal output from some of the feature
 
 ### AI
 
-Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code.
+Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code. AI is great for asking questions and generating benchmarks though.
 
 ### `.[]` Syntax
 
