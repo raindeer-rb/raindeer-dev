@@ -66,6 +66,8 @@ end
 > ![note]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
 
+**See also:** [Observers](/docs/observers)
+
 ## Responding
 
 > ![note]

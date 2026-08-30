@@ -56,6 +56,8 @@ end
 - Not for returning RBX (yet)
 - More performant (needs benchmarking)
 
+**See also:** [Observers](/docs/observers)
+
 ## Events Types
 
 ### `RequestEvent`
