@@ -19,10 +19,19 @@
     display: block;
     margin: 0 auto;
   }
-  #version {
-    margin-top: 0.5rem;
-    color: #aaa;
-    font-size: 0.75rem;
+  ul#releases {
+    margin: 1rem 0 0 0;
+    padding-left: 0;
+    text-align: center;
+    li {
+      color: #aaa;
+      font-size: 0.75rem;
+      display: inline-block;
+      list-style: none;
+    }
+    li + li::before {
+      content: ' | ';
+    }
   }
 }
 

@@ -12,6 +12,10 @@ class Version < LowNode
   end
 
   def render
-    <p id="version">v{@version}</p>
+    <ul id="releases">
+      <li>v{@version}</li>
+      <li><a href="https://github.com/raindeer-rb/raindeer/issues/1">{"Roadmap"}</a></li>
+      <li><a href="https://github.com/raindeer-rb/raindeer/tags">{"Releases"}</a></li>
+    </ul>
   end
 end
