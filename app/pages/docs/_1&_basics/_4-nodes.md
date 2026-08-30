@@ -11,47 +11,53 @@ Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX
 
 ## Observing
 
-After setting up a [route](/docs/routing), `observe` it to render a response:
+After setting up a `GET` [route](/docs/routing), `observe` it to render a response:
 
 ```ruby
-class HomeNode < LowNode
-  observe '/'
+class UserNode < LowNode
+  observe '/:user_id'
 
   def render(event: RenderEvent)
-    event.request.path # => '/'
+    event.request.path # => '/123'
+    event.params[:user_id] # => '123'
   end
 end
 ```
 
 > ![note]
-> [Events](/docs/events) can call different actions/methods
+> [Events](/docs/events) call different actions/methods. They are in control of which actions are called.
 
 ### Implicit syntax
 
-The `observe 'route'` syntax is the simplest way to respond to a request. Either the `render` or `receive` method [UNRELEASED] will be called by the `RenderEvent`'s action, depending on which HTTP request was received and which routes have been defined in the router.
+The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route, which triggers a `RouteEvent`, that will be handled by your node's `initialize`. Then either the `render` or `receive` method will be called depending on the HTTP request type and [route type](/docs/routing#route-types).
 
-- The `render` method will be called for `GET` and `QUERY` HTTP requests
-- The `receive` method will be called for the  `POST`, `DELETE` and `PUT` HTTP requests
+- The `render` method will be called for `GET`, `QUERY`, `POST`, `PUT` and `PATCH` HTTP requests with a `RenderEvent`
+- The `receive` method will be called for the  `QUERY`, `POST`, `PUT` and `DELETE` HTTP requests with a `ReceiveEvent` [UNRELEASED]
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
 ### Explicit syntax [UNRELEASED]
 
-For all you HTTP nerds, you can have more flexibility with the `Route[VERB => 'route']` syntax.
+For all you HTTP nerds, you can have more flexibility with the syntax:
+```ruby
+observe Route[HTTP_VERB => 'route']
+```
 
-A `RenderEvent` is triggered for the HTTP request to that route and the HTTP verb becomes the corresponding event action:
-- **GET:** `observe Route[GET => 'route']`
-- **QUERY:** `observe Route[QUERY => 'route']`
-- **PUT:** `observe Route[PUT => 'route']`
-- **POST:** `observe Route[POST => 'route']`
-- **DELETE:** `observe Route[DELETE => 'route']`
+The HTTP request and its verb to that route become the corresponding event/action:
+- **GET:** `Route[GET => 'route']` handled by `RenderEvent => :get`
+- **QUERY:** `Route[QUERY => 'route']` handled by `RequestEvent => :query`
+- **PUT:** `Route[PUT => 'route']` handled by `RequestEvent => :put`
+- **POST:** `Route[POST => 'route']` handled by `RequestEvent => :post`
+- **DELETE:** `Route[DELETE => 'route']` handled by `RequestEvent => :delete`
+
+**A `render` method can still be defined for `receive` requests.**
 
 For example, a QUERY request to the `'/:question'` route will call the `query` method:
 ```ruby
 class AnswerNode < LowNode
   observe Route[QUERY => '/:question']
 
-  def query(event: RenderEvent)
+  def query(event: ReceiveEvent)
     42
   end
 end
@@ -200,7 +206,7 @@ All classes in `/app` are autoloaded so you can call any class from any node:
 # /app/business_directory/business_logic.rb
 class BusinessLogic
   def self.metrics(company_id:)
-    # Compute a bunch of business metrics.
+    # Calculate a bunch of business metrics.
   end
 end
 
@@ -208,8 +214,8 @@ end
 class BusinessDirectory < LowNode
   observe '/:company_id'
 
-  def initialize(event:)
-    company_id = event.request.params[:company_id]
+  def initialize(event: RouteEvent)
+    company_id = event.params[:company_id]
     @metrics = BusinessLogic.metrics(company_id:)
   end
 
@@ -226,25 +232,31 @@ See: [Dependencies](/docs/dependencies)
 ## Arguments
 
 > [!note]
-> All methods called via events have omittable arguments 
+> All methods called via events have an omittable `event:` argument
 
-### Request level
+### Route level
 
 An `event` keyword argument is optionally available to all `initialize` and `render` arguments.
 
 ```ruby
-class MyNode < LowNode
-  observe '/'
+class UserNode < LowNode
+  observe '/:user_id'
 
-  def render(event:)
-    "Event contains the HTTP request, URL parameters and more..."
+  def initialize(event: RouteEvent)
+    event.request.path # => '/123'
+    event.params[:user_id] # => '123'
+  end
+
+  def render(event: RenderEvent)
+    event.request.path # => '/123'
+    event.params[:user_id] # => '123'
   end
 end
 ```
 
 ### Render level
 
-If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods.
+If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods. The `event:` arg to `initialize` is now a `RenderEvent` and not a `RouteEvent` in this situation.
 
 **Passing props:**
 ```ruby
