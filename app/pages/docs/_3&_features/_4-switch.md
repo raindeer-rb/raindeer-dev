@@ -45,9 +45,9 @@ The secret link can be random or a human-readable path for a trusted person that
 
 In the basic setup you just click a build button or push a commit. Because there's no cron/jobs/workers requirement you can deploy to any server easily.
 
-An email can be sent each time you build/delay your dead man's switch, notifying a trusted person(s) of the secret link. This email is optional.
+An email can be sent each time you build/delay your dead man's switch, notifying a trusted person(s) of the secret link. This email is optional... you could also put the link on a piece of paper.
 
-The benefit of this setup is that there is need for CI or recurring workers/jobs, but the downside is that you can't send emails before the inactivity period is close to expiring or expires.
+The benefit of this setup is that there is need for CI or recurring periodical jobs, but the downside is that you can't send emails before the inactivity period is close to expiring or expires.
 
 ## Advanced Setup
 
@@ -59,11 +59,11 @@ The benefit of this setup is that there is need for CI or recurring workers/jobs
 - More moving parts, more to go wrong
 - More setup time
 
-Run daily jobs to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links by generating less secret files for the trusted person to traverse through. It also allows you to send more meaningful emails; like "inactivity period about to be reached". These automatic daily rebuilds are different to the manual delay/build central to the concept of a Dead Man's Switch.
+Run daily jobs to keep your site up to date with exactly how long you've been inactive for. This reduces the "find time" of the secret links by generating less secret files for the trusted person to traverse through. It also allows you to send more meaningful emails; like "inactivity period about to be reached". These automatic daily rebuilds are different to the manual "I'm alive!" delay/build central to the concept of a Dead Man's Switch.
 
 ## Emails
 
-Technically an email can be sent from the computer when you build the Dumb Dead Man's Switch, but you may want to use an email service for increased deliverability.
+Technically an email can be sent from your computer when you build the Dumb Dead Man's Switch, but you may want to use an email service for increased deliverability.
 
 ## Deployment
 
@@ -117,6 +117,10 @@ abc1234 1
 
 ...where `1` is the line number in the corresponding secret file to get the next hash from.
 
+## Multiple Secrets
+
+Multiple secrets could be shared with multiple emails/URLs, but this will increase the amount of secret files needed to be generated. A more "public key/private key" approach could be used to bring this number down but I'm not smart enough to achieve it yet currently.
+
 ## Configuration
 
 ### Global Config
@@ -125,8 +129,6 @@ abc1234 1
 - **file_delay** - If you set your server up to delay files by 2 seconds, 5 seconds etc... you can decrease the amount of files generated
 
 ### Per Secret Config
-
-Multiple secrets can be shared with multiple emails/URLs.
 
 - **start_path** - Replace the default random path with a human-readable path that your trusted person can just go to any time.
 
