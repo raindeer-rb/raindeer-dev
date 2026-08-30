@@ -50,7 +50,7 @@ The HTTP request and its verb to that route become the corresponding event/actio
 - **POST:** `Route[POST => 'route']` handled by `ReceiveEvent => :post`
 - **DELETE:** `Route[DELETE => 'route']` handled by `ReceiveEvent => :delete`
 
-**A `render` method can still be defined for `receive` requests.**
+Observers of `Route` will still have their `initialize` method called with a `RouteEvent`. The `render` method can still be defined for `receive` requests and will be called after `receive`.
 
 For example, a QUERY request to the `'/:question'` route will call the `query` method:
 ```ruby
