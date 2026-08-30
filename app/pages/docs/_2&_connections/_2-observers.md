@@ -71,7 +71,7 @@ end
 > ![note]
 > In summary, you can add observers on either side; from the observee or the observer. When ordering is important, add observers from the observee side.
 
-## Triggering Actions
+## Actions
 
 > ![note]
 > **Events define their own actions.** Observers **CANNOT** change the action. Events retain control over which actions are called. This allows for a predictable [one-directional](https://en.wikipedia.org/wiki/One_Direction) flow between events. Complex workflows can be reasoned about more easily without worrying that an observer somewhere is overriding every action on an object/event and executing unrelated behaviour and output.
@@ -84,13 +84,22 @@ class MyPublisher
 end
 ```
 
-### With Events
+## Events
 
 Trigger events on observers with the `event` keyword argument:
 ```ruby
 class MyPublisher
   include Observers
-  trigger action: :my_action, event: MyEvent.new(my_data)
+  trigger event: MyEvent.new(my_data)
+end
+```
+
+Events define their own actions, or you can override them when triggering:
+
+```ruby
+class MyPublisher
+  include Observers
+  trigger event: MyEvent.new(my_data), action: :my_action
 end
 ```
 
