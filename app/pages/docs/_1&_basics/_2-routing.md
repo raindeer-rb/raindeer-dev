@@ -29,12 +29,6 @@ Raindeer.router do
 end
 ```
 
-### HTTP Verb
-
-```ruby
-Route[:post]
-```
-
 ## Params
 
 Parameters are dynamic sections of a URL that start with a colon (`:`) which become available as variables in a `RouteEvent`.
