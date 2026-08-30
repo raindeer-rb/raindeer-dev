@@ -4,9 +4,9 @@ summary: Observe and respond to events
 ---
 
 ```ruby
-observe '/'
+observe '/:id'
 
-def render(event:)
-  event.request.path # => '/'
+def render(event: RenderEvent)
+  event.params[:id] # => 123
 end
 ```
