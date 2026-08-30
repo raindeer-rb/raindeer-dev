@@ -43,13 +43,28 @@ on MyEvent do |my_event|
 end
 ```
 
-**✨ Summary:**
+Observe a particular action:
+```ruby
+on MyEvent => :my_action do |my_event|
+  # Do something.
+end
+```
+
+*Breakdown:*
 - Class level scope
 - Returns a value
-- Not for RBX
+- Not for returning RBX (yet)
 - More performant (needs benchmarking)
 
-## Creating Events
+## Events Types
+
+### `RequestEvent`
+
+The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
+
+## Advanced
+
+### Creating Events
 
 > [!info]
 > Creating events is completely optional.
@@ -68,7 +83,7 @@ class MyEvent < LowEvent
 end
 ```
 
-*Breaking it down:*
+*Breakdown:*
 - `action:` - The name of the method that you would like to call on the observer
 - `key:` - The actual value to observe, which can be the class itself like `MyEvent` or any value such as a String
 - `@my_data` - Any data you want to store as an attribute or multiple attributes
@@ -78,17 +93,11 @@ Trigger the event's action on its observers with:
 MyEvent.trigger(data: "Custom Data")
 ```
 
-## Events Types
-
-### `RequestEvent`
-
-The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
-
 ## Architecture
 
 ### Event-Command Hybrid
 
-Raindeer events are different to traditional events in [event-driven architectures](https://en.wikipedia.org/wiki/Event-driven_architecture). They represent something that is currently happening, not something that has already happened.
+Raindeer events are different to traditional events in [event-driven architectures](https://en.wikipedia.org/wiki/Event-driven_architecture); they represent something that is currently happening, not something that has already happened.
 
 |                  | **Event**     | **LowEvent**          | **Command** |
 |------------------|---------------|-----------------------|-------------|
