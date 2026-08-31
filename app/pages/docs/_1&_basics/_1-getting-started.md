@@ -36,7 +36,7 @@ rain new :app_name
 
 Or clone the [template](https://github.com/raindeer-rb/raindeer-template).
 
-**Run the server:**
+**Then run the server:**
 ```shell
 bundle install
 rain server
