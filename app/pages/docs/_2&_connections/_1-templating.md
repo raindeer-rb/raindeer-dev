@@ -47,7 +47,8 @@ def render
 end
 ```
 
-ℹ️ The class referenced via `<{ MyClass }>` syntax must implement a `render` method.
+> ![warn]
+> The class referenced via `<{ MyClass }>` must implement a `render` instance method.
 
 ### Props
 
