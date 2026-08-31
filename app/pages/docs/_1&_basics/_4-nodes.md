@@ -229,7 +229,7 @@ See: [Dependencies](/docs/dependencies)
 > [!note]
 > All methods called via events have an omittable `event:` argument
 
-### Route level
+### Route level args
 
 An `event` keyword argument is optionally available to all `initialize` and `render` arguments.
 
@@ -249,7 +249,7 @@ class UserNode < LowNode
 end
 ```
 
-### Render level
+### Render level args
 
 If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods. The `event:` arg to `initialize` is now a `RenderEvent` and not a `RouteEvent` in this situation.
 
