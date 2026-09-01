@@ -73,16 +73,16 @@ end
 ```ruby
 def render
   <html>
-    <{ LayoutNode: }>
+    <{ Layout: }>
       <{ UserNode user=@user }>
-    <{ :LayoutNode }>
+    <{ :Layout }>
   </html>
 end
 ```
 
-The `LayoutNode` would look like:
+The `Layout` would look like:
 ```ruby
-class LayoutNode < LowNode
+class Layout < LowNode
   def render(event:)
     <header>...</header>
     <{ :slot }>
@@ -233,17 +233,17 @@ class UserNode < LowNode
   
   def render
     <html>
-      <{ LayoutNode: title=@user.username }>
+      <{ Layout: title=@user.username }>
         {@user.bio}
-      <{ :LayoutNode }>
+      <{ :Layout }>
     </html>
   end
 end
 ```
 
-The `LayoutNode` would look like:
+The `Layout` would look like:
 ```ruby
-class LayoutNode
+class Layout < LowNode
   def render(event:, title:)
     <header>...</header>
     <h1>{title}</h1>
