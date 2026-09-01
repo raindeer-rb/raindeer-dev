@@ -79,19 +79,24 @@ Every node supports an `initialize` and a `render` method. The class is initiali
 class UserNode < LowNode
   observe '/:id'
 
-  def initialize(event: RenderEvent)
+  # Business logic.
+  def initialize(event: RouteEvent)
     @id = event.params[:id]
   end
 
+  # Templating.
   def render
     <strong>ID:</strong> {@id}
   end
 end
 ```
 
-### Inline Syntax [UNRELEASED]
+### Inline Syntax [CANDIDATE]
 
 Don't need to separate business logic from rendering logic? Do it all in `render`:
+
+> ![warn]
+> This feature is in consideration and may not ever be implemented, as separating logic from the template is a good thing.
 
 ```ruby
 class UserNode < LowNode
