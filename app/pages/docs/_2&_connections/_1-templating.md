@@ -7,13 +7,9 @@ published: true
 
 ## Syntax
 
-Antlers uses two different sets of start and stop characters:
-- 🦌 **Deerheads:** `<{` and `}>`
-- 🖇 **Brackets:** `{` and `}`
-
-> [!note]
-> The `{}` Brackets syntax **escapes** HTML and only renders variables.  
-> The `<{}>` Deerheads syntax renders variables and more *without* escaping HTML.
+[Antlers](https://github.com/raindeer-rb/antlers) uses two different sets of start and stop characters:
+- 🦌 **Deerheads:** `<{` and `}>` - Lets HTML through
+- 🖇 **Brackets:** `{` and `}` -  **Escapes** HTML and can only render variables
 
 Unlike other templating languages which use syntax to distinguish between control flow and output, there is no difference in Antlers. In Antlers all constructs render output, even if that output is an empty string (`''`).
 
@@ -32,8 +28,8 @@ end
 3. A method chain: `{method_or_var.method}` or `<{ method_or_var.method }>`
 4. A string: `{"String"}` or `<{ "String" }>`
 
-> ![warn]
-> HTML attributes must be quoted to avoid *brackets* being misinterpreted as *deerheads*.
+> [!WARNING]
+> Quote Brackets in HTML attributes to avoid them being misinterpreted as Deerheads:
 > 
 > ❌ **Bad:** `<html class={var}>` - *"Oh no I see `}>`!"*
 > ✅ **Good:** `<html class="{var}">` - *"Phew it's just `}`"*
@@ -47,7 +43,7 @@ def render
 end
 ```
 
-> ![warn]
+> [!IMPORTANT]
 > The class referenced via `<{ MyClass }>` must implement a `render` instance method.
 
 ### Props

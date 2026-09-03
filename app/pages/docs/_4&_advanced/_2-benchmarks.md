@@ -3,19 +3,25 @@ title: Benchmarks
 published: true
 ---
 
+<{ :toc }>
+
 ## CPU-bound
+
+### 1 route
+
+### 100 routes
 
 **Configuration:**
 - 1 thread/fiber
 - 100 routes
 
-> ![note]
+> [!NOTE]
 > **Requests Per Second:** This CPU-bound metric is a relatively small slice of time in comparison to the typical IO-bound tasks of web applications, such as waiting for the database.
 
 <table>
   <thead>
     <tr>
-      <th>Server</th>
+      <th>Framework + Server</th>
       <th>Req/s</th>
       <th>Mean latency</th>
       <th>p50</th>
@@ -86,9 +92,19 @@ published: true
 
 **See:** [raindeer-benchmarks](https://github.com/raindeer-rb/raindeer-benchmarks) repo
 
+## IO-bound
+
+Routing becomes a much less share of the time when it comes to IO, so we'll just benchmark with many routes.
+
+### 100 routes
+
 ## Integrations
 
-### Raindeer + Iodine [EXPERIMENTAL]
+These integrations are experimental and don't suport the full Raindeer API such as `Interval` yet.
+
+### Falcon
+
+### Iodine
 
 If you really need CPU-bound speed then you can boot Raindeer via Iodine. Currently this increases requests per second by **~10,000** and decreases latency by **~1ms**. It involves a Rack adapter (for now) and of course, the absence of LowLoop with its Matrix, Interval and Async related features.
 

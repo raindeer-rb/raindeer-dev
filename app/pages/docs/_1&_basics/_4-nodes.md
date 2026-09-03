@@ -24,7 +24,7 @@ class UserNode < LowNode
 end
 ```
 
-> ![note]
+> [!NOTE]
 > [Events](/docs/events) call different actions/methods. They are in control of which actions are called.
 
 ### Implicit syntax
@@ -63,14 +63,14 @@ class AnswerNode < LowNode
 end
 ```
 
-> ![note]
+> [!NOTE]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
 
 **See also:** [Observers](/docs/observers)
 
 ## Responding
 
-> ![note]
+> [!CAUTION]
 > **TODO:** I built a whole framework and missed something important. The `RenderEvent` needs to have the `params` from `RouteEvent` brought over to it... Whoops.
 
 Every node supports an `initialize` and a `render` method. The class is initialized first before then being rendered. You can access any instance variables or methods from the `render` method:
@@ -95,7 +95,7 @@ end
 
 Don't need to separate business logic from rendering logic? Do it all in `render`:
 
-> ![warn]
+> [!WARNING]
 > This feature is in consideration and may not ever be implemented, as separating logic from the template is a good thing.
 
 ```ruby
@@ -281,7 +281,7 @@ end
 
 Speed up CPU-bound work with parallelism. Thanks to the immutable nature of nodes we can process them in parallel using the `<{ parallelize: }>` syntax. Your data must be immutable or be able to be copied by Raindeer. This means reducing your reliance on global state, such as global dependency injection via [Providers](/docs/dependencies#providers), in favour of local dependency injection via [Plugs](/docs/dependencies#plugs).
 
-> ![note]
+> [!NOTE]
 > IO-bound work like database queries are essentially parallel already, as multiple asynchronous requests will simultaneously wait for database results. However the CPU-bound processing of these results is not parallelized, so you'll still see a speed up... depending on what you're doing.
 
 ### Siblings
@@ -313,7 +313,7 @@ end
 
 ## Unit Testing
 
-> ![note]
+> [!NOTE]
 > Nodes use the **Method Factory** pattern. You call the *class* method to call the *instance* method.
 
 Instead of calling `new` on a node class directly, first you call a class method which instantiates the class on your behalf, then calls the corresponding instance method.

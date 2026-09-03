@@ -7,7 +7,7 @@ published: true
 
 Dependencies are "things your application needs". When you call a method with an argument then you are supplying a dependency. Raindeer provides 2 main ways to manage dependencies; Providers for global dependencies and Plugs for local dependencies.
 
-> ![note]
+> [!NOTE]
 > This page is a work in progress. Dependencies in an event-driven, compositional and potentially parallel environment is still being figured out.
 
 ## Providers

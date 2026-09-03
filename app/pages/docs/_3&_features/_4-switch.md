@@ -10,7 +10,7 @@ published: true
 
 **How can a website know if you're dead?** It could email you and do something if you don't reply... but how can a static site tell if you're dead? It can't? The server-side has no mind and the client-side can't be trusted. Raindeer achieves the impossible; a static site that acts as a dead man's switch without any user input or inactivity logic, just by using the passage of time to create a trustless system.
 
-> ![note]
+> [!NOTE]
 > Raindeer is a dynamic web framework and could be used to make a **dynamic** dead man's switch too... but why trust a dynamic site to not break down when you're not around?
 
 **Features:**
@@ -31,7 +31,7 @@ Secrecy is achieved by leading the person with the secret link on a wild goose c
 
 The secret link can be random or a human-readable path for a trusted person that doesn't change. When you visit this link you will see a webpage with a loading bar that will process the random files over the defined period of time.
 
-> ![note]
+> [!NOTE]
 > Secret files must be loaded sequentially, as you don't know their file names and one leads to the other. Server farms can speed up this process but they can be [mitigated](#attack-mitigation).
 
 ## Basic Setup

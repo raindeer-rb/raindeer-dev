@@ -68,13 +68,13 @@ Observers['/:user_id' => :get].define |observers|
 end
 ```
 
-> ![note]
-> In summary, you can add observers on either side; from the observee or the observer. When ordering is important, add observers from the observee side.
+> [!TIP]
+> You can add observers on either side; from the object being observed or the observer. When ordering is important, add observers from the observed side.
 
 ## Actions
 
-> ![note]
-> **Events define their own actions.** Observers **CANNOT** change the action. Events retain control over which actions are called. This allows for a predictable [one-directional](https://en.wikipedia.org/wiki/One_Direction) flow between events. Complex workflows can be reasoned about more easily without worrying that an observer somewhere is overriding every action on an object/event and executing unrelated behaviour and output.
+> [!NOTE]
+> Events define their own actions and observers **CANNOT** change the action. Events retain control over which actions are called. This allows for a predictable [one-directional](https://en.wikipedia.org/wiki/One_Direction) flow between events. Complex workflows can be reasoned about more easily without worrying that an observer somewhere is overriding every action on an event and executing unrelated behaviour and output.
 
 Call the `my_action` method on all observers of `MyPublisher` with:
 ```ruby

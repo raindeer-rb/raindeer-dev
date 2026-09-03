@@ -68,7 +68,7 @@ While matching a request with a route is the most common use-case, additional ev
 
 `'/*'` Represents every HTTP request. A `WildcardRouteEvent` event will be created and can be observed with `'/*'` when this route is defined.
 
-> [!note]
+> [!TIP]
 > Return `nil` from `render` to move on to the next observer.
 
 ### Status events

@@ -70,4 +70,4 @@ class PostsData < LowData
 end
 ```
 
-ℹ️ This data expression generates SQL to `OUTER JOIN` the user table with the posts table and results in a list of posts with the user's username included in each row.
+This data expression generates SQL to `OUTER JOIN` the user table with the posts table and results in a list of posts with the user's username included in each row.

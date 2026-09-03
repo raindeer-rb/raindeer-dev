@@ -7,7 +7,7 @@ published: true
 
 Raindeer is an event-driven framework that represents the Request-Response lifecycle as events. It's easy to latch on to any event as they happen and perform additional tasks.
 
-> ![note]
+> [!NOTE]
 > Raindeer is event-driven internally but your application doesn't have to be. In fact, Raindeer's main events are [abstracted away](/docs/architecture#aspect-orientated-programming) to such a degree that you can ignore them.
 
 ## Event Lifecycle
@@ -68,7 +68,7 @@ The `RequestEvent` contains a [request](https://github.com/socketry/protocol-htt
 
 ### Creating Events
 
-> [!info]
+> [!NOTE]
 > Creating events is completely optional.
 
 Milestone events for the main flows are created for you and you can just listen to them. However you may want to create your own:
@@ -119,7 +119,7 @@ Because events represent a period of time they will have sub-events, resulting i
 
 This structure can be used in debugging for enhanced observability. In the future this information will be shown in the `/system` UI, detailing who triggered and who responded to an event.
 
-### Solving Pain Points
+### Pattern Mitigation
 
 Event-driven and distributed systems can suffer from a "who did what" problem. Raindeer mitigates each of these pain points:
 

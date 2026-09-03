@@ -120,7 +120,7 @@ Then call it in a Markdown/Raindown file:
 <{ CustomComponent }>
 ```
 
-> [!warn]
+> [!WARNING]
 > If you namespace your component then you need to configure that namespace in Raindown
 
 ## Metadata
@@ -157,7 +157,7 @@ path: /docs/getting-started
 
 `path` is automatically available too without manual entry, representing the absolute URL path.
 
-> ![note]
+> [!NOTE]
 > Separate multiple folder tags with `&`:
 > `app/pages/docs/_1&_basics/_1-getting-started.md`
 
