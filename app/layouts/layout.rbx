@@ -10,6 +10,7 @@ class Layout < LowNode
         <link rel="stylesheet" href="/components/home.css">
 
         <!-- TODO: Precompile. -->
+        <link rel="stylesheet" href="/components/alerts.css">
         <link rel="stylesheet" href="/components/contributors.css">
         <link rel="stylesheet" href="/components/sidebar/sidebar.css">
         <script src="/components/sidebar/sidebar.js" defer></script>
