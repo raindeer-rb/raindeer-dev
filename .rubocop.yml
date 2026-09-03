@@ -1,6 +1,9 @@
 Style/Documentation:
   Enabled: false
 
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
 Layout/LineLength:
   Max: 140
 
