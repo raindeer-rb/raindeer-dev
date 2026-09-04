@@ -71,7 +71,7 @@ end
 
 ### Mid Nodes
 
-Both configurations trigger a `RouteEvent` for the `'/users/:id'` path, however the nested example will trigger an additional `RouteEvent` for the `'/users'` path. Whether there are any observers for that path is another question as it's perfectly okay to leave an event unobserved.
+Both configurations trigger a `RouteEvent` for the `'/users/:id'` path, however the nested example will trigger an additional `RouteEvent` for the `'/users'` path. Whether there are any observers for that path is another question and it's perfectly okay to leave an event unobserved.
 
 Observe part of a path with `recon`:
 
@@ -90,12 +90,12 @@ end
 
 While matching a request with a route is the most common use-case, additional events are triggered in the router lifecycle. These events happen in the following order:
 1. `RouteEvent`
-2. `WildcardRouteEvent`
+2. `WildcardEvent`
 3. `StatusEvent`
 
 ### Wildcard events
 
-`'/*'` Represents every unrouted HTTP request. A `WildcardRouteEvent` event can be observed with `'/*'` when this route is defined.
+`'/*'` Represents every unrouted HTTP request. A `WildcardEvent` event can be observed with `'/*'` when this route is defined.
 
 > [!TIP]
 > Return `nil` from `render` to move on to the next observer
