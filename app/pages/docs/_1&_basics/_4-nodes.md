@@ -11,7 +11,7 @@ Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX
 
 ## Observing
 
-After setting up a `GET` [route](/docs/routing), `observe` it to render a response:
+After setting up a [route](/docs/routing), `observe` it to render a response:
 
 ```ruby
 class UserNode < LowNode
