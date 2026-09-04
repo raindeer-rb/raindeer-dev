@@ -177,7 +177,7 @@ Change the `POST` method to `GET` with:
 
 `<{ submit: 'Search' }>`
 
-### Parallelism [UNRELEASED]
+## Parallelism [UNRELEASED]
 
 Add parallelism where it makes sense and you can measure the performance outcome and keep data integrity.
 
