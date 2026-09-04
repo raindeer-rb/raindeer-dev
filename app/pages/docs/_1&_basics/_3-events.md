@@ -66,7 +66,7 @@ The `RequestEvent` contains a `request` attribute, which is a [Protocol::HTTP::R
 
 #### Ordering Observers
 
-Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're getting spam attacked then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
+Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're being [DDoS'd](https://en.wikipedia.org/wiki/Denial-of-service_attack) then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
 
 ```ruby
 Low::Events::RequestEvent.define do |observers|
