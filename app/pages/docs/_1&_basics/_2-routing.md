@@ -100,7 +100,7 @@ While matching a request with a route is the most common use-case, additional ev
 > [!TIP]
 > Return `nil` from `render` to move on to the next observer
 
-Wildcard events occur after routing so that routing is as fast as possible. If you want to do something before every request then redefine [RequestEvent](/docs/events#requestevent).
+Wildcard events occur after routing so that routing is as fast as possible. If you want to do something before every request then redefine [RequestEvent](/docs/events#requestevent) observers.
 
 ### Status events
 

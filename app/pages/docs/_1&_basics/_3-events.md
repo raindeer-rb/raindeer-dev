@@ -13,9 +13,9 @@ Raindeer is an event-driven framework that represents the Request-Response lifec
 ## Request-Response Lifecycle
 
 1. [RequestEvent](/docs/events#requestevent) - The server converts HTTP requests into request events
-2. `RouteEvent` - The [router](/docs/routing) creates route events from request events
-3. `RenderEvent` - A [node](/docs/nodes) observes a route event and renders a response
-4. `ResponseEvent` - A response event is converted into an HTTP response and given to the requester
+2. [RouteEvent](/docs/events#routeevent) - The [router](/docs/routing) creates route events from request events
+3. [RenderEvent](/docs/events#renderevent) - A [node](/docs/nodes) observes a route event and renders a response
+4. [ResponseEvent](/docs/events#responseevent) - A response event is converted into an HTTP response and given to the requester
 
 ## Observing Events
 
@@ -64,9 +64,9 @@ end
 
 The `RequestEvent` contains a `request` attribute, which is a [Protocol::HTTP::Request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb) provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/). It is also responsible for [keeping track](#event-tree) of every subsequent event.
 
-#### Redefining
+#### Ordering Observers
 
-Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead. If you're getting spam attacked then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
+Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're getting spam attacked then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
 
 ```ruby
 Low::Events::RequestEvent.define do |observers|
@@ -78,6 +78,14 @@ These new observers will receive a `:request` action, so add a `request` method 
 
 > [!TIP]
 > Event observers should only be redefined once, so keep them in a central location. **Example:** `app/events/request_event`
+
+### `RouteEvent`
+
+Observe a [route](/docs/routing) and it will trigger the `render` action/class method on a [node](/docs/nodes)/observer. The *method factory pattern* takes over; instantiating the node with a `RenderEvent`, before calling the instance `render` method with the same `RenderEvent`.
+
+### `RenderEvent`
+
+Calls `render` instance method by defalult, after observing a route or rendering a node via Antlers in the template.
 
 ### `ResponseEvent`
 
