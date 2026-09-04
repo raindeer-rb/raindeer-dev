@@ -64,6 +64,21 @@ end
 
 The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
 
+#### Redefining
+
+Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead. If you're getting spam attacked then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
+
+```ruby
+Low::Events::RequestEvent.define do |observers|
+  observers = [MyLogger, MyAuthenticator, *observers]
+end
+```
+
+These new observers will receive a `:request` action, so add a `request` method to these classes and return a `LowNode.render(event:)`, a [Protocol::HTTP::Response](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/response.rb) or `nil`.
+
+> [!TIP]
+> Event observers should only be redefined once, so keep them in a central location like `app/events/request_event`
+
 ## Advanced
 
 ### Creating Events
