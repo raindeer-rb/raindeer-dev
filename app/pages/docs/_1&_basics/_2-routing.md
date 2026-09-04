@@ -55,8 +55,8 @@ Routes can be nested like so:
 
 ```ruby
 Raindeer.router do
-  route GET => '/users' do
-    route GET => '/:id'
+  route '/users' do
+    route '/:id'
   end
 end
 ```
