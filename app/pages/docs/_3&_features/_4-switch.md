@@ -75,6 +75,9 @@ The Dumb Dead Man's Switch works on an assumption that only so many requests can
 
 ### Cloudflare
 
+> [!WARNING]
+> The CEO of Cloudflare, Matthew Prince, [funds transphobic projects](https://brennan.day/normalized-fascism-in-open-source-12-million-given-to-dhh/).
+
 Add a Cloudflare Pages Function:
 
 ```js
