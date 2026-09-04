@@ -29,7 +29,7 @@ end
 
 ### Implicit syntax
 
-The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route, which triggers a `RouteEvent`, that will be handled by your node's `initialize`. Then either the `render` or `receive` method will be called depending on the HTTP request type and [route type](/docs/routing#route-types).
+The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route, which triggers a `RouteEvent` that will be handled by your node's `initialize`. Then either the `render` or `receive` method will be called depending on the HTTP request and [route type](/docs/routing#route-types).
 
 - The `render` method will be called for `GET`, `QUERY`, `POST`, `PUT` and `PATCH` HTTP requests with a `RenderEvent`
 - The `receive` method will be called for the  `QUERY`, `POST`, `PUT` and `DELETE` HTTP requests with a `ReceiveEvent` [UNRELEASED]

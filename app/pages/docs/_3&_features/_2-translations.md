@@ -6,7 +6,7 @@ menu: Translations
 
 <{ :toc }>
 
-> [!note]
+> [!WARNING]
 > Under development, API subject to change.
 
 Because of the way Antlers syntax is designed you can translate text without any `t()` functions, just use existing strings:

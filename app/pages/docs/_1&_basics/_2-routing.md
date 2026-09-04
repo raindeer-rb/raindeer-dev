@@ -77,6 +77,8 @@ When no route is found a `StatusEvent` will be sent to any observers of that par
 
 ## Architecture
 
-`Rain::Router` is event-driven like other core components. It listens to `RequestEvent`s and converts them into `RouteEvent`s when a URL matches one of the defined routes.
+The router is a prefix tree! Also known as a Trie. It's pretty performant.
+
+`Rain::Router` is event-driven like other core components. It observes `RequestEvent`s and creates `RouteEvent`s when a URL matches one of the defined routes.
 
 `Raindeer.router` provides the singleton router instance via `Providers['rain.router']`. You can call `Raindeer.router` in multiple files per "feature"; this is in keeping with the compositional nature of Raindeer... but by all means feel free to collate all your routes into one file if that's what you prefer.
