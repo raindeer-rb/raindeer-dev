@@ -10,12 +10,12 @@ Raindeer is an event-driven framework that represents the Request-Response lifec
 > [!NOTE]
 > Raindeer is event-driven internally but your application doesn't have to be. In fact, Raindeer's main events are abstracted away to such a degree that you can ignore them.
 
-## Event Lifecycle
+## Request-Response Lifecycle
 
 1. [RequestEvent](/docs/events#requestevent) - The server converts HTTP requests into request events
 2. `RouteEvent` - The [router](/docs/routing) creates route events from request events
 3. `RenderEvent` - A [node](/docs/nodes) observes a route event and renders a response
-4. `ResponseEvent` - A response event is converted by LowLoop into a response to the client that made the request
+4. `ResponseEvent` - A response event is converted into an HTTP response and given to the requester
 
 ## Observing Events
 
@@ -62,7 +62,7 @@ end
 
 ### `RequestEvent`
 
-The `RequestEvent` contains a [request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb), which is a `Protocol::HTTP::Request` provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/).
+The `RequestEvent` contains a `request` attribute, which is a [Protocol::HTTP::Request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb) provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/). It is also responsible for [keeping track](#event-tree) of every subsequent event.
 
 #### Redefining
 
@@ -74,10 +74,14 @@ Low::Events::RequestEvent.define do |observers|
 end
 ```
 
-These new observers will receive a `:request` action, so add a `request` method to these classes and return a `LowNode.render(event:)`, a [Protocol::HTTP::Response](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/response.rb) or `nil`.
+These new observers will receive a `:request` action, so add a `request` method to these classes and return a `LowNode.render(event:)`, a [ResponseEvent](#responseevent) or `nil`.
 
 > [!TIP]
-> Event observers should only be redefined once, so keep them in a central location like `app/events/request_event`
+> Event observers should only be redefined once, so keep them in a central location. **Example:** `app/events/request_event`
+
+### `ResponseEvent`
+
+Attribute `response` is a [Protocol::HTTP::Response](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/response.rb)
 
 ## Advanced
 
@@ -107,7 +111,7 @@ end
 
 Trigger the event's action on its observers with:
 ```ruby
-MyEvent.trigger(data: "Custom Data")
+MyEvent.trigger(my_data: "Custom Data")
 ```
 
 ## Architecture
@@ -134,7 +138,7 @@ Because events represent a period of time they will have sub-events, resulting i
 
 This structure can be used in debugging for enhanced observability. In the future this information will be shown in the `/system` UI, detailing who triggered and who responded to an event.
 
-### Pattern Mitigation
+### Problems VS Solutions
 
 Event-driven and distributed systems can suffer from a "who did what" problem. Raindeer mitigates each of these pain points:
 
