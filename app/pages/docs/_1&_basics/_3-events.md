@@ -64,21 +64,6 @@ end
 
 The `RequestEvent` contains a `request` attribute, which is a [Protocol::HTTP::Request](https://github.com/socketry/protocol-http/blob/main/lib/protocol/http/request.rb) provided by [Protocol::HTTP](https://socketry.github.io/protocol-http/). It is also responsible for [keeping track](#event-tree) of every subsequent event.
 
-#### Ordering Observers
-
-Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're being [DDoS'd](https://en.wikipedia.org/wiki/Denial-of-service_attack) then why give them the satisfaction or processing a nice tasty `RouteEvent` for them before denying their request?
-
-```ruby
-Low::Events::RequestEvent.define do |observers|
-  observers = [MyLogger, MyAuthenticator, *observers]
-end
-```
-
-These new observers will receive a `:request` action, so add a `request` method to these classes and return a `LowNode.render(event:)`, a [ResponseEvent](#responseevent) or `nil`.
-
-> [!TIP]
-> Event observers should only be redefined once, so keep them in a central location. **Example:** `app/events/request_event`
-
 ### `RouteEvent`
 
 Observe a [route](/docs/routing) and it will trigger the `render` action/class method on a [node](/docs/nodes)/observer. The *method factory pattern* takes over; instantiating the node with a `RenderEvent`, before calling the instance `render` method with the same `RenderEvent`.
@@ -136,7 +121,8 @@ Raindeer events are different to traditional events in [event-driven architectur
 | **Mutability**   | Immutable     | Mutable/Immutable     | Immutable   |
 | **State**        | 🚫            | Ordered Actions       | 🚫          |
 | **Broadcasting** | One to many   | Ordered one to many   | One to one  |
-| **Return**       | 🚫            | Value or nil          | Value       |
+| **Data flow**    | Pull          | Push and pull         | Push        |
+| **Return value** | 🚫            | Value or nil          | Value       |
 
 ### Event Tree
 

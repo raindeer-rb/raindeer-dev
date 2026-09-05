@@ -40,16 +40,20 @@ class MyPublisher
 end
 ```
 
-### Anywhere to Subscriber
-
-Reference an object other than `self` to observe:
-```ruby
-observers(my_object) << my_observer
-```
+> [!TIP]
+> Reference a publisher other than `self` with:
+> ```ruby
+> observers(OtherPublisher) << my_observer
+> ```
 
 ## Ordering
 
-Observers are ordered, called in the order that they are defined but can be reordered via an array-like interface.
+Observers are ordered, called in the order that they are defined but can be reordered via an array-like interface. You can add observers on either side; from the object being observed or the observer. When ordering is important, add observers from the observed side.
+
+> [!TIP]
+> Observers should only be re-ordered once per observee so that you don't lose track.
+
+### Event Observers
 
 ```ruby
 MyEvent.define do |observers|
@@ -59,17 +63,14 @@ MyEvent.define do |observers|
 end
 ```
 
-By defining observers on events this way we are effectively able to replicate the traditional tracing of execution from the call site, but from an event.
+### Object Observers [CANDIDATE]
 
-For observing objects that aren't events such as routes you can do:
+For observing objects that aren't `Event` classes such as routes you can do:
 ```ruby
 Observers['/:user_id' => :get].define |observers|
   observerse << my_observer
 end
 ```
-
-> [!TIP]
-> You can add observers on either side; from the object being observed or the observer. When ordering is important, add observers from the observed side.
 
 ## Actions
 
