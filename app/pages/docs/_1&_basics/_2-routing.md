@@ -9,7 +9,7 @@ Routes can be defined anywhere inside your `/app` folder. A new Raindeer applica
 
 The router observes [RequestEvent](/docs/events#request-event)s (HTTP requests), matches them to a `Route` and converts them into [RouteEvent](/docs/events#route-event)s. This `RouteEvent` can be observed by any [node](/docs/nodes) and return a response.
 
-## Implicit routes
+## Defining a route
 
 You can use simple strings to define a `Route`. Matching HTTP requests are automatically forwarded to a `render` or `receive` method on the node.
 
@@ -21,7 +21,7 @@ end
 
 Then `observe '/'` this route in a node. **See:** [Observing](/docs/nodes#implicit-syntax)
 
-## Explicit routes
+## Route Types
 
 ```ruby
 Raindeer.router do
