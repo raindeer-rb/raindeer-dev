@@ -30,7 +30,7 @@ These new observers will receive a `:request` action, so add a `request` method 
 
 ### 3. `RouteEvent`
 
-Because you can listen to "mid-nodes" along a route, you can `observe '/'` with a `sideeffect` action/method to intercept **every** routed request.
+Because you can listen to "mid-nodes" along a route, you can `observe '/'` with a `side_effect` action/method to intercept **every** routed request.
 
 ### 4. `WildcardEvent`
 

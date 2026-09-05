@@ -73,14 +73,14 @@ end
 
 Both configurations trigger a `RouteEvent` for the `'/users/:id'` path, however the nested example will trigger an additional `RouteEvent` for the `'/users'` path. Whether there are any observers for that path is another question and it's perfectly okay to leave an event unobserved.
 
-Observe part of a path with `recon`:
+Observe part of a path with `side_effect`:
 
 ```ruby
 class WatchfulEye < LowNode
   observe '/users'
 
   # Will not be called on '/users' but on '/users/*'.
-  def recon(event: RouteEvent)
+  def side_effect(event: RouteEvent)
     # Conditionally override the response or log etc.
   end
 end
