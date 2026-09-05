@@ -34,9 +34,12 @@ Raindeer.router do
 end
 ```
 
-Then `observe Route[GET => '/']` this route in a node, replacing `GET` with the desired HTTP verb. **See:** [Observing](/docs/nodes#explicit-syntax)
+Then `observe '/'` or `observe Route[HTTP_VERB => '/']` in a node. **See:** [Observing](/docs/nodes#explicit-syntax)
 
-Support multiple route types at once with:
+> [!NOTE]
+> Explicit routes will map their HTTP Verb to the action of the same name; `GET` calls `:get`
+
+Support multiple HTTP request types at once:
 ```ruby
 Raindeer.router do
   route [GET, POST] => '/:user_id'
@@ -95,7 +98,7 @@ While matching a request with a route is the most common use-case, additional ev
 
 ### Wildcard events
 
-`'/*'` Represents every unrouted HTTP request. A `WildcardEvent` event can be observed with `'/*'` when this route is defined.
+`'/*'` Represents every unrouted HTTP request. When this route is defined then you can `observe '/*'` and receive a `WildcardEvent`.
 
 > [!TIP]
 > Return `nil` from `render` to move on to the next observer
