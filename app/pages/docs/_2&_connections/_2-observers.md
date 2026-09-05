@@ -47,7 +47,7 @@ Reference an object other than `self` to observe:
 observers(my_object) << my_observer
 ```
 
-### Ordering
+## Ordering
 
 Observers are ordered, called in the order that they are defined but can be reordered via an array-like interface.
 
