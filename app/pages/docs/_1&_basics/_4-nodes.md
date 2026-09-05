@@ -9,7 +9,7 @@ Nodes are the flexible building blocks of your application. They can respond to 
 
 Nodes can render HTML/JSON directly from the Ruby class (via RBX, similar to JSX) and render other nodes into the output using the [syntax](/docs/templating#components); `<html><{ ChildNode }></html>`.
 
-## Observing
+## Observing routes
 
 After setting up a [route](/docs/routing), `observe` it to render a response:
 
@@ -25,14 +25,11 @@ end
 ```
 
 > [!NOTE]
-> [Events](/docs/events) call different actions/methods. They are in control of which actions are called.
+> [Events](/docs/events) decide which actions are called and [observers](/docs/observers) decide which actions are accepted.
 
 ### Implicit syntax
 
-The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route, which triggers a `RouteEvent` that will be handled by your node's `initialize`. Then either the `render` or `receive` method will be called depending on the HTTP request and [route type](/docs/routing#route-types).
-
-- The `render` method will be called for `GET`, `QUERY`, `POST`, `PUT` and `PATCH` HTTP requests with a `RenderEvent`
-- The `receive` method will be called for the  `QUERY`, `POST`, `PUT` and `DELETE` HTTP requests with a `ReceiveEvent` [UNRELEASED]
+The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route and calls the `receive` and `render` methods when present. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
@@ -40,17 +37,21 @@ The actions are split up this way so that you can have both receiving and respon
 
 For all you HTTP nerds, you can have more flexibility with the syntax:
 ```ruby
-observe Route[HTTP_VERB => 'route']
+observe Route[HTTP_VERB => 'path']
 ```
 
 The HTTP request and its verb to that route become the corresponding event/action:
-- **GET:** `Route[GET => 'route']` handled by `RenderEvent => :get`
-- **QUERY:** `Route[QUERY => 'route']` handled by `ReceiveEvent => :query`
-- **PUT:** `Route[PUT => 'route']` handled by `ReceiveEvent => :put`
-- **POST:** `Route[POST => 'route']` handled by `ReceiveEvent => :post`
-- **DELETE:** `Route[DELETE => 'route']` handled by `ReceiveEvent => :delete`
+| **HTTP Verb and Path**     | **Event**      | **Action** |
+|-----------------------------|----------------|------------|
+| `Route[GET => 'path']`     | `RenderEvent`  | `get`      |
+| `Route[QUERY => 'path']`   | `ReceiveEvent` | `query`    |
+| `Route[POST => 'path']`    | `ReceiveEvent` | `post`     |
+| `Route[PUT => 'path']`     | `ReceiveEvent` | `put`      |
+| `Route[PATCH => 'path']`   | `ReceiveEvent` | `patch`    |
+| `Route[DELETE => 'path']`  | `RenderEvent`  | `delete`   |
 
-Observers of `Route` will still have their `initialize` method called with a `RouteEvent`. The `render` method can still be defined for `receive` requests and will be called after `receive`.
+> [!TIP]
+> A `ReceiveEvent` is just like a `RenderEvent` except is also has a `body` attribute.
 
 For example, a QUERY request to the `'/:question'` route will call the `query` method:
 ```ruby
@@ -62,6 +63,15 @@ class AnswerNode < LowNode
   end
 end
 ```
+
+Ensure that a route with this path and `QUERY` HTTP Verb is setup in the router. You can also be explicit that you accept the `:query` action:
+```ruby
+observe '/:question' => :query
+observe Route['/:question'] => :query
+observe Route[QUERY => '/:question'] => :query
+```
+
+All of these options are essentially equivalent.
 
 > [!NOTE]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
