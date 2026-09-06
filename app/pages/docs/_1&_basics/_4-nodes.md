@@ -28,7 +28,7 @@ end
 
 ### Implicit syntax
 
-The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route and calls the `render` method... or the `receive` method if a body was sent in the original request. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
+The `observe '/path'` syntax is the simplest way to respond to a request. It observes a route and calls the `render` method... or the `receive` method if a body was sent in the original request. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
@@ -36,41 +36,46 @@ The actions are split up this way so that you can have both receiving and respon
 
 For all you HTTP nerds, you can have more flexibility with the syntax:
 ```ruby
-observe Route[HTTP_VERB => 'path']
+observe '/path' => :http_verb
 ```
 
-The HTTP request and its verb to that route become the corresponding event/action:
-| **HTTP Verb and Path**    | **Event**      | **Action** |
-|---------------------------|----------------|------------|
-| `Route[GET => 'path']`    | `RenderEvent`  | `get`      |
-| `Route[QUERY => 'path']`  | `ReceiveEvent` | `query`    |
-| `Route[POST => 'path']`   | `ReceiveEvent` | `post`     |
-| `Route[PUT => 'path']`    | `ReceiveEvent` | `put`      |
-| `Route[PATCH => 'path']`  | `ReceiveEvent` | `patch`    |
-| `Route[DELETE => 'path']` | `RenderEvent`  | `delete`   |
+Make sure your route is setup like so:
+```ruby
+route POST => '/path'
+```
+
+The HTTP request/verb become the corresponding event/action:
+| **HTTP Verb** | **Event**      | **Action** |
+|---------------|----------------|------------|
+| `GET`         | `RenderEvent`  | `get`      |
+| `QUERY`       | `ReceiveEvent` | `query`    |
+| `POST`        | `ReceiveEvent` | `post`     |
+| `PUT`         | `ReceiveEvent` | `put`      |
+| `PATCH`       | `ReceiveEvent` | `patch`    |
+| `DELETE`      | `RenderEvent`  | `delete`   |
 
 > [!TIP]
-> A `ReceiveEvent` is just like a `RenderEvent` except is also has a `body` attribute.
+> A `ReceiveEvent` is just like a `RenderEvent` except it also has a `body` attribute.
 
 For example, a POST request to the `'/feedback'` route will call the `post` action/method:
 ```ruby
 class FormNode < LowNode
-  observe Route[POST => '/feedback']
+  observe '/feedback' => :post
 
   def post(event: ReceiveEvent)
-    42
+    submit(event.body)
+    Status[200]
   end
 end
 ```
 
-Ensure that a route with this path and `POST` HTTP Verb is setup in the router. You can also be explicit that you accept the `:post` action:
+An alternate syntax is to observe the `Route` that was created via the router:
 ```ruby
-observe '/feedback' => :post
-observe Route['/feedback'] => :post
+observe Route[POST => '/feedback']
 observe Route[POST => '/feedback'] => :post
 ```
 
-All of these options are essentially equivalent.
+You can leave in the `:post` action handling for clarity, though as we're observing a `POST` route the event will only ever call the `:post` action.
 
 > [!NOTE]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
