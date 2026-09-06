@@ -20,8 +20,7 @@ end
 ### Subscriber to Publisher
 
 ```ruby
-class MySubscriber
-  include Observers
+class MySubscriber < LowNode
   observe MyPublisher
 
   def self.handle
@@ -34,8 +33,7 @@ end
 
 Add observers *from* the object being observed with:
 ```ruby
-class MyPublisher
-  include Observers
+class MyPublisher < LowNode
   observers << MySubscriber
 end
 ```
@@ -79,18 +77,45 @@ end
 
 Call the `my_action` method on all observers of `MyPublisher` with:
 ```ruby
-class MyPublisher
-  include Observers
+class MyPublisher < LowNode
   trigger action: :my_action
 end
 ```
+
+## Action Types
+
+- `trigger` - Calls all observers. Returns the last non-nil value.
+- `take` - Calls all observers up until the first non-nil value. Returns the first non-nil value.
+
+### With Keys
+
+Call actions on all observers of a differeent object/key with a `key:` keyword argument:
+```ruby
+trigger key: OtherPublisher, action: :my_action
+trigger key: OtherPublisher, action: :my_action
+```
+
+### Action Accepting [UNRELEASED]
+
+In this example we're observing the route for all types of HTTP requests, but only accepting the `QUERY` HTTP verb as our action/method:
+```ruby
+observe Route['/:question'] => :query
+```
+
+### Action Forwarding [CANDIDATE]
+
+You can redirect an action to call a method of a different name:
+```ruby
+observe Route[QUERY => '/:question'] => { query: :answer }
+```
+
+This forwards the `query:` action to the `:answer` action/method.
 
 ## Events
 
 Trigger events on observers with the `event` keyword argument:
 ```ruby
-class MyPublisher
-  include Observers
+class MyPublisher < LowNode
   trigger event: MyEvent.new(my_data)
 end
 ```
@@ -98,8 +123,7 @@ end
 Events define their own actions, or you can override them when triggering:
 
 ```ruby
-class MyPublisher
-  include Observers
+class MyPublisher < LowNode
   trigger event: MyEvent.new(my_data), action: :my_action
 end
 ```
@@ -110,28 +134,13 @@ end
 
 Call actions on all observers of a differeent object/key with a `key:` keyword argument:
 ```ruby
-trigger key: OtherPublisher, action: :my_action
-trigger key: OtherPublisher, action: :my_action
 trigger key: OtherPublisher, action: :my_action, event: MyEvent.new(event_data)
 ```
 
-#### Action Accepting [UNRELEASED]
+### Ordered Actions
 
-In this example we're observing the route for all types of HTTP requests, but only accepting the `QUERY` HTTP verb as our action/method:
-```ruby
-observe Route['/:question'] => :query
-```
+Events can define multiple actions and control the order in which they're executed.
 
-#### Action Forwarding [UNRELEASED]
-
-You can redirect an action to call a method of a different name:
-```ruby
-observe Route[QUERY => '/:question'] => { query: :answer }
-```
-
-This forwards the `query:` action to the `:answer` action/method.
-
-## Action Types
-
-- `trigger` - Calls all observers. Returns the last non-nil value.
-- `take` - Calls all observers up until the first non-nil value. Returns the first non-nil value.
+Inside your event subclass in `super(key: route.path, action:)` supply `action:` with an array of actions:
+- `Event.trigger` will trigger every observer **and** every action on each observer in the order they're defined
+- `Event.take` will return the first observer with the first action that returns a non-nil value
