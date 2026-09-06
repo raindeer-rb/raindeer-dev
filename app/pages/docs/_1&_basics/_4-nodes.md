@@ -52,22 +52,22 @@ The HTTP request and its verb to that route become the corresponding event/actio
 > [!TIP]
 > A `ReceiveEvent` is just like a `RenderEvent` except is also has a `body` attribute.
 
-For example, a QUERY request to the `'/:question'` route will call the `query` method:
+For example, a POST request to the `'/feedback'` route will call the `post` action/method:
 ```ruby
-class AnswerNode < LowNode
-  observe Route[QUERY => '/:question']
+class FormNode < LowNode
+  observe Route[POST => '/feedback']
 
-  def query(event: ReceiveEvent)
+  def post(event: ReceiveEvent)
     42
   end
 end
 ```
 
-Ensure that a route with this path and `QUERY` HTTP Verb is setup in the router. You can also be explicit that you accept the `:query` action:
+Ensure that a route with this path and `POST` HTTP Verb is setup in the router. You can also be explicit that you accept the `:post` action:
 ```ruby
-observe '/:question' => :query
-observe Route['/:question'] => :query
-observe Route[QUERY => '/:question'] => :query
+observe '/feedback' => :post
+observe Route['/feedback'] => :post
+observe Route[POST => '/feedback'] => :post
 ```
 
 All of these options are essentially equivalent.
