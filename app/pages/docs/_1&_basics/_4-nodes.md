@@ -38,14 +38,16 @@ observe '/path' => :action
 ```
 
 The HTTP request/verb becomes the corresponding event/action:
-| **HTTP Verb** | **Event**      | **Action** |
-|---------------|----------------|------------|
-| `GET`         | `RenderEvent`  | `get`      |
-| `QUERY`       | `ReceiveEvent` | `query`    |
-| `POST`        | `ReceiveEvent` | `post`     |
-| `PUT`         | `ReceiveEvent` | `put`      |
-| `PATCH`       | `ReceiveEvent` | `patch`    |
-| `DELETE`      | `RenderEvent`  | `delete`   |
+| **HTTP Verb** | **Event**      | **Action**        |
+|---------------|----------------|-------------------|
+| `GET`         | `RenderEvent`  | `render`/`get`    |
+| `QUERY`       | `ReceiveEvent` | `receive`/`query` |
+| `POST`        | `ReceiveEvent` | `receive`/`post`  |
+| `PUT`         | `ReceiveEvent` | `receive`/`put`   |
+| `PATCH`       | `ReceiveEvent` | `receive`/`patch` |
+| `DELETE`      | `RenderEvent`  | `render`/`delete` |
+
+The `RenderEvent`/`ReceiveEvent` will call `render`/`receive` first before falling back to an action matching the HTTP verb.
 
 > [!TIP]
 > A `ReceiveEvent` is just like a `RenderEvent` except it also has a `body` attribute.
@@ -323,11 +325,11 @@ def render
 end
 ```
 
-## Replicating CRUD
+## CRUD
 
-CRUD (Create, Read, Update, Delete) is pretty standard in web applications. Raindeer replaces controllers and actions with events and actions. Instead of a central controller for disparate create, read, update and delete actions, you observe the appropriate route (`/user/new`, `/user/delete`) with a standalone node for each event/action that happens to that route.
+CRUD (Create, Read, Update, Delete) is pretty standard in web applications. Raindeer replaces controllers and actions with events and actions. Instead of a central controller for disparate create, read, update and delete actions, you observe the appropriate route with a standalone node for each event/action that happens to that route.
 
-At first this may seem like more boilerplate for each action... but consider that in a controller each action usually becomes bloated over time, with either fat controllers or fat models. This way you are forced to focus on "single-responsiblity" from the start. Over time your `UserUpdater` or `UserDeleter` node will be able to handle increasingly complexity gracefully. Additionally, you are now freed from the constraints of CRUD.
+At first this may seem like more boilerplate for each action... but consider that in a controller each action usually becomes bloated over time, with either fat controllers or fat models. This way you are forced to focus on "single-responsiblity" from the start. Over time your node will be able to handle increasingly complexity gracefully.
 
 > [!TIP]
 > In Raindeer the node is the controller, the service object and the template all-in-one.
