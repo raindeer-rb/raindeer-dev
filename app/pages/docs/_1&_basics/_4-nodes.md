@@ -18,7 +18,6 @@ class UserNode < LowNode
   observe '/:user_id'
 
   def render(event: RenderEvent)
-    event.request.path # => '/123'
     event.params[:user_id] # => '123'
   end
 end
