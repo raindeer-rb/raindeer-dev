@@ -320,6 +320,89 @@ def render
 end
 ```
 
+## Replicating CRUD
+
+CRUD (Create, Read, Update, Delete) is pretty standard in web applications. Raindeer replaces controllers and actions with events and actions. Instead of a central controller for disparate create, read, update and delete actions, you observe the appropriate route (`/user/new`, `/user/delete`) with a standalone node for each event/action that happens to that route.
+
+At first this may seem like more boilerplate for each action... but consider that in a controller each action usually becomes bloated over time, with either fat controllers or fat models. This way you are forced to focus on "single-responsiblity" from the start. Over time your `UserUpdater` or `UserDeleter` node will be able to handle increasingly complexity gracefully. Additionally, you are now freed from the constraints of CRUD.
+
+> [!TIP]
+> In Raindeer the node is the controller, the service object and the template all-in-one.
+
+### Single Responsibility
+
+**Route:**
+```ruby
+Raindeer.router do
+  route PUT => '/:user_id/update'
+end
+```
+
+**Node:**
+```ruby
+class UserUpdater < LowNode
+  observe '/:user_id/update'
+
+  def receive(event: ReceiveEvent)
+    update(user_id: event.params[:user_id], event.body[:attributes])
+    
+    Status[200]
+  end
+
+  private
+
+  def update(user_id:, attributes:)
+    DB[:users].where(id: user_id).update(**attributes)
+  end
+end
+```
+
+### Classic Controller
+
+Okay... since you were going to do it anyway, here's how to replicate a controller one-to-one in Raindeer.
+
+**Route:**
+```ruby
+Raindeer.router do
+  route [GET, POST, PUT, DELETE] => '/:user_id'
+end
+```
+
+**Node:**
+```ruby
+class UserController < LowNode
+  observe '/:user_id'
+
+  def get(event: RenderEvent)
+    find(user_id: event.params[:user_id])
+    UserNode.render(event:, user_id:)
+  end
+
+  def post(event: ReceiveEvent)
+    create(user_id: event.params[:user_id], event.body[:attributes])  
+    Status[200]
+  end
+
+  def put(event: ReceiveEvent)
+    update(user_id: event.params[:user_id], event.body[:attributes])  
+    Status[200]
+  end
+
+  def delete(event: RenderEvent)
+    delete(user_id: event.params[:user_id])
+    Status[200]
+  end
+
+  private
+
+  def update(user_id:, attributes:)
+    DB[:users].where(id: user_id).update(**attributes)
+  end
+
+  # Etc.
+end
+```
+
 ## Unit Testing
 
 > [!NOTE]
