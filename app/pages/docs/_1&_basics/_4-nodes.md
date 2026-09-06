@@ -32,14 +32,12 @@ The `observe '/path'` syntax is the simplest way to respond to a request. It obs
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
-### Explicit syntax [COMING SOON]
-
 For all you HTTP nerds, you can have more flexibility with the syntax:
 ```ruby
 observe '/path' => :action
 ```
 
-The HTTP request/verb become the corresponding event/action:
+The HTTP request/verb becomes the corresponding event/action:
 | **HTTP Verb** | **Event**      | **Action** |
 |---------------|----------------|------------|
 | `GET`         | `RenderEvent`  | `get`      |
@@ -63,6 +61,8 @@ class FormNode < LowNode
   end
 end
 ```
+
+### Explicit syntax [CANDIDATE]
 
 An alternate syntax is to observe the `Route` that was created via the router:
 ```ruby
