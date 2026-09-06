@@ -36,12 +36,7 @@ The actions are split up this way so that you can have both receiving and respon
 
 For all you HTTP nerds, you can have more flexibility with the syntax:
 ```ruby
-observe '/path' => :http_verb
-```
-
-Make sure your route is setup like so:
-```ruby
-route POST => '/path'
+observe '/path' => :action
 ```
 
 The HTTP request/verb become the corresponding event/action:
