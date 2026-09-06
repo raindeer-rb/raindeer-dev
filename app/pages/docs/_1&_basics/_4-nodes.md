@@ -41,14 +41,14 @@ observe Route[HTTP_VERB => 'path']
 ```
 
 The HTTP request and its verb to that route become the corresponding event/action:
-| **HTTP Verb and Path**     | **Event**      | **Action** |
-|-----------------------------|----------------|------------|
-| `Route[GET => 'path']`     | `RenderEvent`  | `get`      |
-| `Route[QUERY => 'path']`   | `ReceiveEvent` | `query`    |
-| `Route[POST => 'path']`    | `ReceiveEvent` | `post`     |
-| `Route[PUT => 'path']`     | `ReceiveEvent` | `put`      |
-| `Route[PATCH => 'path']`   | `ReceiveEvent` | `patch`    |
-| `Route[DELETE => 'path']`  | `RenderEvent`  | `delete`   |
+| **HTTP Verb and Path**    | **Event**      | **Action** |
+|---------------------------|----------------|------------|
+| `Route[GET => 'path']`    | `RenderEvent`  | `get`      |
+| `Route[QUERY => 'path']`  | `ReceiveEvent` | `query`    |
+| `Route[POST => 'path']`   | `ReceiveEvent` | `post`     |
+| `Route[PUT => 'path']`    | `ReceiveEvent` | `put`      |
+| `Route[PATCH => 'path']`  | `ReceiveEvent` | `patch`    |
+| `Route[DELETE => 'path']` | `RenderEvent`  | `delete`   |
 
 > [!TIP]
 > A `ReceiveEvent` is just like a `RenderEvent` except is also has a `body` attribute.
