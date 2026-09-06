@@ -29,7 +29,7 @@ end
 
 ### Implicit syntax
 
-The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route and calls the `receive` and `render` methods when present. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
+The `observe 'route'` syntax is the simplest way to respond to a request. It observes a route and calls the `render` method... or the `receive` method if a body was sent in the original request. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
