@@ -25,7 +25,7 @@ end
 ```
 
 > [!NOTE]
-> [Events](/docs/events) decide which actions are called and [observers](/docs/observers) decide which actions are accepted.
+> [Events](/docs/events) decide which actions are called.
 
 ### Implicit syntax
 
