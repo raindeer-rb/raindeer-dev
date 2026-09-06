@@ -24,7 +24,7 @@ end
 ```
 
 > [!NOTE]
-> [Events](/docs/events) decide which actions are called.
+> [Events](/docs/events) decide which actions are called. [Observers](/docs/observers) decide which actions are accepted.
 
 ### Implicit syntax
 
@@ -32,7 +32,7 @@ The `observe '/path'` syntax is the simplest way to respond to a request. It obs
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
 
-### Explicit syntax [UNRELEASED]
+### Explicit syntax [COMING SOON]
 
 For all you HTTP nerds, you can have more flexibility with the syntax:
 ```ruby
@@ -52,7 +52,7 @@ The HTTP request/verb become the corresponding event/action:
 > [!TIP]
 > A `ReceiveEvent` is just like a `RenderEvent` except it also has a `body` attribute.
 
-For example, a POST request to the `'/feedback'` route will call the `post` action/method:
+For example, a `POST` request to the `'/feedback'` route will call the `post` action/method:
 ```ruby
 class FormNode < LowNode
   observe '/feedback' => :post
@@ -67,10 +67,13 @@ end
 An alternate syntax is to observe the `Route` that was created via the router:
 ```ruby
 observe Route[POST => '/feedback']
-observe Route[POST => '/feedback'] => :post
 ```
 
-You can leave in the `:post` action handling for clarity, though as we're observing a `POST` route the event will only ever call the `:post` action.
+Since we're observing a `POST` route then the event's action will always be `:post`, but you can leave it in for clarity:
+
+```ruby
+observe Route[POST => '/feedback'] => :post
+```
 
 > [!NOTE]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.

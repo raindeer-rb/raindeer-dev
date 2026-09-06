@@ -39,6 +39,8 @@ Then `observe '/'` or `observe Route[HTTP_VERB => '/']` in a node. **See:** [Obs
 > [!NOTE]
 > Explicit routes will map their HTTP Verb to the action of the same name; `GET` calls `:get`
 
+### Multiple HTTP Verbs
+
 Support multiple HTTP request types at once:
 ```ruby
 Raindeer.router do
