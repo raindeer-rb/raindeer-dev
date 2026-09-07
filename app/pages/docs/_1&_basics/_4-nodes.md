@@ -213,6 +213,9 @@ Which outputs:
 
 Nodes are designed for intercepting the request-response layer and then handing off control to your domain-specific models, presenters and business logic.
 
+> [!TIP]
+> **When to use a node?** If you're dealing with a route or responding with HTML then use a node. If not then you don't have to use one.
+
 ### Calling a class
 
 All classes in `/app` are autoloaded so you can call any class from any node:
@@ -364,7 +367,10 @@ end
 
 ### Classic Controller
 
-Okay... since you were going to do it anyway, here's how to replicate a controller one-to-one in Raindeer.
+> [!CAUTION]
+> Hey... psssh... hey you. Wanna write some bad code? Yeah come on it will be fun. Okay so we've got...
+
+Raindeer is all about guiding you in the right direction, but I'm not going to fuck up your life if you need to do things a certain way. That's the benefit of composition, you can do it all kinds of ways. Okay... since you were going to do it anyway, here's how to replicate a controller one-to-one in Raindeer.
 
 **Route:**
 ```ruby
