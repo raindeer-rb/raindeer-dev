@@ -17,6 +17,13 @@ Edit `config/boot.rb` to set things up before or after `require 'raindeer/boot'`
 
 To intercept Raindeer's own boot process, `BootEvent` provides a more formal API.
 
+**Ordered Actions:**
+1. `:before_boot`
+2. `:load_config`
+3. `:load_providers`
+4. `:load_app`
+5. `:after_boot`
+
 ### 3. `RequestEvent`
 
 Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're handling thousands of requests then you don't want to be processing nice tasty `RouteEvent`s before denying access or issuing redirects.
