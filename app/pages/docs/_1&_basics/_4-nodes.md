@@ -26,8 +26,6 @@ end
 > [!NOTE]
 > [Events](/docs/events) decide which actions are called. [Observers](/docs/observers) decide which actions are accepted.
 
-### Implicit syntax
-
 The `observe '/path'` syntax is the simplest way to respond to a request. It observes a route and calls the `render` method... or the `receive` method if a body was sent in the original request. Constrain the HTTP Verbs via the [route type](/docs/routing#route-types).
 
 The actions are split up this way so that you can have both receiving and responding methods in the same file, and... it just feels right™... to send and receive. To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles.
@@ -64,19 +62,6 @@ class FormNode < LowNode
 end
 ```
 
-### Explicit syntax [CANDIDATE]
-
-An alternate syntax is to observe the `Route` that was created via the router:
-```ruby
-observe Route[POST => '/feedback']
-```
-
-Since we're observing a `POST` route then the event's action will always be `:post`, but you can leave it in for clarity:
-
-```ruby
-observe Route[POST => '/feedback'] => :post
-```
-
 > [!NOTE]
 > If no method matches the event's action then nothing happens, the observer returns `nil`. You get nothing! You lose! Good day, sir! You stole Fizzy Lifting Drinks! You bumped into the ceiling which now has to be washed and sterilized. Raindeer will move on to the next observer.
 
@@ -105,28 +90,9 @@ class UserNode < LowNode
 end
 ```
 
-### Inline Syntax [CANDIDATE]
-
-Don't need to separate business logic from rendering logic? Do it all in `render`:
-
-> [!WARNING]
-> This feature is in consideration and may not ever be implemented, as separating logic from the template is a good thing.
-
-```ruby
-class UserNode < LowNode
-  observe '/:id'
-
-  def render(event: RenderEvent)
-    id = event.params[:id]
-
-    <strong>ID:</strong> {id}
-  end
-end
-```
-
 ## Observing + Responding
 
-With the ["on" syntax](/docs/events#on-syntax) we can observe and respond in one fell swoop:
+With the ["on" syntax](/docs/events#on-syntax) and the `Route` we can observe and respond in one fell swoop:
 ```ruby
 on Route[GET => '/'] do |request_event|
   "Response"
@@ -249,7 +215,7 @@ See: [Dependencies](/docs/dependencies)
 ## Arguments
 
 > [!note]
-> All methods called via events have an omittable `event:` argument
+> Node actions/methods called via observers/events have an omittable `event:` argument
 
 ### Route level args
 
@@ -259,13 +225,11 @@ An `event` keyword argument is optionally available to all `initialize` and `ren
 class UserNode < LowNode
   observe '/:user_id'
 
-  def initialize(event: RouteEvent)
-    event.request.path # => '/123'
+  def initialize(event: RenderEvent)
     event.params[:user_id] # => '123'
   end
 
   def render(event: RenderEvent)
-    event.request.path # => '/123'
     event.params[:user_id] # => '123'
   end
 end
@@ -273,7 +237,7 @@ end
 
 ### Render level args
 
-If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods. The `event:` arg to `initialize` is now a `RenderEvent` and not a `RouteEvent` in this situation.
+If the node has been rendered by another node then any [props](/docs/templating#props) passed to that node are available as keyword arguments in the node's `initialize` or `render` methods.
 
 **Passing props:**
 ```ruby
@@ -342,7 +306,7 @@ At first this may seem like more boilerplate for each action... but consider tha
 **Route:**
 ```ruby
 Raindeer.router do
-  route PUT => '/:user_id/update'
+  put '/:user_id/update'
 end
 ```
 
@@ -353,7 +317,6 @@ class UserUpdater < LowNode
 
   def receive(event: ReceiveEvent)
     update(user_id: event.params[:user_id], event.body[:attributes])
-    
     Status[200]
   end
 
