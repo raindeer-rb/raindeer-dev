@@ -25,16 +25,16 @@ Then `observe '/'` this route in a node. **See:** [Observing](/docs/nodes#implic
 
 ```ruby
 Raindeer.router do
-  route GET => '/'
-  route QUERY => '/'
-  route POST => '/'
-  route PUT => '/'
-  route PATCH => '/'
-  route DELETE => '/'
+  get '/'
+  query '/'
+  post '/'
+  put '/'
+  patch '/'
+  delete '/'
 end
 ```
 
-Then `observe '/'` or `observe Route[HTTP_VERB => '/']` in a node. **See:** [Observing](/docs/nodes#explicit-syntax)
+Then `observe '/'` in a node. **See:** [Observing](/docs/nodes#observing-routes)
 
 > [!NOTE]
 > Explicit routes will map their HTTP Verb to the action of the same name; `GET` calls `:get`
@@ -48,6 +48,10 @@ Raindeer.router do
 end
 ```
 
+> [!TIP]
+> `Route[]` is how every route is defined behind the scenes.
+> **Example**: `get '/'` or `route GET => '/'` will become `Route[GET => '/']`
+
 ## Params
 
 Parameters are dynamic sections of a URL that start with a colon (`:`) which become available as variables in a `RouteEvent`.
@@ -60,8 +64,8 @@ Routes can be nested like so:
 
 ```ruby
 Raindeer.router do
-  route '/users' do
-    route '/:id'
+  get '/users' do
+    get '/:id'
   end
 end
 ```
