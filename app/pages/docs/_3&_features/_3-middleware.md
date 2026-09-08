@@ -9,11 +9,15 @@ Raindeer doesn't use Rack or a traditional middleware API. A middleware is just 
 
 ## Events
 
-### 1. `BootEvent` [CANDIDATE]
+### 1. Boot File
 
-While you could edit your boot file in `config/boot.rb` to set things up before or after `require 'raindeer/boot'`, `BootEvent` provides a more formal API.
+Edit `config/boot.rb` to set things up before or after `require 'raindeer/boot'`.
 
-### 2. `RequestEvent`
+### 2. `BootEvent` [CANDIDATE]
+
+To intercept Raindeer's own boot process, `BootEvent` provides a more formal API.
+
+### 3. `RequestEvent`
 
 Say you want to authenticate, log or redirect before every request, then `RequestEvent.define` is the answer. We do it this way to minimise per-request overhead; if you're handling thousands of requests then you don't want to be processing nice tasty `RouteEvent`s before denying access or issuing redirects.
 
@@ -23,20 +27,20 @@ Low::Events::RequestEvent.define do |observers|
 end
 ```
 
-These new observers will receive a `:request` action, so add a `request` method to those classes and return `LowNode.render(event:)`, [ResponseEvent](#responseevent) or `nil`.
+These additional observers will receive a `:render`/`:receive`/`HTTP_VERB` action, so add a corresponding method to those nodes/custom classes and return `LowNode.render(event:)`, [ResponseEvent](#responseevent) or `nil`.
 
 > [!TIP]
 > Event observers should only be redefined once, so keep them in a central location. **Example:** `app/events/request_event`
 
-### 3. `RouteEvent`
+### 4. `RouteEvent`
 
 Because you can listen to "mid-nodes" along a route, you can `observe '/'` with a `side_effect` action/method to intercept **every** routed request.
 
-### 4. `WildcardEvent`
+### 5. `WildcardEvent`
 
 The router's unmatched requests will not be routed, but a `WildcardEvent` will then be called.
 
-### 5. `StatusEvent`
+### 6. `StatusEvent`
 
 Observe `Status[404]` or similar for when nothing above returns a non-nil reponse.
 
