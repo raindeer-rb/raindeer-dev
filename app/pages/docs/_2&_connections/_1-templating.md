@@ -8,7 +8,7 @@ published: true
 ## Syntax
 
 [Antlers](https://github.com/raindeer-rb/antlers) uses two different sets of start and stop characters:
-- 🦌 **Deerheads:** `<{` and `}>` - Lets HTML through
+- 🦌 **Deerheads:** `<{` and `}>` - Allows HTML
 - 🖇 **Brackets:** `{` and `}` -  **Escapes** HTML and can only render variables
 
 Unlike other templating languages which use syntax to distinguish between control flow and output, there is no difference in Antlers. In Antlers all constructs render output, even if that output is an empty string (`''`).
@@ -44,7 +44,7 @@ end
 ```
 
 > [!IMPORTANT]
-> The class referenced via `<{ MyClass }>` must implement a `render` instance method.
+> The class referenced via `<{ MyNode }>` must implement a `render` instance method.
 
 ### Props
 
