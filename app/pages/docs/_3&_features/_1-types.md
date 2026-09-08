@@ -131,8 +131,6 @@ age # => 33
 
 ### `type()`
 
-*alias: `low_type()`*
-
 To define typed `local` variables at runtime use the `type()` method:
 ```ruby
 my_var = type MyType | fetch_my_object(id: 123)
@@ -180,8 +178,6 @@ The `-> { T }` syntax is a lambda without an assignment to a local variable. Thi
 > A method that takes no arguments must include empty parameters `()` for the `-> { T }` syntax to be valid; `def method() -> { T }`.
 
 ### `value(T)` Value Expression
-
-*alias: `low_value()`*
 
 To treat a type as if it were a value, pass it through `value()` first:
 ```ruby
