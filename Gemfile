@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'raindeer', path: '../raindeer'
+gem 'raindeer'
 
 group :development do
   local_gems = {
