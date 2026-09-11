@@ -209,7 +209,7 @@ end
 
 ## Translations
 
-[Variables](#variables) (`{}`) are also useful for embedding text in RBX without any syntax highlighting issues:
+[Variables](#variables) are also useful for embedding text in RBX without any syntax highlighting issues:
 ```ruby
 def render
   <html>{"I'm just a string"}</html>
