@@ -5,7 +5,7 @@ class Sidebar < LowNode
 
   def initialize
     @nav_groups = ['Basics', 'Connections', 'Features', 'Advanced', 'Tooling'].map do |folder|
-      list = Raindeer.pages.list(folder: folder.downcase.gsub(' ', '_'))
+      list = Raindeer.pages.list(false, folder: folder.downcase.gsub(' ', '_'))
       Group.new(folder, list)
     end
   end
