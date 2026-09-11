@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Call "rain" to use the CLI on your $PATH installed by Bundler.
-# Call "bin/rain" to load local gems in your Gemfile in development.
+# Call "bin/rain" to load gems locally from your Gemfile in dev.
 
 require 'bundler/setup'
 require 'raindeer/cli'
