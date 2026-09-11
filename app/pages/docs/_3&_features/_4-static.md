@@ -66,7 +66,7 @@ Insert a `<blockquote>` with correct `<figure>` semantics and author attribution
 <{ :quote }>
 ```
 
-### List [UNRELEASED]
+### List
 
 List markdown files, filtered by specified metadata:
 
