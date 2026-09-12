@@ -18,7 +18,10 @@ class Card < LowNode
           <i class="bi bi-{card.icon}"></i>
         <{ :if }>
 
-        <p>{card.summary}</p>
+        <{ if: card.summary }>
+          <p>{card.summary}</p>
+        <{ :if }>
+
         <{ card.content }>
       </div>
     </article>
