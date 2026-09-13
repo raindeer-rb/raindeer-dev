@@ -47,7 +47,7 @@ class Layout < LowNode
           </div>
         </header>
         
-        <main class="container overflow-auto">
+        <main class="container">
           <{ :slot }>
         </main>
 

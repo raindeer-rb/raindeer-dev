@@ -7,6 +7,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
   .card {
+    header {
+      position: inherit;
+      z-index: inherit;
+    }
     header i {
       padding-right: 1rem;
     }
