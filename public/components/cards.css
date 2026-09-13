@@ -21,6 +21,14 @@
     &:nth-child(5) header i { color: #d63535; }
     &:nth-child(6) header i { color: #eeae37; }
 
+    header mark {
+      float: right;
+      border-radius: 5px;
+      font-size: 1rem;
+      border-bottom: none;
+      padding: 0.25rem 0.5rem;
+    }
+
     .content i {
       display: block;
       font-size: 4rem;

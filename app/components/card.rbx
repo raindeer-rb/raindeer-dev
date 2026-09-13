@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Card < LowNode
+  def initialize(event:, card:)
+    @tooltip = 'Hand-written by humans'
+    @tooltip = 'Made with AI' if card.label == 'AI'
+  end
+
   def render(event:, card:)
     <article class="card">
       <header>
@@ -9,7 +14,13 @@ class Card < LowNode
             <i class="bi bi-{card.title_icon}"></i>
           <{ :if }>
 
+          <{ if: card.title_link }><a href="{card.title_link}"><{ :if }>
           {card.title}
+          <{ if: card.title_link }></a><{ :if }>
+
+          <{ if: card.label }>
+            <mark data-tooltip="{@tooltip}">{card.label}</mark>
+          <{ :if }>
         </h3>
       </header>
 
