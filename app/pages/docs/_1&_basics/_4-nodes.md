@@ -346,6 +346,7 @@ end
 ```ruby
 class UserController < LowNode
   observe '/:user_id'
+  include Controller
 
   def get(event: RenderEvent)
     find(user_id: event.params[:user_id])
