@@ -3,7 +3,7 @@
 class Card < LowNode
   def initialize(event:, card:)
     @tooltip = 'Hand-written by humans'
-    @tooltip = 'Made with AI' if card.label == 'AI'
+    @tooltip = 'Made with/for AI' if card.label == 'AI'
   end
 
   def render(event:, card:)
