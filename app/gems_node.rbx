@@ -20,6 +20,11 @@ class GemsNode < LowNode
 
   def render(event:)
     <{ Layout: title=@title section='section-gems' }>
+      <div class="page-intro">
+        <h1>{"Gems"}</h1>
+        <p>{"The building blocks that make up Raindeer."}</p>
+      </div>
+
       <div id="cards" class="grid">
         <{ for: gem in: @gems }>
           <{ Card card=gem }>
