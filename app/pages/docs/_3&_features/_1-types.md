@@ -5,7 +5,7 @@ published: true
 
 <{ :toc }>
 
-Raindeer supports types out of the box via <a href="https://github.com/low-rb/low_type" title="GitHub">LowType</a>. LowType introduces the concept of "type expressions" in method arguments. When an argument's default value is a type instead of a value then it's treated as a type expression, which will check the type:
+Raindeer supports types out of the box via <a href="https://github.com/low-rb/lowtype" title="GitHub">LowType</a>. LowType introduces the concept of "type expressions" in method arguments. When an argument's default value is a type instead of a value then it's treated as a type expression, which will check the type:
 
 ```ruby
 class MyNode < LowNode
@@ -197,8 +197,8 @@ def my_method(my_arg: String | MyType | value(MyType)) # => MyType is the defaul
 
 ### Complex types
 
-- `Boolean` - Accepts `true`/`false`) [UNRELEASED]
-- `Enum` - Usage: `Enum[1, 2, 3]` [[CONCEPT STAGE](https://github.com/low-rb/low_type/issues/6)]
+- `Boolean` - Accepts `true`/`false`
+- `Enum` - Usage: `Enum[1, 2, 3]`
 - `Tuple` (subclass of `Array`)
 - `Status` (subclass of `Integer`)
 - `Headers` (subclass of `Hash`)

@@ -1,6 +1,6 @@
 ---
 title: Raindown
-title_link: https://github.com/raindeer-rb/raindown
+title_link: https://raindown.dev
 label: AI
 machine_name: raindown
 ---
