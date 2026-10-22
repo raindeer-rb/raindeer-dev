@@ -7,6 +7,7 @@ class GemsNode < LowNode
   observe '/gems'
 
   def initialize(event:)
+    @title = 'Gems'
     @gems = Raindeer.pages.list(folder: 'gems').sort_by do |gem|
       gem.title
     end
@@ -18,7 +19,7 @@ class GemsNode < LowNode
   end
 
   def render(event:)
-    <{ Layout: section='section-gems' }>
+    <{ Layout: title=@title section='section-gems' }>
       <div id="cards" class="grid">
         <{ for: gem in: @gems }>
           <{ Card card=gem }>

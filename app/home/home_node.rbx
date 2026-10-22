@@ -4,11 +4,12 @@ class HomeNode < LowNode
   observe '/'
 
   def initialize(event:)
+    @title = 'An event-driven and compositional web framework'
     @cards = Raindeer.pages.list(folder: 'cards')
   end
 
   def render(event:)
-    <{ Layout: section='section-home' }>
+    <{ Layout: title=@title section='section-home' }>
       <img id="raindeer" src="/assets/logo.png"/>
 
       <div id="overview">
