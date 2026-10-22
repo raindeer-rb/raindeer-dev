@@ -18,10 +18,51 @@ PATH
     expressions (0.4.0)
 
 PATH
+  remote: ../lowevent
+  specs:
+    lowevent (0.8.1)
+      lowtype (~> 1.4)
+      observers
+      protocol-http
+      providers
+
+PATH
   remote: ../lowkey
   specs:
     lowkey (0.7.0)
       prism
+
+PATH
+  remote: ../lowloop
+  specs:
+    lowloop (0.8.2)
+      async
+      async-http
+      io-stream
+      lowevent
+      lowtype (~> 1.0)
+      paint
+      protocol-http
+      protocol-url
+
+PATH
+  remote: ../lownode
+  specs:
+    lownode (0.5.3)
+      antlers (~> 1.2.1)
+      lowevent
+      lowloop
+      lowtype (~> 1.6)
+      observers
+
+PATH
+  remote: ../lowtype
+  specs:
+    lowtype (1.6.0)
+      dirload
+      expressions (~> 0.1)
+      lowkey (~> 0.5)
+      trees
 
 PATH
   remote: ../observers
@@ -109,54 +150,6 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
-    low_event (0.8.0)
-      low_type (~> 1.0)
-      observers
-      protocol-http
-      providers
-    low_loop (0.8.0)
-      async
-      async-http
-      io-stream
-      low_event
-      low_type (~> 1.0)
-      paint
-      protocol-http
-      protocol-url
-    low_node (0.5.1)
-      antlers
-      low_event
-      low_loop
-      low_type (~> 1.0)
-      observers
-    low_type (1.3.2)
-      expressions (~> 0.1)
-      lowkey (~> 0.4)
-    lowevent (0.8.1)
-      lowtype (~> 1.4)
-      observers
-      protocol-http
-      providers
-    lowloop (0.8.2)
-      async
-      async-http
-      io-stream
-      lowevent
-      lowtype (~> 1.0)
-      paint
-      protocol-http
-      protocol-url
-    lownode (0.5.3)
-      antlers (~> 1.2.1)
-      lowevent
-      lowloop
-      lowtype (~> 1.6)
-      observers
-    lowtype (1.6.0)
-      dirload
-      expressions (~> 0.1)
-      lowkey (~> 0.5)
-      trees
     nokogiri (1.19.4-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-musl)
@@ -288,11 +281,11 @@ DEPENDENCIES
   dirload!
   expressions!
   irb
-  low_event
-  low_loop
-  low_node
-  low_type
+  lowevent!
   lowkey!
+  lowloop!
+  lownode!
+  lowtype!
   observers!
   plugs!
   providers!
@@ -345,15 +338,11 @@ CHECKSUMS
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   listen (3.10.1) sha256=4c3f32855657f348747da4dd2372ff3790d90a6b1d3e4f21a3706adb2d04783c
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
-  low_event (0.8.0) sha256=2395425623ea9821da8548a1579c99a80d54e7e0ed27f980ebfc5be9b101c94b
-  low_loop (0.8.0) sha256=aeb348259dd8ea334084442fea0458a99ec9d5f9a1c81a8f1f5e2953717904a2
-  low_node (0.5.1) sha256=73cb829bbf69ff667c1e8b2114b3b10bacbda96d864781f8424767028cd70842
-  low_type (1.3.2) sha256=69b26b1342196e7bd3f78fcac84c05ebf3636dab72b10f090aa241caf841c09c
-  lowevent (0.8.1) sha256=b6e6cc2e7ed39e88e482255b3224c93a483fd06f3261008b8e146e7f42d1211f
+  lowevent (0.8.1)
   lowkey (0.7.0)
-  lowloop (0.8.2) sha256=e7b2bb639887f4a3af122e0d0766e5bd46a29e8a8822f07ff68c41aebf2915f1
-  lownode (0.5.3) sha256=135e86da96c93cb062155ac90c30495cd48aa2aa93e2475aa89ad3109e753954
-  lowtype (1.6.0) sha256=f60b005a147a0c04390f4420b7e345c7477a5d7eb65c8b0e670112327d74981d
+  lowloop (0.8.2)
+  lownode (0.5.3)
+  lowtype (1.6.0)
   nokogiri (1.19.4-aarch64-linux-gnu) sha256=1269fb644a6de405057a53dd5c762b1209b43ca7424f839454d3dbc677c31a8f
   nokogiri (1.19.4-aarch64-linux-musl) sha256=35c65b9ce72b3bb03207bdbe7067915019dc18c1b9b59139684bd6690fdd01af
   nokogiri (1.19.4-arm-linux-gnu) sha256=a301313e38bb065d68239e79734bcd6f56fb6efaacebde29e9abf2a4735340ca
