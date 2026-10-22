@@ -7,7 +7,13 @@
 }
 
 #overview {
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
+
+  p strong {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+  }
 
   .actions {
     display: block;
@@ -24,6 +30,13 @@
     margin: 1rem 0 0 0;
     padding-left: 0;
     text-align: center;
+    a {
+      color: #aaa;
+      text-decoration: none;
+      &:hover {
+        color: #fff;
+      }
+    }
     li {
       color: #aaa;
       font-size: 0.75rem;
