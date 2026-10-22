@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Bundles public CSS/JS. Run before "bin/rain build" to export a static site.
+
+require_relative '../config/assets'
+
+Assets.build

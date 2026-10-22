@@ -1,5 +1,7 @@
 # Raindeer.
 /build
+/public/app.css
+/public/app.js
 /coverage/
 /doc/
 /pkg/
