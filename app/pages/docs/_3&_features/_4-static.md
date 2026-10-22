@@ -251,18 +251,25 @@ Raindeer.router do
 end
 ```
 
-**3. Move it after building.** Add this to the end of `bin/rain`, so `bin/rain build` moves the page to `build/404.html`:
+**3. Move it after building.** Add a script that moves the page to `build/404.html`:
 
 ```ruby
-# bin/rain
-if ARGV.first == 'build'
-  require 'fileutils'
+#!/usr/bin/env ruby
+# bin/404
+require 'fileutils'
 
-  build_path = File.expand_path('build', Dir.pwd)
-  FileUtils.mv(File.join(build_path, '404', 'index.html'), File.join(build_path, '404.html'))
-  FileUtils.rmdir(File.join(build_path, '404'))
-end
+build_path = File.expand_path('../build', __dir__)
+FileUtils.mv(File.join(build_path, '404', 'index.html'), File.join(build_path, '404.html'))
+FileUtils.rmdir(File.join(build_path, '404'))
 ```
+
+Make it executable with `chmod +x bin/404`, then set your Cloudflare Pages build command to run it after building:
+
+```bash
+rain build && bin/404
+```
+
+Use the gem's `rain` here rather than a `bin/rain` that requires `bundler/setup`. Cloudflare installs gems without your `development` and `test` groups, but only for the install step, so `bundler/setup` fails looking for them.
 
 After deploying, check that a missing page returns a 404:
 
