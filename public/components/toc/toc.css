@@ -21,6 +21,11 @@
     }
     #toc {
       position: fixed;
+      width: inherit;
+      /* Header + main's top margin and padding + this offset, plus a gap below. */
+      max-height: calc(100vh - var(--rd-header-height) - 50px - 3rem);
+      overflow-y: auto;
+      scrollbar-width: thin;
     }
   }
 }
@@ -29,16 +34,23 @@ details#toc {
   display: inline-block;
   padding: 1rem;
   font-size: 0.9rem;
-  border: 1px solid #353841;
+  border: 1px solid var(--rd-border);
   border-radius: 10px;
 
   @media (min-width: 1024px) {
     display: block;
     border-width: 0;
+    border-left: 1px solid var(--rd-border);
+    border-radius: 0;
   }
 
+  /* Matches the sidebar nav headings. */
   summary {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rd-muted);
 
     @media (min-width: 1024px) {
       pointer-events: none;
@@ -55,7 +67,7 @@ details#toc {
       &.h3 { margin-left: 10px; }
       &.h4 { margin-left: 20px; }
       &.h5 { margin-left: 30px; }
-      &.h5 { margin-left: 40px; }
+      &.h6 { margin-left: 40px; }
 
       a {
         text-decoration: none;
