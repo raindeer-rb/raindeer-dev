@@ -36,24 +36,52 @@ class HomeNode < LowNode
 
       <h2 align="center">{"Diff"}</h2>
 
-      <div id="pros-cons">
-        <ul class="icons cons">
-          <li>{"Rack"}</li>
-          <li>{"Model-View-Controller"}</li>
-          <li>{"Namespaces (optional)"}</li>
-          <li>{"Individual template files"}</li>
-          <li>{"Build steps"}</li>
-        </ul>
+      <div id="diff">
+        <div class="diff-header">
+          <div class="del">{"Traditional"}<span class="count">{"−5"}</span></div>
+          <div class="add">{"Raindeer"}<span class="count">{"+7"}</span></div>
+        </div>
 
-        <ul class="icons pros">
-          <li>{"Event Loop"}</li>
-          <li>{"Composition"}</li>
-          <li>{"Inline types (optional)"}</li>
-          <li>{"Auto loaded files"}</li>
-          <li>{"Events"}</li>
-          <li>{"Pipelines"}</li>
-          <li>{"Repository pattern"}</li>
-        </ul>
+        <div class="diff-row">
+          <div class="del"><span class="num">{"1"}</span><span class="sign">{"−"}</span>{"Rack"}</div>
+          <div class="add"><span class="num">{"1"}</span><span class="sign">{"+"}</span>{"Event Loop"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="del"><span class="num">{"2"}</span><span class="sign">{"−"}</span>{"Model-View-Controller"}</div>
+          <div class="add"><span class="num">{"2"}</span><span class="sign">{"+"}</span>{"Composition"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="del"><span class="num">{"3"}</span><span class="sign">{"−"}</span>{"Namespaces"}</div>
+          <div class="empty"></div>
+        </div>
+        <div class="diff-row">
+          <div class="del"><span class="num">{"4"}</span><span class="sign">{"−"}</span>{"Individual template files"}</div>
+          <div class="empty"></div>
+        </div>
+        <div class="diff-row">
+          <div class="del"><span class="num">{"5"}</span><span class="sign">{"−"}</span>{"Build steps"}</div>
+          <div class="empty"></div>
+        </div>
+        <div class="diff-row">
+          <div class="empty"></div>
+          <div class="add"><span class="num">{"3"}</span><span class="sign">{"+"}</span>{"Inline types (optional)"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="empty"></div>
+          <div class="add"><span class="num">{"4"}</span><span class="sign">{"+"}</span>{"Auto loaded files"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="empty"></div>
+          <div class="add"><span class="num">{"5"}</span><span class="sign">{"+"}</span>{"Events"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="empty"></div>
+          <div class="add"><span class="num">{"6"}</span><span class="sign">{"+"}</span>{"Pipelines"}</div>
+        </div>
+        <div class="diff-row">
+          <div class="empty"></div>
+          <div class="add"><span class="num">{"7"}</span><span class="sign">{"+"}</span>{"Repository pattern"}</div>
+        </div>
       </div>
     <{ :Layout }>
   end
