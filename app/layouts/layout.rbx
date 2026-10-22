@@ -48,10 +48,10 @@ class Layout < LowNode
         <footer>
           <div class="container">
             <ul>
-              <li><a href="https://reddit.com/r/raindeer">{"Reddit"}</a></li>
-              <li><a href="https://discord.gg/UBex4JQgnX">{"Discord"}</a></li>
-              <li><a href="https://www.rubyforum.org/tag/raindeer/97">{"Forum"}</a></li>
-              <li><a href="https://github.com/raindeer-rb/raindeer">{"GitHub"}</a></li>
+              <li><a href="https://reddit.com/r/raindeer"><i class="bi bi-reddit"></i>{"Reddit"}</a></li>
+              <li><a href="https://discord.gg/UBex4JQgnX"><i class="bi bi-discord"></i>{"Discord"}</a></li>
+              <li><a href="https://www.rubyforum.org/tag/raindeer/97"><i class="bi bi-chat-square-text"></i>{"Forum"}</a></li>
+              <li><a href="https://github.com/raindeer-rb/raindeer"><i class="bi bi-github"></i>{"GitHub"}</a></li>
             </ul>
           </div>
         </footer>
