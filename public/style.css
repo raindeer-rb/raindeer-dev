@@ -1,8 +1,16 @@
 /***** TYPOGRAPHY *****/
+/***** THEME *****/
 
 :root {
   --pico-font-size: 1rem;
   --pico-accordion-open-summary-color: #fff;
+
+  --rd-bg: rgb(19, 22.5, 30.5);
+  --rd-surface: #181c25;
+  --rd-border: #2a2f3a;
+  --rd-border-hover: #3d4452;
+  --rd-muted: #8b93a3;
+  --rd-header-height: 3.75rem;
 }
 html {
   scroll-behavior: smooth;
@@ -62,6 +70,13 @@ ul.cons {
   .container {
     max-width: 1200px;
   }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--rd-bg);
 }
 
 #background {
