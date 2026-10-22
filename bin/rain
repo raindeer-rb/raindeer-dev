@@ -6,6 +6,14 @@
 require 'bundler/setup'
 require 'raindeer/cli'
 
+building = ARGV.first == 'build'
+
+# "public" is copied into "build", but the CSS/JS bundles are gitignored and otherwise only built when the server boots.
+if building
+  require_relative '../config/assets'
+  Assets.build
+end
+
 Rain::CLI.run(ARGV)
 
 # Cloudflare Pages serves a top-level "404.html" with a 404 status for missing pages.
