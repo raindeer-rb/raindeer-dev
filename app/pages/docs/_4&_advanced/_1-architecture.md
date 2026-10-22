@@ -65,9 +65,23 @@ A perfect example is the `has_many` helper method provided by various ORMs. This
 ```ruby
 class PostsData < LowData
   def all
-    Users[:username] + Posts[:title, :body]
+    Posts[:title, :body] + Users[:username]
   end
 end
 ```
 
-This data expression generates SQL to `OUTER JOIN` the user table with the posts table and results in a list of posts with the user's username included in each row.
+This data expression follows the posts table's `user_id` foreign key to the users table, generating this SQL:
+
+```sql
+SELECT title, body, user_id FROM posts
+SELECT username, id FROM users WHERE (id IN (...))
+```
+
+...which results in a list of posts with each post's user nested inside it:
+
+```ruby
+[
+  { title: 'Hello', body: '...', user: { username: 'alice' } },
+  { title: 'World', body: '...', user: { username: 'bob' } }
+]
+```

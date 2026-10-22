@@ -5,7 +5,7 @@ summary: Build SQL queries compositionally
 ---
 
 ```ruby
-Users[:name] + Posts[:title, :body]
+Posts[:title, :body] + Users[:username]
 ```
 
-Results in an `OUTER JOIN` SQL query.
+Results in a list of posts with each post's user nested inside it.
