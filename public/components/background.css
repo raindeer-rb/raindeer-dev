@@ -15,7 +15,8 @@
   .section-pages & {
     height: 175px;
   }
-  .section-gems & {
+  .section-gems &,
+  .section-404 & {
     height: 320px;
   }
 

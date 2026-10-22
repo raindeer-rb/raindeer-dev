@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class Layout < LowNode
+  def initialize
+    @description = "An event-driven and compositional web framework that's easy to use 🦌"
+  end
+
   def render(event:, section:, title:)
-    <html>
+    <html lang="en">
       <head>
         <title>{"Raindeer"} - {title}</title>
 
         <meta charset="UTF-8">
+        <meta name="description" content="{@description}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/app.css">
         <script src="/app.js" defer></script>
@@ -20,8 +25,8 @@ class Layout < LowNode
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
         <meta property="og:image" content="https://raindeer.dev/assets/cover.png" />
-        <meta property="og:title" content="Raindeer" />
-        <meta property="og:description" content="An event-driven and compositional web framework that's easy to use 🦌" />
+        <meta property="og:title" content="Raindeer - {title}" />
+        <meta property="og:description" content="{@description}" />
         <meta property="og:url" content="https://raindeer.dev" />
         <meta property="og:type" content="website" />
       </head>

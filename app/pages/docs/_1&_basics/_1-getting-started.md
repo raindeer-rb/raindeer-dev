@@ -10,15 +10,15 @@ published: true
 
   <ul>
     <li>
-      <img class="icon" src="https://avatars.githubusercontent.com/u/601650"/>
+      <img class="icon" alt="" src="https://avatars.githubusercontent.com/u/601650"/>
       <strong class="username">maedi</strong>
     </li>
     <li>
-      <img class="icon" src="https://avatars.githubusercontent.com/u/177754884"/>
+      <img class="icon" alt="" src="https://avatars.githubusercontent.com/u/177754884"/>
       <strong class="username">Piyush-Goenka</strong>
     </li>
     <li>
-      <img class="icon" src="https://avatars.githubusercontent.com/u/219598893?v=4"/>
+      <img class="icon" alt="" src="https://avatars.githubusercontent.com/u/219598893?v=4"/>
       <strong class="username">obsidiannnn</strong>
     </li>
   </ul>
