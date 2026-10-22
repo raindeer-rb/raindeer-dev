@@ -2,10 +2,26 @@
 
 class Status404Node < LowNode
   observe Status[404]
+  # Exported by "rain build" so bin/rain can turn it into "build/404.html".
+  observe '/404'
+
+  def initialize
+    @title = 'Page not found'
+  end
 
   def render
-    <div class="status-404">
-      <em>404</em>
-    </div>
+    <{ Layout: title=@title section='section-404' }>
+      <div class="status-404">
+        <div class="page-intro">
+          <h1>{"Page not found"}</h1>
+          <p>{"This page doesn't exist, or it has moved."}</p>
+        </div>
+
+        <p class="actions">
+          <a href="/docs/getting-started" role="button"><i class="bi bi-book"></i>{"Read the docs"}</a>
+          <a href="/" role="button" class="secondary"><i class="bi bi-house"></i>{"Home"}</a>
+        </p>
+      </div>
+    <{ :Layout }>
   end
 end

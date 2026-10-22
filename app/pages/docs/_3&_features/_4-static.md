@@ -219,3 +219,53 @@ rain build
 ```
 
 This exports a package of typical website files in the `/build` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
+
+### Cloudflare
+
+Cloudflare Pages serves a top-level `404.html` for missing pages, with a 404 status. Without one, it assumes your site is a single-page app and serves the home page with a 200 status instead, so every broken link looks like a working copy of your home page.
+
+`rain build` exports pages and routes but not status pages, so to give Cloudflare a `404.html`:
+
+**1. Render the page for a route too.** Have your 404 node also observe a `/404` route, alongside `Status[404]` for the dev server:
+
+```ruby
+# app/statuses/status_404_node.rbx
+class Status404Node < LowNode
+  observe Status[404]
+  observe '/404'
+
+  def render
+    <{ Layout: title='Page not found' }>
+      <h1>{"Page not found"}</h1>
+    <{ :Layout }>
+  end
+end
+```
+
+**2. Add the route,** so that `rain build` exports it to `build/404/index.html`:
+
+```ruby
+# app/routes.rb
+Raindeer.router do
+  get '/404'
+end
+```
+
+**3. Move it after building.** Add this to the end of `bin/rain`, so `bin/rain build` moves the page to `build/404.html`:
+
+```ruby
+# bin/rain
+if ARGV.first == 'build'
+  require 'fileutils'
+
+  build_path = File.expand_path('build', Dir.pwd)
+  FileUtils.mv(File.join(build_path, '404', 'index.html'), File.join(build_path, '404.html'))
+  FileUtils.rmdir(File.join(build_path, '404'))
+end
+```
+
+After deploying, check that a missing page returns a 404:
+
+```bash
+curl -I https://example.com/no-such-page
+```

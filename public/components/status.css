@@ -1,0 +1,11 @@
+.status-404 {
+  margin: 2rem 0 4rem;
+  text-align: center;
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
