@@ -15,3 +15,11 @@ function toggleSummary(e) {
 
 detailsMinWidth.addEventListener('change', toggleSummary);
 toggleSummary(detailsMinWidth);
+
+// Highlight the current page.
+// TODO: Do at the template level.
+document.querySelectorAll('aside#sidebar a').forEach((link) => {
+  if (link.getAttribute('href') === window.location.pathname.replace(/\/$/, '')) {
+    link.classList.add('active');
+  }
+});
