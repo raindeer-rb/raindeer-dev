@@ -1,5 +1,6 @@
 ---
 title: Types
+title_link: /docs/types
 summary: Inline type checking and annotations
 ---
 

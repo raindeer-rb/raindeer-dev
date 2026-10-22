@@ -1,5 +1,6 @@
 ---
 title: Event-driven
+title_link: /docs/events
 summary: Observe and respond to events
 ---
 

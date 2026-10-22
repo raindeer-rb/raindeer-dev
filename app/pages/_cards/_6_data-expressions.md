@@ -1,5 +1,6 @@
 ---
 title: Data Expressions
+title_link: /docs/data#data-expressions
 summary: Build SQL queries compositionally
 ---
 
