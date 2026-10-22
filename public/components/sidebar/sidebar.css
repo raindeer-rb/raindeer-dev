@@ -1,9 +1,13 @@
 aside#sidebar {
   padding: 1rem;
+  padding-left: 0;
 
   @media (min-width: 768px) {
-    width: 14rem;
-    float: left;
+    position: sticky;
+    top: calc(var(--rd-header-height) + 1rem);
+    max-height: calc(100vh - var(--rd-header-height) - 2rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
 
   nav {
@@ -13,11 +17,20 @@ aside#sidebar {
     li {
       padding: calc(var(--pico-nav-element-spacing-vertical) * .25) var(--pico-nav-element-spacing-horizontal);
       padding-left: calc(var(--pico-nav-element-spacing-vertical) * 1);
-      border-left: 1px solid #353841;
+      border-left: 1px solid var(--rd-border);
+      transition: border-color 0.15s;
       a {
-        color: #d4d4d4;
+        color: #c9ced8;
+        text-decoration: none;
         &:hover {
           color: var(--pico-primary);
+        }
+      }
+      &:has(a.active) {
+        border-left: 2px solid var(--pico-primary);
+        a {
+          color: #fff;
+          font-weight: 600;
         }
       }
     }
@@ -25,6 +38,10 @@ aside#sidebar {
   summary {
     list-style-type: none;
     cursor: pointer;
+    font-size: 0.8rem;
     font-weight: bold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rd-muted);
   }
 }
