@@ -1,0 +1,18 @@
+/* Docs pages: sidebar and content columns. */
+.section-pages main {
+  margin-top: 50px;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+main #content {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+

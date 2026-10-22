@@ -1,0 +1,66 @@
+#background {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  background-image:
+    linear-gradient(to bottom, rgba(26, 26, 26, 0) 0%, var(--rd-bg) 100%),
+    url('/assets/background.png');
+
+  background-repeat: repeat-x;
+  height: 770px;
+
+  .section-pages & {
+    height: 175px;
+  }
+  .section-gems & {
+    height: 320px;
+  }
+
+  /* Glow: a blurred copy of the letters screened on top, so only lit pixels bloom. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/background.png');
+    background-repeat: repeat-x;
+    filter: blur(4px) brightness(1.8);
+    /* Fade out before the bottom edge so the bloom doesn't leave a seam. */
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 90%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* CRT: rolling scan band, scanlines and vignette, layered above the glow. */
+  .section-home &::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    background-image:
+      linear-gradient(to bottom, transparent 0%, rgba(120, 200, 255, 0.06) 50%, transparent 100%),
+      repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
+    background-size: 100% 160px, auto, auto;
+    background-repeat: no-repeat, repeat, no-repeat;
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 90%);
+    pointer-events: none;
+    animation: crt-roll 16s linear infinite, crt-flicker 0.15s steps(2) infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+@keyframes crt-roll {
+  from { background-position: 0 -160px, 0 0, 0 0; }
+  to { background-position: 0 770px, 0 0, 0 0; }
+}
+
+@keyframes crt-flicker {
+  from { opacity: 1; }
+  to { opacity: 0.92; }
+}

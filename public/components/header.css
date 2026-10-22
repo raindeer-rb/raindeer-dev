@@ -1,0 +1,59 @@
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--rd-header-height);
+    padding: 0 1rem;
+  }
+
+  a#logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    color: white;
+  }
+
+  #main-menu {
+    ul {
+      gap: 0.25rem;
+    }
+    li {
+      padding: 0;
+      a {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        padding: 0.4rem 0.75rem;
+        border-radius: 6px;
+        color: #c9ced8;
+        text-decoration: none;
+        transition: color 0.15s, background-color 0.15s;
+
+        &:hover {
+          color: #fff;
+          background-color: rgba(255, 255, 255, 0.07);
+        }
+        @media (max-width: 480px) {
+          padding: 0.4rem 0.5rem;
+          i {
+            margin-right: 0.35rem;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+body > footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--rd-border);
+  background-color: rgba(0, 0, 0, 0.25);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 2rem;
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      color: var(--rd-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
