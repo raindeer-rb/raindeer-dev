@@ -27,6 +27,41 @@ Place your markdown files in `app/pages`.
 
 Put publicly accessible assets such as images and files in the `/public` folder. The URL for a file like `/public/logo.png` will be `/logo.png`.
 
+#### Bundles
+
+Raindeer can combine your CSS and JavaScript files into bundles, so each page loads one stylesheet and one script. List each bundle and its files under `assets` in `config/config.yaml`:
+
+```yaml
+assets:
+  app.css:
+    - style.css
+    - components/*
+    - components/*/*
+  app.js:
+    - components/*/*
+```
+
+Paths are relative to `/public`, and each bundle is written there too, so `/public/app.css` is served at `/app.css`:
+
+```html
+<link rel="stylesheet" href="/app.css">
+<script src="/app.js" defer></script>
+```
+
+- **Order:** Files are added in the order they're listed.
+- **Wildcards:** A path with a wildcard adds the files it matches in alphabetical order. `components/*` matches the files directly in `components`, `components/*/*` matches the files one folder down and `components/**/*` matches every file at any depth.
+- **Extensions:** A wildcard only adds files with the bundle's extension, so `app.css` skips `.js` files. A file is only added once, and a bundle never includes itself.
+- **Output:** Each CSS file is labelled with a comment, and each JavaScript file is wrapped in its own scope so top-level names can't collide between files.
+
+The dev server builds the bundles when it starts, and with `debug_mode` on it rebuilds them whenever one of their files is saved, added or deleted. `rain build` builds them before exporting, so a fresh checkout deploys without an extra step.
+
+Bundles are generated, so add them to `.gitignore`:
+
+```
+/public/app.css
+/public/app.js
+```
+
 ## Markdown
 
 [GitHub flavoured markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) is supported out of the box.
