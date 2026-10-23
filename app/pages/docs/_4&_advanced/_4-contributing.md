@@ -21,7 +21,7 @@ In your terminal run:
 bundle install
 ```
 
-For LowLoop or Raindeer you will also be running a server:
+Start the server:
 ```
 bin/server
 ```
@@ -40,7 +40,7 @@ Add the `SHOW_OUTPUT=1` flag to see the terminal output from some of the feature
 
 ### AI
 
-Please submit human-written code that is tested. AI will hallucinate and doesn't actually understand the code. AI is great for asking questions and generating benchmarks though.
+Some repos are "human-first" and for these you use AI to augment and poke holes. Other repos are "AI-first" with a human guiding the output. AI is great in general for researching a codebase, asking questions, finding bugs and generating benchmarks.
 
 ### `.[]` Syntax
 
