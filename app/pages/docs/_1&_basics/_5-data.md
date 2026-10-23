@@ -5,28 +5,7 @@ published: true
 
 <{ :toc }>
 
-Raindeer uses the repository pattern, with `LowData` classes defining familiar methods such as `find`, `all`, `create` and `update`.
-
-There are two main ways to query the database; traditional SQL queries and Data Expressions.
-
-## Sequel
-
-Raindeer uses the [Sequel](https://sequel.jeremyevans.net/) gem for basic and advanced queries.
-
-**For example:**
-```ruby
-class PostsData < LowData
-  def all
-    DB[:posts].where(id: 1)
-  end
-end
-```
-
-`DB` is equivalent to `Sequel.sqlite` or your chosen database adapter.
-
-## Data Expressions
-
-LowData follows the repository pattern with a twist; *Data Expressions*. Data Expressions are just that, they are values, that represent a table and its columns (`TableName[:column]`). LowData then uses simple arithmetic to connect these tables together:
+Raindeer uses the repository pattern, with `LowData` classes defining familiar methods such as `find`, `all`, `create` and `update`. LowData follows the repository pattern with a twist; *Data Expressions*. Data Expressions are just that, they are values, that represent a table and its columns (`TableName[:column]`). LowData then uses simple arithmetic to connect these tables together:
 - `+` combines tables (usually [nesting](#nesting) data into the parent)
 - `*` describes how many results you want
 - `&`, `<`,`>` [joins](#joins) tables together
@@ -464,6 +443,21 @@ Use the Sequel gem to [manage migrations](https://sequel.jeremyevans.net/rdoc/fi
 ## Integrations
 
 LowData is probably the most flexible component of Raindeer, in that it can be completely swapped out for another library such as [Rom](https://hanakai.org/rom). You could even swap in ActiveRecord if you want, but you would make me cry 😢, do you want to make me cry?
+
+### Sequel
+
+Raindeer uses the [Sequel](https://sequel.jeremyevans.net/) gem for basic and advanced queries.
+
+**For example:**
+```ruby
+class PostsData < LowData
+  def all
+    DB[:posts].where(id: 1)
+  end
+end
+```
+
+`DB` is equivalent to `Sequel.sqlite` or your chosen database adapter.
 
 ### ROM
 
