@@ -255,6 +255,10 @@ rain build
 
 This exports a package of typical website files in the `/build` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
 
+### Databases
+
+A static site doesn't have a database, so `rain build` doesn't connect to one. Your [data](/docs/data) classes still load, but any page that queries data is skipped and left to your dynamic site. Raindeer could theoretically build the site locally with a database in future.
+
 ### Cloudflare
 
 Cloudflare Pages serves a top-level `404.html` for missing pages, with a 404 status. Without one, it assumes your site is a single-page app and serves the home page with a 200 status instead, so every broken link looks like a working copy of your home page.
