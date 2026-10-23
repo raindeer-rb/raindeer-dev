@@ -18,6 +18,14 @@ PATH
     expressions (0.4.0)
 
 PATH
+  remote: ../lowdata
+  specs:
+    lowdata (0.1.0)
+      expressions (~> 0.4)
+      lowtype (~> 1.6)
+      sequel (~> 5.0)
+
+PATH
   remote: ../lowevent
   specs:
     lowevent (0.8.1)
@@ -81,6 +89,28 @@ PATH
       expressions (~> 0.1)
 
 PATH
+  remote: ../raindeer
+  specs:
+    raindeer (0.11.0)
+      antlers (~> 1.0)
+      dirload (~> 0.7.0)
+      expressions
+      listen
+      lowdata (~> 0.1)
+      lowevent (~> 0.8.1)
+      lowloop (~> 0.8.1)
+      lownode (~> 0.5.3)
+      lowtype (~> 1.6)
+      observers
+      ostruct
+      paint
+      plugs
+      providers
+      raindown (~> 0.2)
+      ruby-progressbar
+      trees
+
+PATH
   remote: ../trees
   specs:
     trees (0.3.5)
@@ -104,6 +134,7 @@ GEM
       protocol-url (~> 0.2)
     async-pool (0.12.0)
       async (>= 2.0)
+    bigdecimal (4.1.3)
     commonmarker (2.10.1-aarch64-linux)
     commonmarker (2.10.1-aarch64-linux-musl)
     commonmarker (2.10.1-arm-linux-gnu)
@@ -187,22 +218,6 @@ GEM
     protocol-url (0.19.0)
     racc (1.8.1)
     rainbow (3.1.1)
-    raindeer (0.10.3)
-      antlers (~> 1.0)
-      dirload (~> 0.7.0)
-      expressions
-      lowevent (~> 0.8.1)
-      lowloop (~> 0.8.1)
-      lownode (~> 0.5.3)
-      lowtype (~> 1.6)
-      observers
-      ostruct
-      paint
-      plugs
-      providers
-      raindown (~> 0.2)
-      ruby-progressbar
-      trees
     raindown (0.3.0)
       antlers (>= 1.2.2)
       commonmarker
@@ -258,6 +273,8 @@ GEM
       parser (>= 3.3.7.2)
       prism (~> 1.7)
     ruby-progressbar (1.13.0)
+    sequel (5.109.0)
+      bigdecimal
     timecop (0.9.11)
     tsort (0.2.0)
     unicode-display_width (3.3.0)
@@ -281,6 +298,7 @@ DEPENDENCIES
   dirload!
   expressions!
   irb
+  lowdata!
   lowevent!
   lowkey!
   lowloop!
@@ -289,7 +307,7 @@ DEPENDENCIES
   observers!
   plugs!
   providers!
-  raindeer
+  raindeer!
   rake (~> 13.0)
   rspec
   rubocop
@@ -302,6 +320,7 @@ CHECKSUMS
   async (2.46.0) sha256=34f984733dbf63a997376346451ec995e858cacc3105e86ccfeaf8877b4f490b
   async-http (0.105.0) sha256=55191969d5cf61be5fbc2e0aadd51d77085318ba192a5ff5e12e3aba0826906a
   async-pool (0.12.0) sha256=5580493dc024bd704dab2ed0bf1307100722e49cbb825c7965f8501194f58506
+  bigdecimal (4.1.3) sha256=61ebe1e5e559bdc3cc6f2c0ee7f427321fc838f59611c294356eb04d6e21cf66
   bundler (4.0.12) sha256=7f8b757d28dfb636e7b24fba2344ac6dd13b5b24f4b46d62573d483f211825ac
   commonmarker (2.10.1-aarch64-linux) sha256=3ab9e7027d2350364bdc541680cc28e21011b2950abf7d08ac29093fa691bdc3
   commonmarker (2.10.1-aarch64-linux-musl) sha256=98e6d1a03ba708438d804702e3c25f3423bff21a1e9975280eb265d889677dfc
@@ -338,6 +357,7 @@ CHECKSUMS
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   listen (3.10.1) sha256=4c3f32855657f348747da4dd2372ff3790d90a6b1d3e4f21a3706adb2d04783c
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  lowdata (0.1.0)
   lowevent (0.8.1)
   lowkey (0.7.0)
   lowloop (0.8.2)
@@ -369,7 +389,7 @@ CHECKSUMS
   providers (0.6.2)
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a
-  raindeer (0.10.3) sha256=b8522ecf9e7cdc335ea4b2c9b689dbdd5093cf8aeda8305a02f84d0bfdf385f9
+  raindeer (0.11.0)
   raindown (0.3.0) sha256=15e46b6882efa3808d263d2aa0965bd533fd9eb551db38288d5533c4741aabf1
   rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
   rb-fsevent (0.11.2) sha256=43900b972e7301d6570f64b850a5aa67833ee7d87b458ee92805d56b7318aefe
@@ -386,6 +406,7 @@ CHECKSUMS
   rubocop (1.92.1) sha256=a905381a5344215a79abcfe80f6c94366447e6a55347c9a525b5a24990e33f62
   rubocop-ast (1.50.0) sha256=b9ca88300da0803ee222ad20cdb30494c0a784eed06fdc35d254b06d662788db
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
+  sequel (5.109.0) sha256=e0d1d474442d620c8497d7f4851c0cc3a277920519051b8014b2877aa55efffe
   timecop (0.9.11) sha256=41284dc6e5041f2184f781ace766f942108c842f8d8c1386a26e6343decc7542
   trees (0.3.5)
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f

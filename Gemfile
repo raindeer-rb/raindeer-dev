@@ -2,7 +2,12 @@
 
 source 'https://rubygems.org'
 
-gem 'raindeer'
+# Use a local raindeer checkout in dev when there is one, like the local gems below.
+if File.exist?(File.expand_path('../raindeer', __dir__))
+  gem 'raindeer', path: '../raindeer'
+else
+  gem 'raindeer'
+end
 
 group :development do
   local_gems = {
@@ -11,6 +16,7 @@ group :development do
     'lownode' => '../lownode',
     'lowtype' => '../lowtype',
     'lowkey' => '../lowkey',
+    'lowdata' => '../lowdata',
     'dirload' => '../dirload',
 
     'antlers' => '../antlers',
