@@ -43,7 +43,7 @@ bin/setup
 
 `config/database.rb` connects to `db/development.sqlite3` and runs the migrations in `db/migrations` on boot. Set `DATABASE_URL` to use another database.
 
-Repositories in `app/data` query the database with [LowData](https://github.com/low-rb/lowdata) data expressions:
+Repositories in `app/data` query the database with [data expressions](/docs/data):
 ```ruby
 class PostsData < LowData
   def latest(count: 10)
