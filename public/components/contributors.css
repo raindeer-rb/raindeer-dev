@@ -44,16 +44,21 @@
   }
 
   ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
     padding-left: 0;
     li {
       list-style: none;
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
+      margin: 0;
+      text-align: center;
+      a {
+        display: inline-block;
+        text-decoration: none;
+      }
       .icon {
         width: 50px;
         border-radius: 25px;
-        margin-right: 1rem;
       }
     }
   }
