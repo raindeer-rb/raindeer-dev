@@ -1,2 +1,3 @@
+# Translates strings like {"Hello"} and symbols like {:app_name}. See https://raindeer.dev/docs/translations
 en-US:
   'favour': 'favor'
