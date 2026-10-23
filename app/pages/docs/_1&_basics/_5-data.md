@@ -459,9 +459,9 @@ end
 
 `DB` is equivalent to `Sequel.sqlite` or your chosen database adapter.
 
-### ROM
+### Rom
 
-[ROM](https://github.com/hanakai-rb/rom) maps database rows to plain Ruby objects. To set it up with SQLite, first add the gems:
+[Rom](https://github.com/hanakai-rb/rom) maps database rows to plain Ruby objects. To set it up with SQLite, first add the gems:
 
 ```ruby
 # Gemfile
@@ -470,7 +470,7 @@ gem 'rom-sql'
 gem 'sqlite3'
 ```
 
-Then define ROM as a [provider](/docs/dependencies#providers) in `config/boot.rb`, after `require 'raindeer/boot'`, so it's set up once and shared:
+Then define Rom as a [provider](/docs/dependencies#providers) in `config/boot.rb`, after `require 'raindeer/boot'`, so it's set up once and shared:
 
 ```ruby
 # config/boot.rb
@@ -480,26 +480,27 @@ Providers.define(:rom) do
   ROM.container(:sql, 'sqlite://db/app.sqlite') do |config|
     config.relation(:users) do
       schema(infer: true) # Reads the columns from the existing users table.
-      auto_struct true    # Returns rows as structs instead of hashes.
     end
   end
 end
 ```
 
-Inject it into a plain data class in place of `LowData`:
+Then inherit from a Rom repository in place of `LowData`. The repository gives you the relation as a method (`users`), and `commands` defines `create`, `update` and `delete` for you:
 
 ```ruby
-class UsersData
-  def initialize(rom: Providers[:rom])
-    @users = rom.relations[:users]
-  end
+class UsersData < ROM::Repository[:users]
+  commands :create, update: :by_pk, delete: :by_pk
 
-  def all = @users.to_a
-  def find(id) = @users.by_pk(id).one
-  def create(name:) = @users.command(:create).call(name:)
+  def self.new(container = Providers[:rom], **) = super
+
+  def all = users.to_a
+  def find(id) = users.by_pk(id).one
 end
 
-UsersData.new.find(1) # => #<ROM::Struct::User id=1 name="Jane">
+users_data = UsersData.new
+users_data.find(1)                 # => #<ROM::Struct::User id=1 name="Jane">
+users_data.create(name: 'Jane')
+users_data.update(1, name: 'Janet')
 ```
 
-ROM's SQL adapter is built on Sequel, so the tables can come from the same [Sequel migrations](#migrations).
+Rom's SQL adapter is built on Sequel, so the tables can come from the same [Sequel migrations](#migrations).
