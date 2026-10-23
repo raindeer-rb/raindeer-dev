@@ -6,7 +6,7 @@ class Layout < LowNode
   end
 
   def render(event:, section:, title:)
-    <html lang="en">
+    <html lang="en" data-theme="dark">
       <head>
         <title>{"Raindeer"} - {title}</title>
 
