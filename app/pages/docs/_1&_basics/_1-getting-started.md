@@ -46,7 +46,7 @@ rain server
 
 You should see this page:
 
-
+<img src="/assets/welcome.png" alt="The Raindeer welcome page, with a blueprint background and an illustrated deer"/>
 
 ## Directory Structure
 
