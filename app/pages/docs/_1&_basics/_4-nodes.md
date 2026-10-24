@@ -17,7 +17,7 @@ After setting up a [route](/docs/routing), `observe` it to render a response:
 class UserNode < LowNode
   observe '/:user_id'
 
-  def render(event: RenderEvent)
+  def render(event: RouteEvent)
     event.params[:user_id] # => '123'
   end
 end
@@ -38,19 +38,22 @@ observe '/path' => :action
 The HTTP request/verb becomes the corresponding event/action:
 | **HTTP Verb** | **Event**      | **Action**        |
 |---------------|----------------|-------------------|
-| `GET`         | `RenderEvent`  | `render`/`get`    |
+| `GET`         | `RouteEvent`   | `render`/`get`    |
 | `QUERY`       | `ReceiveEvent` | `receive`/`query` |
 | `POST`        | `ReceiveEvent` | `receive`/`post`  |
 | `PUT`         | `ReceiveEvent` | `receive`/`put`   |
 | `PATCH`       | `ReceiveEvent` | `receive`/`patch` |
-| `DELETE`      | `RenderEvent`  | `render`/`delete` |
+| `DELETE`      | `RouteEvent`   | `render`/`delete` |
 
-The `RenderEvent`/`ReceiveEvent` will call `render`/`receive` first before falling back to an action matching the HTTP verb.
+The event will call `render`/`receive` first before falling back to an action matching the HTTP verb. Requests with a body call `receive`, requests without one call `render`.
+
+> [!NOTE]
+> `ReceiveEvent` is [UNRELEASED]. Until then requests with a body are given a `RouteEvent`, which doesn't have a `body` attribute.
 
 > [!TIP]
-> A `ReceiveEvent` is just like a `RenderEvent` except it also has a `body` attribute.
+> A `ReceiveEvent` is just like a `RouteEvent` except it also has a `body` attribute.
 
-For example, a `POST` request to the `'/feedback'` route will call the `post` action/method:
+For example, a `POST` request to the `'/feedback'` route will call the `post` action/method [UNRELEASED]:
 ```ruby
 class FormNode < LowNode
   observe '/feedback' => :post
@@ -226,17 +229,17 @@ See: [Dependencies](/docs/dependencies)
 
 ### Route level args
 
-An `event` keyword argument is optionally available to all `initialize` and `render` arguments.
+An `event` keyword argument is optionally available to all `initialize` and `render` arguments. A node that observes a route is given the `RouteEvent`:
 
 ```ruby
 class UserNode < LowNode
   observe '/:user_id'
 
-  def initialize(event: RenderEvent)
+  def initialize(event: RouteEvent)
     event.params[:user_id] # => '123'
   end
 
-  def render(event: RenderEvent)
+  def render(event: RouteEvent)
     event.params[:user_id] # => '123'
   end
 end
@@ -308,7 +311,7 @@ At first this may seem like more boilerplate for each action... but consider tha
 > [!TIP]
 > In Raindeer the node is the controller, the service object and the template all-in-one.
 
-### Single Responsibility
+### Single Responsibility [UNRELEASED]
 
 **Route:**
 ```ruby
@@ -335,7 +338,7 @@ class UserUpdater < LowNode
 end
 ```
 
-### Classic Controller
+### Classic Controller [UNRELEASED]
 
 > [!CAUTION]
 > Hey... psssh... hey you. Wanna write some bad code? Yeah come on it will be fun. Okay so we've got...
@@ -355,7 +358,7 @@ class UserController < LowNode
   observe '/:user_id'
   include Controller
 
-  def get(event: RenderEvent)
+  def get(event: RouteEvent)
     find(user_id: event.params[:user_id])
     UserNode.render(event:, user_id:)
   end
@@ -370,7 +373,7 @@ class UserController < LowNode
     Status[200]
   end
 
-  def delete(event: RenderEvent)
+  def delete(event: RouteEvent)
     delete(user_id: event.params[:user_id])
     Status[200]
   end

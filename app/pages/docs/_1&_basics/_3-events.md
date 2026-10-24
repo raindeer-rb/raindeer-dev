@@ -14,7 +14,7 @@ Raindeer is an event-driven framework that represents the Request-Response lifec
 
 1. [RequestEvent](/docs/events#requestevent) - The server converts HTTP requests into request events
 2. [RouteEvent](/docs/events#routeevent) - The [router](/docs/routing) creates route events from request events
-3. [RenderEvent](/docs/events#renderevent) - A [node](/docs/nodes) observes a route event and renders a response
+3. [RenderEvent](/docs/events#renderevent) - A [node](/docs/nodes) observes a route event and renders a response, passing render events to the nodes it renders
 4. [ResponseEvent](/docs/events#responseevent) - A response event is converted into an HTTP response and given to the requester
 
 ## Observing Events
@@ -66,11 +66,11 @@ The `RequestEvent` contains a `request` attribute, which is a [Protocol::HTTP::R
 
 ### `RouteEvent`
 
-Observe a [route](/docs/routing) and it will trigger the `render` action/class method on a [node](/docs/nodes)/observer. The *method factory pattern* takes over; instantiating the node with a `RenderEvent`, before calling the instance `render` method with the same `RenderEvent`.
+Observe a [route](/docs/routing) and it will trigger the `render` action/class method on a [node](/docs/nodes)/observer. The *method factory pattern* takes over; instantiating the node with the `RouteEvent`, before calling the instance `render` method with the same `RouteEvent`.
 
 ### `RenderEvent`
 
-Calls `render` instance method by defalult, after observing a route or rendering a node via Antlers in the template.
+Nodes rendered by another node via Antlers in the template, like `<{ UserCard }>`, are initialized and rendered with a `RenderEvent`. It has the same `params` as the route.
 
 ### `ResponseEvent`
 

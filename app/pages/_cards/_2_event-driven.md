@@ -7,7 +7,7 @@ summary: Observe and respond to events
 ```ruby
 observe '/:id'
 
-def render(event: RenderEvent)
+def render(event: RouteEvent)
   event.params[:id] # => 123
 end
 ```
