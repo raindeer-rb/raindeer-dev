@@ -92,7 +92,7 @@ end
 
 ## Observing + Responding
 
-With the ["on" syntax](/docs/events#on-syntax) and the `Route` we can observe and respond in one fell swoop:
+With the ["on" syntax](/docs/events#on-syntax-unreleased) and the `Route` we can observe and respond in one fell swoop:
 ```ruby
 on Route[GET => '/'] do |request_event|
   "Response"

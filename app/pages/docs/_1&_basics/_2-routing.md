@@ -7,7 +7,7 @@ published: true
 
 Routes can be defined anywhere inside your `/app` folder. A new Raindeer application generated via `rain new :app_name` will create `app/routes.rb`.
 
-The router observes [RequestEvent](/docs/events#request-event)s (HTTP requests), matches them to a `Route` and converts them into [RouteEvent](/docs/events#route-event)s. This `RouteEvent` can be observed by any [node](/docs/nodes) and return a response.
+The router observes [RequestEvent](/docs/events#requestevent)s (HTTP requests), matches them to a `Route` and converts them into [RouteEvent](/docs/events#routeevent)s. This `RouteEvent` can be observed by any [node](/docs/nodes) and return a response.
 
 ## Defining a route
 
@@ -19,7 +19,7 @@ Raindeer.router do
 end
 ```
 
-Then `observe '/'` this route in a node. **See:** [Observing](/docs/nodes#implicit-syntax)
+Then `observe '/'` this route in a node. **See:** [Observing](/docs/nodes#observing-routes)
 
 ## Route Types
 
