@@ -6,6 +6,7 @@ class PageRenderer < LowNode
   def initialize(event:)
     page = Raindeer.pages.page(path: event.route.path) || return
 
+    @path = event.route.path
     @html = page.html
     @title = page.metadata[:title]
     @published = @html && page.metadata[:published]
@@ -13,7 +14,7 @@ class PageRenderer < LowNode
 
   def render
     <{ if: @published }>
-      <{ Layout: title=@title section='section-pages' }>
+      <{ Layout: title=@title section='section-pages' path=@path }>
         <{ Sidebar }>
 
         <div id="content">

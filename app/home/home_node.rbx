@@ -9,7 +9,7 @@ class HomeNode < LowNode
   end
 
   def render(event:)
-    <{ Layout: title=@title section='section-home' }>
+    <{ Layout: title=@title section='section-home' path='/' }>
       <img id="raindeer" src="/assets/logo.png" alt="Raindeer logo, an illustrated deer with large antlers"/>
 
       <div id="overview">

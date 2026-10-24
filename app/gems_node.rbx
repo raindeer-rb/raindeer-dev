@@ -19,7 +19,7 @@ class GemsNode < LowNode
   end
 
   def render(event:)
-    <{ Layout: title=@title section='section-gems' }>
+    <{ Layout: title=@title section='section-gems' path='/gems' }>
       <div class="page-intro">
         <h1>{"Gems"}</h1>
         <p>{"The building blocks that make up Raindeer."}</p>

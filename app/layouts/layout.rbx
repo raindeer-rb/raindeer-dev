@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Layout < LowNode
-  def initialize
+  # The 404 page has no path so it isn't given a canonical URL.
+  def initialize(path: nil)
     @description = "An event-driven and compositional web framework that's easy to use 🦌"
+    @url = "https://raindeer.dev#{path}" if path
   end
 
   def render(event:, section:, title:)
@@ -27,7 +29,10 @@ class Layout < LowNode
         <meta property="og:image" content="https://raindeer.dev/assets/cover.png" />
         <meta property="og:title" content="Raindeer - {title}" />
         <meta property="og:description" content="{@description}" />
-        <meta property="og:url" content="https://raindeer.dev" />
+        <{ if: @url }>
+          <link rel="canonical" href="{@url}">
+          <meta property="og:url" content="{@url}" />
+        <{ :if }>
         <meta property="og:type" content="website" />
       </head>
       <body class="{section}">
