@@ -8,7 +8,7 @@ published: true
 **Create your application:**
 ```shell
 gem install raindeer
-rain new :app_name
+rain new my_app
 ```
 
 Or clone the [template](https://github.com/raindeer-rb/raindeer-template).
