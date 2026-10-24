@@ -7,13 +7,13 @@ published: true
 
 ## CPU-bound
 
-### 1 route
-
-### 100 routes
+### 1000 routes
 
 **Configuration:**
 - 1 thread/fiber
-- 100 routes
+- 1000 routes in one route table, nested like real REST resources (`/solo5`, `/solo5/duo5`, `/solo5/duo5/trio2`)
+- Each column requests a route at that path depth (`/solo200`, `/solo5/duo15`, `/solo5/duo5/trio2`)
+- Sinatra and Roda check routes one by one in the order they're declared, so their speed depends on where a route sits in the list. Each requested route is the middle one of its group, a typical case rather than the best or worst
 
 > [!NOTE]
 > **Requests Per Second:** This CPU-bound metric is a relatively small slice of time in comparison to the typical IO-bound tasks of web applications, such as waiting for the database.
@@ -21,69 +21,62 @@ published: true
 <table>
   <thead>
     <tr>
-      <th>Framework + Server</th>
-      <th>Req/s</th>
-      <th>Mean latency</th>
-      <th>p50</th>
-      <th>p90</th>
-      <th>p99</th>
-      <th>Failed requests</th>
+      <th>Server</th>
+      <th>GET / (req/s)</th>
+      <th>1 segment (req/s)</th>
+      <th>2 segments (req/s)</th>
+      <th>3 segments (req/s)</th>
+      <th>Mean latency (3 segments)</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Raindeer + LowLoop</td>
-      <td>17134.66</td>
-      <td>2.918 ms</td>
-      <td>3 ms</td>
-      <td>3 ms</td>
-      <td>4 ms</td>
-      <td>0</td>
+      <td><strong>Roda</strong> + Falcon</td>
+      <td>7,948.17</td>
+      <td>3,038.29</td>
+      <td>7,006.14</td>
+      <td>7,220.58</td>
+      <td>6.925 ms</td>
     </tr>
     <tr>
-      <td>Raindeer + Falcon</td>
-      <td>14499.04</td>
-      <td>3.449 ms</td>
-      <td>3 ms</td>
-      <td>4 ms</td>
-      <td>8 ms</td>
-      <td>0</td>
+      <td><strong>Raindeer</strong> + LowLoop</td>
+      <td>4,927.88</td>
+      <td>3,905.35</td>
+      <td>3,510.91</td>
+      <td>3,551.81</td>
+      <td>14.077 ms</td>
     </tr>
     <tr>
-      <td>Roda + Falcon</td>
-      <td>11469.40</td>
-      <td>4.359 ms</td>
-      <td>4 ms</td>
-      <td>5 ms</td>
-      <td>5 ms</td>
-      <td>0</td>
+      <td><strong>Raindeer</strong> + Falcon</td>
+      <td>5,228.65</td>
+      <td>3,606.68</td>
+      <td>3,333.89</td>
+      <td>3,148.49</td>
+      <td>15.881 ms</td>
     </tr>
     <tr>
-      <td>Hanami + Falcon</td>
-      <td>6619.51</td>
-      <td>7.553 ms</td>
-      <td>7 ms</td>
-      <td>8 ms</td>
-      <td>9 ms</td>
-      <td>0</td>
+      <td><strong>Hanami</strong> + Falcon</td>
+      <td>1,845.39</td>
+      <td>1,906.14</td>
+      <td>1,960.15</td>
+      <td>1,956.06</td>
+      <td>25.562 ms</td>
     </tr>
     <tr>
-      <td>Sinatra + Falcon</td>
-      <td>5691.24</td>
-      <td>8.785 ms</td>
-      <td>9 ms</td>
-      <td>9 ms</td>
-      <td>10 ms</td>
-      <td>0</td>
+      <td><strong>Sinatra</strong> + Falcon</td>
+      <td>3,921.91</td>
+      <td>1,163.09</td>
+      <td>571.56</td>
+      <td>515.66</td>
+      <td>96.964 ms</td>
     </tr>
     <tr>
-      <td>Rails + Falcon</td>
-      <td>2709.77</td>
-      <td>18.452 ms</td>
-      <td>18 ms</td>
-      <td>20 ms</td>
-      <td>22 ms</td>
-      <td>0</td>
+      <td><strong>Rails</strong> + Falcon</td>
+      <td>965.99</td>
+      <td>861.15</td>
+      <td>821.44</td>
+      <td>831.45</td>
+      <td>60.136 ms</td>
     </tr>
   </tbody>
 </table>
@@ -106,7 +99,7 @@ These integrations are experimental and don't suport the full Raindeer API such 
 
 ### Iodine
 
-If you really need CPU-bound speed then you can boot Raindeer via Iodine. Currently this increases requests per second by **~10,000** and decreases latency by **~1ms**. It involves a Rack adapter (for now) and of course, the absence of LowLoop with its Matrix, Interval and Async related features.
+If you really need CPU-bound speed then you can boot Raindeer via Iodine. Compared to LowLoop, this currently increases requests per second by **~10-16%** and decreases latency by **~14%**. It involves a Rack adapter (for now) and of course, the absence of LowLoop with its Matrix, Interval and Async related features.
 
 **Iodine Boot:**
 ```ruby
