@@ -2,7 +2,7 @@
 
 class Status404Node < LowNode
   observe Status[404]
-  # Exported by "rain build" so bin/rain can turn it into "build/404.html".
+  # Exported by "rain build" to "build/404.html", which Cloudflare Pages serves for missing pages.
   observe '/404'
 
   def initialize

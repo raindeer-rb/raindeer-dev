@@ -255,6 +255,10 @@ rain build
 
 This exports a package of typical website files in the `/build` folder that can be uploaded to any web service that accepts static sites such as GitHub, GitLab, Cloudflare and Codeberg Pages.
 
+### Trailing slashes
+
+Each page is exported to a file, so `/docs/static` becomes `build/docs/static.html`, which hosts like GitHub and Cloudflare Pages serve at `/docs/static` without a trailing slash. The home page is `build/index.html`.
+
 ### Databases
 
 A static site doesn't have a database, so `rain build` doesn't connect to one. Your [data](/docs/data) classes still load, but any page that queries data is skipped and left to your dynamic site. Raindeer could theoretically build the site locally with a database in future.
@@ -281,7 +285,7 @@ class Status404Node < LowNode
 end
 ```
 
-**2. Add the route,** so that `rain build` exports it to `build/404/index.html`:
+**2. Add the route:**
 
 ```ruby
 # app/routes.rb
@@ -290,22 +294,10 @@ Raindeer.router do
 end
 ```
 
-**3. Move it after building.** Add a script that moves the page to `build/404.html`:
-
-```ruby
-#!/usr/bin/env ruby
-# bin/404
-require 'fileutils'
-
-build_path = File.expand_path('../build', __dir__)
-FileUtils.mv(File.join(build_path, '404', 'index.html'), File.join(build_path, '404.html'))
-FileUtils.rmdir(File.join(build_path, '404'))
-```
-
-Make it executable with `chmod +x bin/404`, then set your Cloudflare Pages build command to run it after building:
+`rain build` exports the route to `build/404.html`. Then set your Cloudflare Pages build command to:
 
 ```bash
-rain build && bin/404
+rain build
 ```
 
 Use the gem's `rain` here rather than a `bin/rain` that requires `bundler/setup`. Cloudflare installs gems without your `development` and `test` groups, but only for the install step, so `bundler/setup` fails looking for them.

@@ -8,7 +8,9 @@ require 'erb'
 SITE_URL = 'https://raindeer.dev'
 
 build_path = File.expand_path('../build', __dir__)
-paths = Dir.glob('**/index.html', base: build_path).map { |file| File.dirname(file) == '.' ? '/' : "/#{File.dirname(file)}" }
+# Pages are exported as "docs/nodes.html", which is served at "/docs/nodes".
+files = Dir.glob('**/*.html', base: build_path) - ['404.html']
+paths = files.map { |file| file == 'index.html' ? '/' : "/#{file.delete_suffix('.html')}" }
 
 urls = paths.sort.map { |path| "  <url><loc>#{ERB::Util.html_escape(SITE_URL + path)}</loc></url>" }
 
