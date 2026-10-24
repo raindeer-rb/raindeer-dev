@@ -33,7 +33,7 @@ SELECT username, id FROM users WHERE (id IN (...))
 ]
 ```
 
-Call a repository's methods on the class, like `PostsData.all`. Each public method has a class method of the same name that calls it on a new instance, the same [Method Factory](/docs/nodes#unit-testing) pattern as nodes.
+Call a repository's methods on the class, like `PostsData.all`. Each public method has a class method of the same name that calls it on a new instance, the same [Method Factory](/docs/nodes#unit-testing) pattern as nodes. LowData goes a bit further and does what I'm calling the **Mirror Method Factory Pattern:* Any method you define on the instance will be available to call on the class, so you can create descriptive repository methods.
 
 ## Nesting
 
