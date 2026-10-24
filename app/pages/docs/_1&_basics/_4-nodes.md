@@ -69,9 +69,6 @@ end
 
 ## Responding
 
-> [!CAUTION]
-> **TODO:** I built a whole framework and missed something important. The `RenderEvent` needs to have the `params` from `RouteEvent` brought over to it... Whoops.
-
 Every node supports an `initialize` and a `render` method. The class is initialized first before then being rendered. You can access any instance variables or methods from the `render` method:
 
 ```ruby
@@ -86,6 +83,16 @@ class UserNode < LowNode
   # Templating.
   def render
     <strong>ID:</strong> {@id}
+  end
+end
+```
+
+Nodes rendered inside another node, like `<{ UserCard }>`, are given a `RenderEvent` that has the same `params` as the route:
+
+```ruby
+class UserCard < LowNode
+  def initialize(event: RenderEvent)
+    @id = event.params[:id]
   end
 end
 ```
