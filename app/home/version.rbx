@@ -9,6 +9,9 @@ class Version < LowNode
   def initialize
     response = Net::HTTP.get(URI(ENDPOINT))
     @version = ::JSON.parse(response)['version']
+  rescue StandardError
+    # Builds shouldn't fail when RubyGems can't be reached, so fall back to the installed version.
+    @version = Raindeer::VERSION
   end
 
   def render
