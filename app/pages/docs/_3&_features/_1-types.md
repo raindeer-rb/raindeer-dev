@@ -202,9 +202,9 @@ def my_method(my_arg: String | MyType | value(MyType)) # => MyType is the defaul
 - `Tuple` (subclass of `Array`)
 - `Status` (subclass of `Integer`)
 - `Headers` (subclass of `Hash`)
-- `HTML` (subclass of `String`) - TODO: Check that string is HTML
-- `JSON` (subclass of `String`) - TODO: Check that string is JSON
-- `XML` (subclass of `String`) - TODO: Check that string is XML
+- `HTML` (subclass of `String`) - Contents are not validated as HTML yet
+- `JSON` (subclass of `String`) - Contents are not validated as JSON yet
+- `XML` (subclass of `String`) - Contents are not validated as XML yet
 
 ### Custom types
 
