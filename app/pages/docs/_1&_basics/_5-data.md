@@ -33,6 +33,8 @@ SELECT username, id FROM users WHERE (id IN (...))
 ]
 ```
 
+Call a repository's methods on the class, like `PostsData.all`. Each public method has a class method of the same name that calls it on a new instance, the same [Method Factory](/docs/nodes#unit-testing) pattern as nodes.
+
 ## Nesting
 
 ### Chained nesting

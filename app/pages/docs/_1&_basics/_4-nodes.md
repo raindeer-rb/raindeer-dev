@@ -45,18 +45,16 @@ The HTTP request/verb becomes the corresponding event/action:
 | `PATCH`       | `ReceiveEvent` | `receive`/`patch` |
 | `DELETE`      | `RouteEvent`   | `render`/`delete` |
 
-The event will call `render`/`receive` first before falling back to an action matching the HTTP verb. Requests with a body call `receive`, requests without one call `render`.
-
-> [!NOTE]
-> `ReceiveEvent` is [UNRELEASED]. Until then requests with a body are given a `RouteEvent`, which doesn't have a `body` attribute.
+The event will call `render`/`receive` first before falling back to an action matching the HTTP verb, when the node does `include Controller`. Requests with a body are given a `ReceiveEvent` and call `receive`, requests without one are given a `RouteEvent` and call `render`.
 
 > [!TIP]
-> A `ReceiveEvent` is just like a `RouteEvent` except it also has a `body` attribute.
+> A `ReceiveEvent` is just like a `RouteEvent` except it also has a `body` attribute. Form and JSON bodies become a hash with symbol keys, other bodies are a string. `raw_body` is always the string.
 
-For example, a `POST` request to the `'/feedback'` route will call the `post` action/method [UNRELEASED]:
+For example, a `POST` request to the `'/feedback'` route will call the `post` action/method:
 ```ruby
 class FormNode < LowNode
   observe '/feedback' => :post
+  include Controller
 
   def post(event: ReceiveEvent)
     submit(event.body)
@@ -311,7 +309,7 @@ At first this may seem like more boilerplate for each action... but consider tha
 > [!TIP]
 > In Raindeer the node is the controller, the service object and the template all-in-one.
 
-### Single Responsibility [UNRELEASED]
+### Single Responsibility
 
 **Route:**
 ```ruby
@@ -326,24 +324,22 @@ class UserUpdater < LowNode
   observe '/:user_id/update'
 
   def receive(event: ReceiveEvent)
-    update(user_id: event.params[:user_id], event.body[:attributes])
+    UsersData.update(event.params[:user_id], event.body[:attributes])
     Status[200]
-  end
-
-  private
-
-  def update(user_id:, attributes:)
-    DB[:users].where(id: user_id).update(**attributes)
   end
 end
 ```
 
-### Classic Controller [UNRELEASED]
+**[Data](/docs/data):**
+```ruby
+class UsersData < LowData
+  def update(id, attributes) = Users(id:)[] = attributes
+end
+```
 
-> [!CAUTION]
-> Hey... psssh... hey you. Wanna write some bad code? Yeah come on it will be fun. Okay so we've got...
+### Classic Controller
 
-Raindeer is all about guiding you in the right direction, but I'm not going to fuck up your life if you need to do things a certain way. That's the benefit of composition, you can do it all kinds of ways. Okay... since you were going to do it anyway, here's how to replicate a controller one-to-one in Raindeer.
+Here's how to replicate a controller one-to-one in Raindeer:
 
 **Route:**
 ```ruby
@@ -359,39 +355,40 @@ class UserController < LowNode
   include Controller
 
   def get(event: RouteEvent)
-    find(user_id: event.params[:user_id])
-    UserNode.render(event:, user_id:)
+    UserNode.render(event:, user: UsersData.find(event.params[:user_id]))
   end
 
   def post(event: ReceiveEvent)
-    create(user_id: event.params[:user_id], event.body[:attributes])  
+    UsersData.create(event.params[:user_id], event.body[:attributes])
     Status[200]
   end
 
   def put(event: ReceiveEvent)
-    update(user_id: event.params[:user_id], event.body[:attributes])  
+    UsersData.update(event.params[:user_id], event.body[:attributes])
     Status[200]
   end
 
   def delete(event: RouteEvent)
-    delete(user_id: event.params[:user_id])
+    UsersData.delete(event.params[:user_id])
     Status[200]
   end
+end
+```
 
-  private
-
-  def update(user_id:, attributes:)
-    DB[:users].where(id: user_id).update(**attributes)
-  end
-
-  # Etc.
+**[Data](/docs/data):**
+```ruby
+class UsersData < LowData
+  def find(id) = Users(id:)[:username, :email].to_a.first
+  def create(id, attributes) = Users << { **attributes, id: }
+  def update(id, attributes) = Users(id:)[] = attributes
+  def delete(id) = Users(id:).delete
 end
 ```
 
 ## Unit Testing
 
 > [!NOTE]
-> Nodes use the **Method Factory** pattern. You call the *class* method to call the *instance* method.
+> Nodes use the **Method Factory** pattern. You call the *class* method to call the *instance* method. This works for every action: `render`, `receive` and `side_effect`, plus the HTTP verbs `get`, `query`, `post`, `put`, `patch` and `delete` when the node does `include Controller`.
 
 Instead of calling `new` on a node class directly, first you call a class method which instantiates the class on your behalf, then calls the corresponding instance method.
 

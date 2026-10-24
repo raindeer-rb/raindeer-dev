@@ -37,7 +37,7 @@ end
 Then `observe '/'` in a node. **See:** [Observing](/docs/nodes#observing-routes)
 
 > [!NOTE]
-> Explicit routes will map their HTTP Verb to the action of the same name; `GET` calls `:get`
+> Explicit routes will map their HTTP Verb to the action of the same name; `GET` calls `:get` in a node that does `include Controller`
 
 ### Multiple HTTP Verbs
 
